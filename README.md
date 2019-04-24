@@ -11,7 +11,7 @@
 ###### 官方網站：https://hbl917070.github.io/aeropic/index.html#/
 ###### 討論區：https://forum.gamer.com.tw/C.php?bsn=60076&snA=4095280
 
-
+<br><br><br>
 
 ## TiefSee
 - 用途：Windows的圖片檢視器
@@ -21,7 +21,7 @@
 <img src="https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-1.svg" width="500px" />
 <img src="https://hbl917070.github.io/aeropic/imgs/home_demo/1.gif" width="400px" />
 
-
+<br><br>
 
 ##  TiefSee、合成GIF
 - 用途：將「pixiv動圖」轉存成「gif」
@@ -29,12 +29,14 @@
 
 <img src="https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-4.svg" width="400px" />
 
+<br><br><br>
 
 ## TiefSee、快速啟動
 - 用途：TiefSee的啟動器
 - 運作原理：向TiefSee 發出 http請求，TiefSee 會以「新建一個視窗開啟圖片」，取代原本的「開一個全新的執行檔」
 - 使用方式：在命令列傳入圖片的路徑當做參數，或是直接啟動
 
+<br><br><br>
 
 ##  TiefSee、關聯附檔名
 - 用途：讓TiefSee變成作業系統預設開啟圖片的程式
@@ -45,6 +47,8 @@
 
 <img src="https://hbl917070.github.io/aeropic/imgs/explain_edit_default/10.jpg" width="400px" />
 
+<br><br><br>
+
 ##  TiefSee、搜圖
 - 用途：TiefSee 的搜圖
 - 專案類型：C# 的 WindowForms
@@ -54,7 +58,7 @@
 
 <img src="https://hbl917070.github.io/aeropic/imgs/home_demo/5.gif" width="400px" />
 
-
+<br><br><br>
 
 ## 上述專案使用了下列的程式碼
 - [jQuery](https://github.com/jquery/jquery "jQuery")：JavaScript函式庫
