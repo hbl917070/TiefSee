@@ -1,0 +1,5 @@
+﻿width: 1280
+height: 688
+left: 280
+top: 210
+max: False

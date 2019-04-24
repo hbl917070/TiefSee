@@ -1,0 +1,7 @@
+C:\Users\WEN\Desktop\wpf_AeroPic-2019-02-19\TiefSee、快速啟動\TiefSee、快速啟動\bin\Release\TiefSee.exe.config
+C:\Users\WEN\Desktop\wpf_AeroPic-2019-02-19\TiefSee、快速啟動\TiefSee、快速啟動\bin\Release\TiefSee.exe
+C:\Users\WEN\Desktop\wpf_AeroPic-2019-02-19\TiefSee、快速啟動\TiefSee、快速啟動\bin\Release\TiefSee.pdb
+C:\Users\WEN\Desktop\wpf_AeroPic-2019-02-19\TiefSee、快速啟動\TiefSee、快速啟動\obj\Release\TiefSee、快速啟動.csprojAssemblyReference.cache
+C:\Users\WEN\Desktop\wpf_AeroPic-2019-02-19\TiefSee、快速啟動\TiefSee、快速啟動\obj\Release\TiefSee、快速啟動.csproj.CoreCompileInputs.cache
+C:\Users\WEN\Desktop\wpf_AeroPic-2019-02-19\TiefSee、快速啟動\TiefSee、快速啟動\obj\Release\TiefSee.exe
+C:\Users\WEN\Desktop\wpf_AeroPic-2019-02-19\TiefSee、快速啟動\TiefSee、快速啟動\obj\Release\TiefSee.pdb

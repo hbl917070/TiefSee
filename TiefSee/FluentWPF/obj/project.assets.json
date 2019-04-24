@@ -1,0 +1,184 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETFramework,Version=v4.6.1": {
+      "JetBrains.Annotations/2018.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win": {
+      "JetBrains.Annotations/2018.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x64": {
+      "JetBrains.Annotations/2018.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        }
+      }
+    },
+    ".NETFramework,Version=v4.6.1/win-x86": {
+      "JetBrains.Annotations/2018.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/net20/JetBrains.Annotations.dll": {}
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JetBrains.Annotations/2018.3.0": {
+      "sha512": "Hbt5edAd7OfnYwsRayYguECzIJ4FUWDGjeEHsmxIgEpBbqZglhpxqjPWnWN/pEQM1HFGojMrR9dsywmC8pPTeQ==",
+      "type": "package",
+      "path": "jetbrains.annotations/2018.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "jetbrains.annotations.2018.3.0.nupkg.sha512",
+        "jetbrains.annotations.nuspec",
+        "lib/net20/JetBrains.Annotations.dll",
+        "lib/net20/JetBrains.Annotations.xml",
+        "lib/netstandard1.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard1.0/JetBrains.Annotations.dll",
+        "lib/netstandard1.0/JetBrains.Annotations.xml",
+        "lib/netstandard2.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard2.0/JetBrains.Annotations.dll",
+        "lib/netstandard2.0/JetBrains.Annotations.xml",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.dll",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.xml"
+      ]
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.0.1": {
+      "sha512": "ZFmmeTIbRP5a5J47lIUeO6WgFdrU+d2NBPSv1BgsQFVdUK9jgIKs0zOnt6RJDOlSvrvlGWzhv0LgNZfXGz9nEA==",
+      "type": "package",
+      "path": "microsoft.xaml.behaviors.wpf/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Microsoft.Xaml.Behaviors.dll",
+        "lib/net45/Microsoft.Xaml.Behaviors.xml",
+        "microsoft.xaml.behaviors.wpf.1.0.1.nupkg.sha512",
+        "microsoft.xaml.behaviors.wpf.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETFramework,Version=v4.6.1": [
+      "JetBrains.Annotations >= 2018.*",
+      "Microsoft.Xaml.Behaviors.Wpf >= 1.*"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\WEN\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "3.0.1",
+    "restore": {
+      "projectUniqueName": "D:\\GitHub\\TiefSee\\TiefSee\\FluentWPF\\FluentWPF.csproj",
+      "projectName": "FluentWPF",
+      "projectPath": "D:\\GitHub\\TiefSee\\TiefSee\\FluentWPF\\FluentWPF.csproj",
+      "packagesPath": "C:\\Users\\WEN\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\TiefSee\\TiefSee\\FluentWPF\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\WEN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net461"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net461": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "net461": {
+        "dependencies": {
+          "JetBrains.Annotations": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[2018.*, )"
+          },
+          "Microsoft.Xaml.Behaviors.Wpf": {
+            "target": "Package",
+            "version": "[1.*, )"
+          }
+        }
+      }
+    },
+    "runtimes": {
+      "win": {
+        "#import": []
+      },
+      "win-x64": {
+        "#import": []
+      },
+      "win-x86": {
+        "#import": []
+      }
+    }
+  }
+}

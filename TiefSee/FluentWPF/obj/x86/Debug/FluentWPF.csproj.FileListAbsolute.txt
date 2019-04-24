@@ -1,0 +1,17 @@
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\bin\x86\Debug\FluentWPF.dll
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\bin\x86\Debug\FluentWPF.pdb
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\bin\x86\Debug\JetBrains.Annotations.dll
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\bin\x86\Debug\Microsoft.Xaml.Behaviors.dll
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.csprojAssemblyReference.cache
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF_MarkupCompile.cache
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF_MarkupCompile.lref
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\Styles\Button.baml
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\Styles\Controls.baml
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.g.resources
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.Properties.Resources.resources
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.csproj.GenerateResource.cache
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.csproj.CoreCompileInputs.cache
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.csproj.CopyComplete
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.dll
+C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\FluentWPF.pdb

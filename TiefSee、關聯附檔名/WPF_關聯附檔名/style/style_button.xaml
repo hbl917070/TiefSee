@@ -1,0 +1,141 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+
+
+
+    <Style TargetType="{x:Type Button}"
+           x:Key="but_一般">
+
+        <Setter Property="Foreground"
+                Value="{DynamicResource sol_白}" />
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="Focusable"
+                Value="False" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+
+                        <Border Name="b1"
+                                Background="#FF0056BD"
+                                Opacity="1"
+                                BorderThickness="0"
+                                BorderBrush="{DynamicResource sol_白80}" />
+                        <!--<Border Name="b2"
+                                Background="#7F4BC8FF"
+                                Opacity="0" />
+                        <Border Name="b3"
+                                Background="#FF42A670"
+                                Opacity="0" />-->
+                        <Border Name="b2"
+                                Background="#FF004AA2"
+                                Opacity="0"
+                                BorderThickness="0"
+                                BorderBrush="{DynamicResource sol_淺藍40}" />
+                        <Border Name="b3"
+                                Background="#FF00418F"
+                                Opacity="0"
+                                BorderThickness="0"
+                                BorderBrush="#6600B1FF" />
+                        <!--內容-->
+                        <ContentPresenter  HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           IsHitTestVisible="False"
+                                           Margin="{TemplateBinding Padding}" />
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+
+                        <!--按下-->
+                        <EventTrigger RoutedEvent="PreviewMouseLeftButtonDown">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <!--<DoubleAnimation Storyboard.TargetName="b1"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.0" />
+                                    <DoubleAnimation Storyboard.TargetName="b2"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.0" />-->
+                                    <DoubleAnimation Storyboard.TargetName="b3"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.0" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <!--放開-->
+                        <EventTrigger RoutedEvent="PreviewMouseUp">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <!--<DoubleAnimation Storyboard.TargetName="b1"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.1" />
+                                    <DoubleAnimation Storyboard.TargetName="b2"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.1" />-->
+                                    <DoubleAnimation Storyboard.TargetName="b3"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <!--滑鼠移入-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="b1"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.0" />
+                                    <DoubleAnimation Storyboard.TargetName="b2"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.0" />
+                                    <DoubleAnimation Storyboard.TargetName="b3"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.0" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <!--滑鼠移出-->
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="b1"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0:0:0.1" />
+                                    <DoubleAnimation Storyboard.TargetName="b2"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.1" />
+                                    <DoubleAnimation Storyboard.TargetName="b3"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0"
+                                                     Duration="0:0:0.1" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>
