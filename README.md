@@ -18,13 +18,8 @@
 - 專案類型：C# 的 WPF ( WPF 、 WindowForms 、 HTML 混合使用)
 - 補充：必須使用 visual studio 2019 才能開啟專案
 
-
-![](https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-1.svg)
-![](https://hbl917070.github.io/aeropic/imgs/home_demo/1.gif)
-
-
-
-
+<img src="https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-1.svg" width="500px" />
+<img src="https://hbl917070.github.io/aeropic/imgs/home_demo/1.gif" width="400px" />
 
 
 
@@ -32,8 +27,7 @@
 - 用途：將「pixiv動圖」轉存成「gif」
 - 使用方式：在 ```input.xml``` 裡面寫入輸入與輸出的相關設定值後，直接開啟程式即可
 
-![](https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-4.svg)
-
+<img src="https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-4.svg" width="400px" />
 
 
 ## TiefSee、快速啟動
@@ -48,7 +42,8 @@
 - 運作原理：修改 登入檔 (Registry)
 - 使用方式：直接開啟程式即可使用
 
-![](https://hbl917070.github.io/aeropic/imgs/explain_edit_default/10.jpg)
+
+<img src="https://hbl917070.github.io/aeropic/imgs/explain_edit_default/10.jpg" width="400px" />
 
 ##  TiefSee、搜圖
 - 用途：TiefSee 的搜圖
@@ -56,8 +51,8 @@
 - 運作原理：使用webbrowser像目標網站注入javascript
 - 使用方式：在```input.txt```寫入搜圖的類型與圖片的base64，開啟程式後將會進行搜圖，並透過瀏覽器開啟搜圖結果。
 
-![](https://hbl917070.github.io/aeropic/imgs/home_demo/5.gif)
 
+<img src="https://hbl917070.github.io/aeropic/imgs/home_demo/5.gif" width="400px" />
 
 
 
