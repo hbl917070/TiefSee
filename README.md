@@ -52,8 +52,8 @@
 ##  TiefSee、搜圖
 - 用途：TiefSee 的搜圖
 - 專案類型：C# 的 WindowForms
-- 運作原理：使用webbrowser像目標網站注入javascript
-- 使用方式：在```input.txt```寫入搜圖的類型與圖片的base64，開啟程式後將會進行搜圖，並透過瀏覽器開啟搜圖結果。
+- 運作原理：使用webbrowser向目標網站注入javascript
+- 使用方式：在```input.txt```寫入搜圖的類型與圖片的base64，開啟程式後將會進行搜圖，並透過瀏覽器開啟搜圖結果
 
 
 <img src="https://hbl917070.github.io/aeropic/imgs/home_demo/5.gif" width="400px" alt="TiefSee 搜圖" />
