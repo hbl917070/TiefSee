@@ -18,8 +18,8 @@
 - 專案類型：C# 的 WPF ( WPF 、 WindowForms 、 HTML 混合使用)
 - 補充：必須使用 visual studio 2019 才能開啟專案
 
-<img src="https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-1.svg" width="500px" />
-<img src="https://hbl917070.github.io/aeropic/imgs/home_demo/1.gif" width="400px" />
+<img src="https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-1.svg" width="500px" alt="TiefSee 工具列介紹"/>
+<img src="https://hbl917070.github.io/aeropic/imgs/home_demo/1.gif" width="400px" alt="TiefSee實際運作" />
 
 <br><br>
 
@@ -27,7 +27,7 @@
 - 用途：將「pixiv動圖」轉存成「gif」
 - 使用方式：在 ```input.xml``` 裡面寫入輸入與輸出的相關設定值後，直接開啟程式即可
 
-<img src="https://hbl917070.github.io/aeropic/imgs/explain_soft/ui-4.svg" width="400px" />
+<img src="https://hbl917070.github.io/aeropic/imgs/other/3.jpg" width="400px" alt="將「pixiv動圖」轉存成「gif」"/>
 
 <br><br><br>
 
@@ -45,7 +45,7 @@
 - 使用方式：直接開啟程式即可使用
 
 
-<img src="https://hbl917070.github.io/aeropic/imgs/explain_edit_default/10.jpg" width="400px" />
+<img src="https://hbl917070.github.io/aeropic/imgs/explain_edit_default/10.jpg" width="400px" alt="TiefSee 關聯附檔名" />
 
 <br><br><br>
 
@@ -56,7 +56,7 @@
 - 使用方式：在```input.txt```寫入搜圖的類型與圖片的base64，開啟程式後將會進行搜圖，並透過瀏覽器開啟搜圖結果。
 
 
-<img src="https://hbl917070.github.io/aeropic/imgs/home_demo/5.gif" width="400px" />
+<img src="https://hbl917070.github.io/aeropic/imgs/home_demo/5.gif" width="400px" alt="TiefSee 搜圖" />
 
 <br><br><br>
 
@@ -69,7 +69,7 @@
 - [Explorer Shell Context Menu]( https://www.codeproject.com/Articles/22012/Explorer-Shell-Context-Menu "Explorer Shell Context Menu")：顯示檔案原生右鍵選單
 - [ExifLib](https://www.codeproject.com/Articles/36342/ExifLib-A-Fast-Exif-Data-Extractor-for-NET-2-0 "ExifLib")：讀取exif的套件
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json "Newtonsoft.Json")：讀取json的套件
-- [Magick.NET](https://github.com/dlemstra/Magick.NET "Magick.NET")：ImageMagick 的 net封裝
+- [Magick.NET](https://github.com/dlemstra/Magick.NET "Magick.NET")：ImageMagick 的 net 封裝
 - [dcraw](http://www.cybercom.net/~dcoffin/dcraw/ "dcraw")：RAW圖片的解析引擎
-- [WinQuickLook](https://github.com/shibayan/WinQuickLook "WinQuickLook")：在檔案總管長安鍵盤空白鍵後，預覽該檔案
+- [WinQuickLook](https://github.com/shibayan/WinQuickLook "WinQuickLook")：在檔案總管長按鍵盤空白鍵後，預覽該檔案
 - [QuickLook](https://github.com/QL-Win/QuickLook "QuickLook")：將macOS“快速查看”功能帶到Windows
