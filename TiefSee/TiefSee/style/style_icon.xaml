@@ -21,7 +21,11 @@
 
 
     <!--
- Fill="{TemplateBinding Foreground}"  Stroke="{TemplateBinding BorderBrush}" 
+一般    
+ Fill="{TemplateBinding Foreground}" 
+    
+需要加粗線條
+ Fill="{TemplateBinding Foreground}" Stroke="{TemplateBinding BorderBrush}" 
      -->
 
     <Style x:Key="icon_全螢幕"
@@ -31,10 +35,32 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="22.767" Height="22.8354">
-                        <Path Width="8.27799" Height="8.30287" Canvas.Left="2.86981" Canvas.Top="11.6534" Stretch="Fill"            Fill="{TemplateBinding Foreground}"  Stroke="{TemplateBinding BorderBrush}" Data="F1 M 3.36981,19.9563L 11.1478,19.9563L 11.1478,19.4548L 11.1478,18.9533L 10.6488,18.9533L 4.57681,18.9533L 7.61281,15.9081L 9.7808,13.7336L 9.07381,13.0245L 6.9058,15.199L 3.86981,18.2441L 3.86981,12.1539L 3.86981,11.6534L 3.36981,11.6534L 2.86981,11.6534L 2.86981,19.4548C 2.86981,19.7316 3.09381,19.9563 3.36981,19.9563 Z "/>
-                        <Path Width="8.278" Height="8.30287" Canvas.Left="11.6179" Canvas.Top="2.87921" Stretch="Fill"              Fill="{TemplateBinding Foreground}"  Stroke="{TemplateBinding BorderBrush}" Data="F1 M 11.6179,3.88221L 12.1179,3.88221L 18.1889,3.88221L 15.1539,6.92735L 12.9709,9.11591L 13.6779,9.825L 15.8609,7.63649L 18.8959,4.59137L 18.8959,10.6806L 18.8959,11.1821L 19.3959,11.1821L 19.8959,11.1821L 19.8959,3.38071C 19.8959,3.10388 19.6729,2.87921 19.3959,2.87921L 11.6179,2.87921L 11.6179,3.38071L 11.6179,3.88221 Z "/>
-                        <Path Width="22.767" Height="22.8354" Canvas.Left="7.62939e-006" Canvas.Top="-1.52588e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Stroke="{TemplateBinding BorderBrush}" Data="F1 M 21.766,21.8324L 0.999001,21.8324L 0.999001,1.00299L 21.766,1.00299M 7.62939e-006,22.8354L 22.767,22.8354L 22.767,-1.52588e-005L 7.62939e-006,-1.52588e-005L 7.62939e-006,22.8354 Z "/>
+                    <Canvas Width="22.767"
+                            Height="22.8354">
+                        <Path Width="8.27799"
+                              Height="8.30287"
+                              Canvas.Left="2.86981"
+                              Canvas.Top="11.6534"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Stroke="{TemplateBinding BorderBrush}"
+                              Data="F1 M 3.36981,19.9563L 11.1478,19.9563L 11.1478,19.4548L 11.1478,18.9533L 10.6488,18.9533L 4.57681,18.9533L 7.61281,15.9081L 9.7808,13.7336L 9.07381,13.0245L 6.9058,15.199L 3.86981,18.2441L 3.86981,12.1539L 3.86981,11.6534L 3.36981,11.6534L 2.86981,11.6534L 2.86981,19.4548C 2.86981,19.7316 3.09381,19.9563 3.36981,19.9563 Z " />
+                        <Path Width="8.278"
+                              Height="8.30287"
+                              Canvas.Left="11.6179"
+                              Canvas.Top="2.87921"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Stroke="{TemplateBinding BorderBrush}"
+                              Data="F1 M 11.6179,3.88221L 12.1179,3.88221L 18.1889,3.88221L 15.1539,6.92735L 12.9709,9.11591L 13.6779,9.825L 15.8609,7.63649L 18.8959,4.59137L 18.8959,10.6806L 18.8959,11.1821L 19.3959,11.1821L 19.8959,11.1821L 19.8959,3.38071C 19.8959,3.10388 19.6729,2.87921 19.3959,2.87921L 11.6179,2.87921L 11.6179,3.38071L 11.6179,3.88221 Z " />
+                        <Path Width="22.767"
+                              Height="22.8354"
+                              Canvas.Left="7.62939e-006"
+                              Canvas.Top="-1.52588e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Stroke="{TemplateBinding BorderBrush}"
+                              Data="F1 M 21.766,21.8324L 0.999001,21.8324L 0.999001,1.00299L 21.766,1.00299M 7.62939e-006,22.8354L 22.767,22.8354L 22.767,-1.52588e-005L 7.62939e-006,-1.52588e-005L 7.62939e-006,22.8354 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -50,29 +76,144 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="22.9048" Height="24.8343">
-                        <Path Width="1" Height="1.00301" Canvas.Left="16.2055" Canvas.Top="13.5956" Stretch="Fill" Fill="{TemplateBinding Foreground}" Data="F1 M 16.2055,13.5956L 16.2055,14.5986L 16.7055,14.5986L 17.2055,14.5986L 17.2055,13.5956L 16.7055,13.5956L 16.2055,13.5956 Z "/>
-                        <Path Width="1" Height="1.00301" Canvas.Left="8.351" Canvas.Top="3.98043" Stretch="Fill" Fill="{TemplateBinding Foreground}" Data="F1 M 8.351,4.48193L 8.351,4.98344L 9.351,4.98344L 9.351,4.48193L 9.351,3.98043L 8.351,3.98043L 8.351,4.48193 Z "/>
-                        <Rectangle Width="1" Height="0.991982" Canvas.Left="8.3508" Canvas.Top="1.99598" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="1.00301" Canvas.Left="8.3508" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.966" Height="1.00301" Canvas.Left="18.0418" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.965996" Height="1.00301" Canvas.Left="10.3168" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.965996" Height="1.00301" Canvas.Left="19.9738" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.965" Height="1.00301" Canvas.Left="12.2478" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.965996" Height="1.00301" Canvas.Left="14.1788" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.966" Height="1.00301" Canvas.Left="16.1108" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="1.00301" Canvas.Left="21.9048" Canvas.Top="7.62939e-006" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="0.96891" Canvas.Left="21.9048" Canvas.Top="5.84649" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="0.968903" Canvas.Left="21.9048" Canvas.Top="7.78333" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="0.967865" Canvas.Left="21.9048" Canvas.Top="3.90972" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="0.968903" Canvas.Left="21.9048" Canvas.Top="1.97192" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="0.968903" Canvas.Left="21.9048" Canvas.Top="11.6579" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="0.968903" Canvas.Left="21.9048" Canvas.Top="9.72009" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="1" Height="1.00301" Canvas.Left="21.9048" Canvas.Top="13.5957" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.939999" Height="1.00301" Canvas.Left="18.1458" Canvas.Top="13.5957" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Rectangle Width="0.939995" Height="1.00301" Canvas.Left="20.0258" Canvas.Top="13.5957" Stretch="Fill" Fill="{TemplateBinding Foreground}"/>
-                        <Path Width="12.7" Height="10.7371" Canvas.Left="7.2768" Canvas.Top="14.0971" Stretch="Fill" Fill="{TemplateBinding Foreground}" Data="F1 M 7.2768,14.0971L 13.6268,15.1071L 19.9768,16.1181L 15.3558,19.2957L 14.4008,24.8342L 10.8388,19.4662L 7.2768,14.0971 Z "/>
-                        <Path Width="14.554" Height="14.5977" Canvas.Left="0" Canvas.Top="6.79813" Stretch="Fill" Fill="{TemplateBinding Foreground}" Data="F1 M 9.454,20.3929L 1,20.3929L 1,7.80113L 13.554,7.80113L 13.554,13.09L 13.627,13.101L 14.554,13.2485L 14.554,6.79813L 0,6.79813L 0,21.3959L 10.12,21.3959L 9.454,20.3929 Z "/>
+                    <Canvas Width="22.9048"
+                            Height="24.8343">
+                        <Path Width="1"
+                              Height="1.00301"
+                              Canvas.Left="16.2055"
+                              Canvas.Top="13.5956"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 16.2055,13.5956L 16.2055,14.5986L 16.7055,14.5986L 17.2055,14.5986L 17.2055,13.5956L 16.7055,13.5956L 16.2055,13.5956 Z " />
+                        <Path Width="1"
+                              Height="1.00301"
+                              Canvas.Left="8.351"
+                              Canvas.Top="3.98043"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 8.351,4.48193L 8.351,4.98344L 9.351,4.98344L 9.351,4.48193L 9.351,3.98043L 8.351,3.98043L 8.351,4.48193 Z " />
+                        <Rectangle Width="1"
+                                   Height="0.991982"
+                                   Canvas.Left="8.3508"
+                                   Canvas.Top="1.99598"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="1.00301"
+                                   Canvas.Left="8.3508"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.966"
+                                   Height="1.00301"
+                                   Canvas.Left="18.0418"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.965996"
+                                   Height="1.00301"
+                                   Canvas.Left="10.3168"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.965996"
+                                   Height="1.00301"
+                                   Canvas.Left="19.9738"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.965"
+                                   Height="1.00301"
+                                   Canvas.Left="12.2478"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.965996"
+                                   Height="1.00301"
+                                   Canvas.Left="14.1788"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.966"
+                                   Height="1.00301"
+                                   Canvas.Left="16.1108"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="1.00301"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="7.62939e-006"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="0.96891"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="5.84649"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="0.968903"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="7.78333"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="0.967865"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="3.90972"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="0.968903"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="1.97192"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="0.968903"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="11.6579"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="0.968903"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="9.72009"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="1.00301"
+                                   Canvas.Left="21.9048"
+                                   Canvas.Top="13.5957"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.939999"
+                                   Height="1.00301"
+                                   Canvas.Left="18.1458"
+                                   Canvas.Top="13.5957"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="0.939995"
+                                   Height="1.00301"
+                                   Canvas.Left="20.0258"
+                                   Canvas.Top="13.5957"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Path Width="12.7"
+                              Height="10.7371"
+                              Canvas.Left="7.2768"
+                              Canvas.Top="14.0971"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 7.2768,14.0971L 13.6268,15.1071L 19.9768,16.1181L 15.3558,19.2957L 14.4008,24.8342L 10.8388,19.4662L 7.2768,14.0971 Z " />
+                        <Path Width="14.554"
+                              Height="14.5977"
+                              Canvas.Left="0"
+                              Canvas.Top="6.79813"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 9.454,20.3929L 1,20.3929L 1,7.80113L 13.554,7.80113L 13.554,13.09L 13.627,13.101L 14.554,13.2485L 14.554,6.79813L 0,6.79813L 0,21.3959L 10.12,21.3959L 9.454,20.3929 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -88,11 +229,36 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.3367" Height="24.4082">
-                        <Path Width="9.095" Height="9.12235" Canvas.Left="7.6208" Canvas.Top="7.64379" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 7.6208,12.2055C 7.6208,14.72 9.6608,16.7661 12.1688,16.7661C 14.6758,16.7661 16.7158,14.72 16.7158,12.2055C 16.7158,9.68996 14.6758,7.64379 12.1688,7.64379C 9.6608,7.64379 7.6208,9.68996 7.6208,12.2055 Z "/>
-                        <Path Width="20.0539" Height="10.8686" Canvas.Left="2.61239" Canvas.Top="0" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 22.6403,6.18453C 22.6753,6.12234 22.6753,6.04514 22.6383,5.98294C 21.5793,4.19456 20.0713,2.69508 18.2793,1.64898C 16.4313,0.57074 14.3183,0 12.1683,0C 8.4483,0 4.9813,1.67506 2.6563,4.59475C 2.6043,4.65897 2.5983,4.74822 2.6393,4.82046L 6.0643,10.7703C 6.1003,10.8335 6.1663,10.8706 6.2643,10.8685C 6.3453,10.8586 6.4103,10.7994 6.4313,10.7201C 7.1063,8.09528 9.4653,6.26277 12.1683,6.26277C 12.3363,6.26277 12.5093,6.26981 12.7013,6.28585L 22.4673,6.28585C 22.5383,6.28585 22.6043,6.24673 22.6403,6.18453 Z "/>
-                        <Path Width="14.0088" Height="18.1584" Canvas.Left="0" Canvas.Top="6.11903" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 13.967,18.0016C 13.917,17.9374 13.834,17.9104 13.756,17.9314C 13.24,18.0759 12.707,18.1481 12.169,18.1481C 9.884,18.1481 7.777,16.804 6.795,14.7088L 1.908,6.21936C 1.873,6.15717 1.807,6.11903 1.736,6.11903L 1.735,6.11903C 1.663,6.12007 1.597,6.15918 1.562,6.22133C 0.539997,8.03878 0,10.108 0,12.2052C 0,15.1471 1.058,17.9885 2.98,20.2063C 4.882,22.4018 7.5,23.8471 10.383,24.2774C 10.453,24.2774 10.52,24.2393 10.555,24.1771L 13.982,18.2243C 14.023,18.1541 14.016,18.0658 13.967,18.0016 Z "/>
-                        <Path Width="12.2315" Height="16.7873" Canvas.Left="12.1052" Canvas.Top="7.62096" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 23.3137,7.62096L 16.4537,7.62096C 16.3727,7.62096 16.2997,7.67006 16.2697,7.74529C 16.2387,7.82053 16.2557,7.90679 16.3137,7.96397C 17.4617,9.09235 18.0937,10.5989 18.0937,12.2057C 18.0937,13.4223 17.7287,14.5928 17.0267,15.6048L 12.1317,24.1083C 12.0957,24.1705 12.0967,24.2477 12.1327,24.3099C 12.1677,24.3711 12.2337,24.4082 12.3047,24.4082L 12.3067,24.4082C 15.5277,24.3731 18.5507,23.0872 20.8177,20.7894C 23.0877,18.4895 24.3367,15.4414 24.3367,12.2057C 24.3367,10.668 24.0557,9.16759 23.4997,7.74731C 23.4697,7.6711 23.3957,7.62096 23.3137,7.62096 Z "/>
+                    <Canvas Width="24.3367"
+                            Height="24.4082">
+                        <Path Width="9.095"
+                              Height="9.12235"
+                              Canvas.Left="7.6208"
+                              Canvas.Top="7.64379"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 7.6208,12.2055C 7.6208,14.72 9.6608,16.7661 12.1688,16.7661C 14.6758,16.7661 16.7158,14.72 16.7158,12.2055C 16.7158,9.68996 14.6758,7.64379 12.1688,7.64379C 9.6608,7.64379 7.6208,9.68996 7.6208,12.2055 Z " />
+                        <Path Width="20.0539"
+                              Height="10.8686"
+                              Canvas.Left="2.61239"
+                              Canvas.Top="0"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 22.6403,6.18453C 22.6753,6.12234 22.6753,6.04514 22.6383,5.98294C 21.5793,4.19456 20.0713,2.69508 18.2793,1.64898C 16.4313,0.57074 14.3183,0 12.1683,0C 8.4483,0 4.9813,1.67506 2.6563,4.59475C 2.6043,4.65897 2.5983,4.74822 2.6393,4.82046L 6.0643,10.7703C 6.1003,10.8335 6.1663,10.8706 6.2643,10.8685C 6.3453,10.8586 6.4103,10.7994 6.4313,10.7201C 7.1063,8.09528 9.4653,6.26277 12.1683,6.26277C 12.3363,6.26277 12.5093,6.26981 12.7013,6.28585L 22.4673,6.28585C 22.5383,6.28585 22.6043,6.24673 22.6403,6.18453 Z " />
+                        <Path Width="14.0088"
+                              Height="18.1584"
+                              Canvas.Left="0"
+                              Canvas.Top="6.11903"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 13.967,18.0016C 13.917,17.9374 13.834,17.9104 13.756,17.9314C 13.24,18.0759 12.707,18.1481 12.169,18.1481C 9.884,18.1481 7.777,16.804 6.795,14.7088L 1.908,6.21936C 1.873,6.15717 1.807,6.11903 1.736,6.11903L 1.735,6.11903C 1.663,6.12007 1.597,6.15918 1.562,6.22133C 0.539997,8.03878 0,10.108 0,12.2052C 0,15.1471 1.058,17.9885 2.98,20.2063C 4.882,22.4018 7.5,23.8471 10.383,24.2774C 10.453,24.2774 10.52,24.2393 10.555,24.1771L 13.982,18.2243C 14.023,18.1541 14.016,18.0658 13.967,18.0016 Z " />
+                        <Path Width="12.2315"
+                              Height="16.7873"
+                              Canvas.Left="12.1052"
+                              Canvas.Top="7.62096"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 23.3137,7.62096L 16.4537,7.62096C 16.3727,7.62096 16.2997,7.67006 16.2697,7.74529C 16.2387,7.82053 16.2557,7.90679 16.3137,7.96397C 17.4617,9.09235 18.0937,10.5989 18.0937,12.2057C 18.0937,13.4223 17.7287,14.5928 17.0267,15.6048L 12.1317,24.1083C 12.0957,24.1705 12.0967,24.2477 12.1327,24.3099C 12.1677,24.3711 12.2337,24.4082 12.3047,24.4082L 12.3067,24.4082C 15.5277,24.3731 18.5507,23.0872 20.8177,20.7894C 23.0877,18.4895 24.3367,15.4414 24.3367,12.2057C 24.3367,10.668 24.0557,9.16759 23.4997,7.74731C 23.4697,7.6711 23.3957,7.62096 23.3137,7.62096 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -110,9 +276,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.775" Height="23.3698">
-                        <Path Width="12.7598" Height="19.1705" Canvas.Left="6.0075" Canvas.Top="2.28882e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 12.3814,3.19765C 10.6054,3.19765 9.1934,4.61687 9.1964,6.3952C 9.1994,8.17355 10.6034,9.58175 12.3754,9.58676C 14.1504,9.59179 15.5644,8.17752 15.5674,6.3952C 15.5704,4.61589 14.1574,3.19765 12.3814,3.19765 Z M 12.7984,2.28882e-005C 13.0374,0.0311203 13.2784,0.0572052 13.5164,0.0953369C 14.8324,0.309967 15.9384,0.926811 16.8764,1.86259C 17.7844,2.76936 18.4024,3.83755 18.6334,5.11035C 18.8304,6.19362 18.8394,7.27981 18.4594,8.32597C 18.2404,8.92677 17.9354,9.49745 17.6624,10.0792C 16.3904,12.7933 15.1174,15.5085 13.8434,18.2216C 13.5504,18.8454 13.0524,19.1755 12.3704,19.1705C 11.7174,19.1654 11.2314,18.8565 10.9474,18.2527C 9.9874,16.2116 9.02641,14.1695 8.06641,12.1284C 7.53641,11.002 7.0124,9.87161 6.4734,8.74924C 6.1204,8.01302 6.0214,7.23372 6.0084,6.4323C 5.9564,3.2618 8.1684,1.10134 10.1934,0.369171C 10.7294,0.174553 11.2834,0.0612411 11.8524,0.0221176C 11.8904,0.0201035 11.9284,0.00706482 11.9654,2.28882e-005L 12.7984,2.28882e-005 Z "/>
-                        <Path Width="24.775" Height="7.65488" Canvas.Left="7.62939e-006" Canvas.Top="15.7149" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 24.775,23.3698L 7.62939e-006,23.3698L 4.483,15.7149L 8.241,15.7149L 8.684,16.7179L 5.05601,16.7179L 1.747,22.3668L 23.028,22.3668L 19.719,16.7179L 16.106,16.7179L 16.549,15.7149L 20.291,15.7149L 24.775,23.3698 Z "/>
+                    <Canvas Width="24.775"
+                            Height="23.3698">
+                        <Path Width="12.7598"
+                              Height="19.1705"
+                              Canvas.Left="6.0075"
+                              Canvas.Top="2.28882e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 12.3814,3.19765C 10.6054,3.19765 9.1934,4.61687 9.1964,6.3952C 9.1994,8.17355 10.6034,9.58175 12.3754,9.58676C 14.1504,9.59179 15.5644,8.17752 15.5674,6.3952C 15.5704,4.61589 14.1574,3.19765 12.3814,3.19765 Z M 12.7984,2.28882e-005C 13.0374,0.0311203 13.2784,0.0572052 13.5164,0.0953369C 14.8324,0.309967 15.9384,0.926811 16.8764,1.86259C 17.7844,2.76936 18.4024,3.83755 18.6334,5.11035C 18.8304,6.19362 18.8394,7.27981 18.4594,8.32597C 18.2404,8.92677 17.9354,9.49745 17.6624,10.0792C 16.3904,12.7933 15.1174,15.5085 13.8434,18.2216C 13.5504,18.8454 13.0524,19.1755 12.3704,19.1705C 11.7174,19.1654 11.2314,18.8565 10.9474,18.2527C 9.9874,16.2116 9.02641,14.1695 8.06641,12.1284C 7.53641,11.002 7.0124,9.87161 6.4734,8.74924C 6.1204,8.01302 6.0214,7.23372 6.0084,6.4323C 5.9564,3.2618 8.1684,1.10134 10.1934,0.369171C 10.7294,0.174553 11.2834,0.0612411 11.8524,0.0221176C 11.8904,0.0201035 11.9284,0.00706482 11.9654,2.28882e-005L 12.7984,2.28882e-005 Z " />
+                        <Path Width="24.775"
+                              Height="7.65488"
+                              Canvas.Left="7.62939e-006"
+                              Canvas.Top="15.7149"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 24.775,23.3698L 7.62939e-006,23.3698L 4.483,15.7149L 8.241,15.7149L 8.684,16.7179L 5.05601,16.7179L 1.747,22.3668L 23.028,22.3668L 19.719,16.7179L 16.106,16.7179L 16.549,15.7149L 20.291,15.7149L 24.775,23.3698 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -129,7 +308,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Path Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 64.6596,10.517C 64.6596,11.097 64.2496,11.569 63.7456,11.569L 60.5116,11.569L 60.5116,3.68603L 46.5906,3.68603L 46.5906,11.569L 43.2406,11.569C 42.7366,11.569 42.3266,11.097 42.3266,10.517L 42.3266,-9.71192C 42.3266,-10.293 42.7366,-10.7639 43.2406,-10.7639L 47.4476,-10.7639L 47.4476,-4.29395L 59.2446,-4.29395L 59.2446,-10.7639L 60.5606,-10.7639C 60.7916,-10.7639 61.0126,-10.6639 61.1826,-10.4819L 64.3676,-7.06593C 64.5536,-6.86695 64.6596,-6.58692 64.6596,-6.29694M 47.5906,4.68603L 59.5106,4.68603L 59.5106,11.568L 47.5906,11.568M 53.3396,-10.7639L 58.2456,-10.7639L 58.2456,-5.29395L 53.3396,-5.29395M 65.0996,-7.74793L 61.9136,-11.1639C 61.5556,-11.5479 61.0686,-11.7639 60.5606,-11.7639L 59.2446,-11.7639L 47.4476,-11.7639L 43.2406,-11.7639C 42.1826,-11.7639 41.3266,-10.846 41.3266,-9.71192L 41.3266,10.517C 41.3266,11.6501 42.1826,12.569 43.2406,12.569L 46.5906,12.569L 60.5116,12.569L 63.7456,12.569C 64.8036,12.569 65.6596,11.6501 65.6596,10.517L 65.6596,-6.29694C 65.6596,-6.84095 65.4576,-7.36292 65.0996,-7.74793 Z " Height="24.333" Width="24.333"/>
+                    <Path Stretch="Fill"
+                          Fill="{TemplateBinding Foreground}"
+                          Data="F1 M 64.6596,10.517C 64.6596,11.097 64.2496,11.569 63.7456,11.569L 60.5116,11.569L 60.5116,3.68603L 46.5906,3.68603L 46.5906,11.569L 43.2406,11.569C 42.7366,11.569 42.3266,11.097 42.3266,10.517L 42.3266,-9.71192C 42.3266,-10.293 42.7366,-10.7639 43.2406,-10.7639L 47.4476,-10.7639L 47.4476,-4.29395L 59.2446,-4.29395L 59.2446,-10.7639L 60.5606,-10.7639C 60.7916,-10.7639 61.0126,-10.6639 61.1826,-10.4819L 64.3676,-7.06593C 64.5536,-6.86695 64.6596,-6.58692 64.6596,-6.29694M 47.5906,4.68603L 59.5106,4.68603L 59.5106,11.568L 47.5906,11.568M 53.3396,-10.7639L 58.2456,-10.7639L 58.2456,-5.29395L 53.3396,-5.29395M 65.0996,-7.74793L 61.9136,-11.1639C 61.5556,-11.5479 61.0686,-11.7639 60.5606,-11.7639L 59.2446,-11.7639L 47.4476,-11.7639L 43.2406,-11.7639C 42.1826,-11.7639 41.3266,-10.846 41.3266,-9.71192L 41.3266,10.517C 41.3266,11.6501 42.1826,12.569 43.2406,12.569L 46.5906,12.569L 60.5116,12.569L 63.7456,12.569C 64.8036,12.569 65.6596,11.6501 65.6596,10.517L 65.6596,-6.29694C 65.6596,-6.84095 65.4576,-7.36292 65.0996,-7.74793 Z "
+                          Height="24.333"
+                          Width="24.333" />
 
 
                 </ControlTemplate>
@@ -146,9 +329,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.386" Height="17.828">
-                        <Path Width="24.386" Height="17.828" Canvas.Left="0" Canvas.Top="-7.62939e-006" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 24.386,-7.62939e-006L 0,-7.62939e-006L 0,17.828L 24.386,17.828M 23.386,16.828L 1,16.828L 1,0.999992L 23.386,0.999992L 23.386,16.828 Z "/>
-                        <Path Width="18.983" Height="2.336" Canvas.Left="2.7008" Canvas.Top="2.72106" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 21.6838,5.05706L 10.2818,5.05706L 2.7008,5.05706L 2.7008,2.72106L 21.6838,2.72106L 21.6838,5.05706 Z "/>
+                    <Canvas Width="24.386"
+                            Height="17.828">
+                        <Path Width="24.386"
+                              Height="17.828"
+                              Canvas.Left="0"
+                              Canvas.Top="-7.62939e-006"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 24.386,-7.62939e-006L 0,-7.62939e-006L 0,17.828L 24.386,17.828M 23.386,16.828L 1,16.828L 1,0.999992L 23.386,0.999992L 23.386,16.828 Z " />
+                        <Path Width="18.983"
+                              Height="2.336"
+                              Canvas.Left="2.7008"
+                              Canvas.Top="2.72106"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 21.6838,5.05706L 10.2818,5.05706L 2.7008,5.05706L 2.7008,2.72106L 21.6838,2.72106L 21.6838,5.05706 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -165,10 +361,28 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.5" Height="24.5">
-                        <Rectangle Width="2.238" Height="2.18304" Canvas.Left="10.826" Canvas.Top="17.786" Stretch="Fill"  Fill="{TemplateBinding Foreground}" />
-                        <Path Width="24.5" Height="24.5" Canvas.Left="0" Canvas.Top="1.52588e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 12.25,1.52588e-005C 5.484,1.52588e-005 0,5.48396 0,12.25C 0,19.016 5.484,24.5 12.25,24.5C 19.016,24.5 24.5,19.016 24.5,12.25C 24.5,5.48396 19.016,1.52588e-005 12.25,1.52588e-005 Z M 12.25,1.00002C 18.453,1.00002 23.5,6.04701 23.5,12.25C 23.5,18.453 18.453,23.5 12.25,23.5C 6.047,23.5 1,18.453 1,12.25C 1,6.04701 6.047,1.00002 12.25,1.00002 Z "/>
-                        <Path Width="10.119" Height="11.67" Canvas.Left="7.1905" Canvas.Top="4.5312" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 12.6875,16.2012L 11.0915,16.2012C 11.0995,15.0482 11.1155,14.3292 11.1415,14.0452C 11.1665,13.7612 11.2465,13.4762 11.3805,13.1922C 11.5125,12.9072 11.6625,12.6852 11.8295,12.5272C 11.9955,12.3682 12.3885,12.1152 13.0095,11.7672C 13.6815,11.3912 14.1455,11.0972 14.4005,10.8862C 14.6545,10.6762 14.8765,10.3842 15.0645,10.0112C 15.2535,9.6382 15.3475,9.23018 15.3475,8.78621C 15.3475,7.94417 15.0425,7.28218 14.4335,6.8022C 13.8235,6.32222 13.1045,6.08217 12.2775,6.08217C 10.4005,6.08217 9.2555,7.1722 8.8415,9.35121L 7.1905,8.99721C 7.7445,6.01918 9.46951,4.5312 12.3665,4.5312C 13.8435,4.5312 15.0375,4.9352 15.9465,5.74318C 16.8555,6.55318 17.3095,7.58919 17.3095,8.85316C 17.3095,10.5002 16.3635,11.8162 14.4725,12.7982C 13.6445,13.2342 13.1385,13.5762 12.9535,13.8242C 12.7695,14.0712 12.6765,14.4572 12.6765,14.9812L 12.6875,16.2012 Z "/>
+                    <Canvas Width="24.5"
+                            Height="24.5">
+                        <Rectangle Width="2.238"
+                                   Height="2.18304"
+                                   Canvas.Left="10.826"
+                                   Canvas.Top="17.786"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Path Width="24.5"
+                              Height="24.5"
+                              Canvas.Left="0"
+                              Canvas.Top="1.52588e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 12.25,1.52588e-005C 5.484,1.52588e-005 0,5.48396 0,12.25C 0,19.016 5.484,24.5 12.25,24.5C 19.016,24.5 24.5,19.016 24.5,12.25C 24.5,5.48396 19.016,1.52588e-005 12.25,1.52588e-005 Z M 12.25,1.00002C 18.453,1.00002 23.5,6.04701 23.5,12.25C 23.5,18.453 18.453,23.5 12.25,23.5C 6.047,23.5 1,18.453 1,12.25C 1,6.04701 6.047,1.00002 12.25,1.00002 Z " />
+                        <Path Width="10.119"
+                              Height="11.67"
+                              Canvas.Left="7.1905"
+                              Canvas.Top="4.5312"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 12.6875,16.2012L 11.0915,16.2012C 11.0995,15.0482 11.1155,14.3292 11.1415,14.0452C 11.1665,13.7612 11.2465,13.4762 11.3805,13.1922C 11.5125,12.9072 11.6625,12.6852 11.8295,12.5272C 11.9955,12.3682 12.3885,12.1152 13.0095,11.7672C 13.6815,11.3912 14.1455,11.0972 14.4005,10.8862C 14.6545,10.6762 14.8765,10.3842 15.0645,10.0112C 15.2535,9.6382 15.3475,9.23018 15.3475,8.78621C 15.3475,7.94417 15.0425,7.28218 14.4335,6.8022C 13.8235,6.32222 13.1045,6.08217 12.2775,6.08217C 10.4005,6.08217 9.2555,7.1722 8.8415,9.35121L 7.1905,8.99721C 7.7445,6.01918 9.46951,4.5312 12.3665,4.5312C 13.8435,4.5312 15.0375,4.9352 15.9465,5.74318C 16.8555,6.55318 17.3095,7.58919 17.3095,8.85316C 17.3095,10.5002 16.3635,11.8162 14.4725,12.7982C 13.6445,13.2342 13.1385,13.5762 12.9535,13.8242C 12.7695,14.0712 12.6765,14.4572 12.6765,14.9812L 12.6875,16.2012 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -185,11 +399,36 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.6665" Height="19.4272">
-                        <Path Width="20.667" Height="15.4152" Canvas.Left="0" Canvas.Top="4.01208" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 1,5.01509L 19.667,5.01509L 19.667,18.4242L 1,18.4242M 0,19.4273L 20.667,19.4273L 20.667,4.01208L 0,4.01208L 0,19.4273 Z "/>
-                        <Path Width="20.167" Height="14.9136" Canvas.Left="4.4995" Canvas.Top="1.52588e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 4.4995,1.52588e-005L 4.4995,1.00301L 23.6665,1.00301L 23.6665,14.9136L 24.6665,14.9136L 24.6665,1.52588e-005L 4.4995,1.52588e-005 Z "/>
-                        <Path Width="20.667" Height="15.4151" Canvas.Left="1.9995" Canvas.Top="2.00601" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 1.9995,3.00902L 21.6665,3.00902L 21.6665,17.4211L 22.6665,17.4211L 22.6665,2.00601L 1.9995,2.00601L 1.9995,3.00902 Z "/>
-                        <Path Width="6.354" Height="7.35907" Canvas.Left="7.97847" Canvas.Top="8.03964" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 7.97847,8.03964L 7.97847,11.7187L 7.97847,15.3987L 11.1555,13.5592L 14.3325,11.7187L 11.1555,9.87914L 7.97847,8.03964 Z "/>
+                    <Canvas Width="24.6665"
+                            Height="19.4272">
+                        <Path Width="20.667"
+                              Height="15.4152"
+                              Canvas.Left="0"
+                              Canvas.Top="4.01208"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 1,5.01509L 19.667,5.01509L 19.667,18.4242L 1,18.4242M 0,19.4273L 20.667,19.4273L 20.667,4.01208L 0,4.01208L 0,19.4273 Z " />
+                        <Path Width="20.167"
+                              Height="14.9136"
+                              Canvas.Left="4.4995"
+                              Canvas.Top="1.52588e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 4.4995,1.52588e-005L 4.4995,1.00301L 23.6665,1.00301L 23.6665,14.9136L 24.6665,14.9136L 24.6665,1.52588e-005L 4.4995,1.52588e-005 Z " />
+                        <Path Width="20.667"
+                              Height="15.4151"
+                              Canvas.Left="1.9995"
+                              Canvas.Top="2.00601"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 1.9995,3.00902L 21.6665,3.00902L 21.6665,17.4211L 22.6665,17.4211L 22.6665,2.00601L 1.9995,2.00601L 1.9995,3.00902 Z " />
+                        <Path Width="6.354"
+                              Height="7.35907"
+                              Canvas.Left="7.97847"
+                              Canvas.Top="8.03964"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 7.97847,8.03964L 7.97847,11.7187L 7.97847,15.3987L 11.1555,13.5592L 14.3325,11.7187L 11.1555,9.87914L 7.97847,8.03964 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -207,9 +446,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="23.6059" Height="24.498">
-                        <Path Width="7.78101" Height="24.408" Canvas.Left="15.8249" Canvas.Top="0.0372849" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 16.3249,24.4453C 16.2629,24.4453 16.1989,24.4333 16.1379,24.4093C 15.9489,24.3333 15.8249,24.1493 15.8249,23.9453L 15.8249,0.0372849L 16.8249,0.0372849L 16.8249,22.7003L 22.8829,16.3723L 23.6059,17.0633L 16.6859,24.2913C 16.5899,24.3913 16.4589,24.4453 16.3249,24.4453 Z "/>
-                        <Path Width="7.78101" Height="24.457" Canvas.Left="0" Canvas.Top="0.0409625" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 7.78101,24.498L 6.78101,24.498L 6.78101,1.78698L 0.723007,8.11498L 0,7.42297L 6.92,0.195976C 7.06,0.047966 7.278,-7.62939e-006 7.468,0.0779953C 7.657,0.153984 7.78101,0.336967 7.78101,0.541008L 7.78101,24.498 Z "/>
+                    <Canvas Width="23.6059"
+                            Height="24.498">
+                        <Path Width="7.78101"
+                              Height="24.408"
+                              Canvas.Left="15.8249"
+                              Canvas.Top="0.0372849"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 16.3249,24.4453C 16.2629,24.4453 16.1989,24.4333 16.1379,24.4093C 15.9489,24.3333 15.8249,24.1493 15.8249,23.9453L 15.8249,0.0372849L 16.8249,0.0372849L 16.8249,22.7003L 22.8829,16.3723L 23.6059,17.0633L 16.6859,24.2913C 16.5899,24.3913 16.4589,24.4453 16.3249,24.4453 Z " />
+                        <Path Width="7.78101"
+                              Height="24.457"
+                              Canvas.Left="0"
+                              Canvas.Top="0.0409625"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 7.78101,24.498L 6.78101,24.498L 6.78101,1.78698L 0.723007,8.11498L 0,7.42297L 6.92,0.195976C 7.06,0.047966 7.278,-7.62939e-006 7.468,0.0779953C 7.657,0.153984 7.78101,0.336967 7.78101,0.541008L 7.78101,24.498 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -228,10 +480,27 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.415" Height="23.5776">
-                        <Path Width="24.415" Height="23.5776" Canvas.Left="0" Canvas.Top="-1.52588e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 20.251,18.5626C 20.251,21.5204 17.668,22.5746 15.251,22.5746L 9.16399,22.5746C 6.74699,22.5746 4.16399,21.5204 4.16399,18.5626L 4.16399,4.39517L 7.02399,4.39517L 16.827,4.39517L 20.251,4.39517M 8.02399,2.69409C 8.02399,1.76228 8.78101,1.00301 9.71001,1.00301L 14.455,1.00301C 15.522,1.00301 16.391,1.87462 16.391,2.94484L 16.391,3.39217L 8.02399,3.39217M 24.415,3.39217L 21.251,3.39217L 17.391,3.39217L 17.391,2.94484C 17.391,1.32097 16.074,-1.52588e-005 14.455,-1.52588e-005L 9.71001,-1.52588e-005C 8.23,-1.52588e-005 7.02399,1.20863 7.02399,2.69409L 7.02399,3.39217L 3.74799,3.39217L 0,3.39217L 0,4.39517L 3.16399,4.39517L 3.16399,18.5626C 3.16399,21.6097 5.51898,23.5776 9.16399,23.5776L 15.251,23.5776C 18.896,23.5776 21.251,21.6097 21.251,18.5626L 21.251,4.39517L 24.415,4.39517L 24.415,3.39217 Z "/>
-                        <Rectangle Width="1" Height="9.85145" Canvas.Left="14.7695" Canvas.Top="8.05806" Stretch="Fill"  Fill="{TemplateBinding Foreground}" />
-                        <Rectangle Width="1" Height="9.85145" Canvas.Left="8.64449" Canvas.Top="8.05806" Stretch="Fill"  Fill="{TemplateBinding Foreground}" />
+                    <Canvas Width="24.415"
+                            Height="23.5776">
+                        <Path Width="24.415"
+                              Height="23.5776"
+                              Canvas.Left="0"
+                              Canvas.Top="-1.52588e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 20.251,18.5626C 20.251,21.5204 17.668,22.5746 15.251,22.5746L 9.16399,22.5746C 6.74699,22.5746 4.16399,21.5204 4.16399,18.5626L 4.16399,4.39517L 7.02399,4.39517L 16.827,4.39517L 20.251,4.39517M 8.02399,2.69409C 8.02399,1.76228 8.78101,1.00301 9.71001,1.00301L 14.455,1.00301C 15.522,1.00301 16.391,1.87462 16.391,2.94484L 16.391,3.39217L 8.02399,3.39217M 24.415,3.39217L 21.251,3.39217L 17.391,3.39217L 17.391,2.94484C 17.391,1.32097 16.074,-1.52588e-005 14.455,-1.52588e-005L 9.71001,-1.52588e-005C 8.23,-1.52588e-005 7.02399,1.20863 7.02399,2.69409L 7.02399,3.39217L 3.74799,3.39217L 0,3.39217L 0,4.39517L 3.16399,4.39517L 3.16399,18.5626C 3.16399,21.6097 5.51898,23.5776 9.16399,23.5776L 15.251,23.5776C 18.896,23.5776 21.251,21.6097 21.251,18.5626L 21.251,4.39517L 24.415,4.39517L 24.415,3.39217 Z " />
+                        <Rectangle Width="1"
+                                   Height="9.85145"
+                                   Canvas.Left="14.7695"
+                                   Canvas.Top="8.05806"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
+                        <Rectangle Width="1"
+                                   Height="9.85145"
+                                   Canvas.Left="8.64449"
+                                   Canvas.Top="8.05806"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}" />
                     </Canvas>
 
                 </ControlTemplate>
@@ -247,9 +516,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.624" Height="22.4555">
-                        <Path Width="24.5624" Height="18.8203" Canvas.Left="1.52588e-005" Canvas.Top="3.63522" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 23.522,12.3734L 20.218,19.5508L 20.218,11.8458L 22.689,11.8458C 23.149,11.8458 23.444,11.9862 23.533,12.1236C 23.549,12.1507 23.593,12.2189 23.522,12.3734 Z M 1.897,21.4525C 1.7,21.4525 1.54,21.4235 1.40601,21.3834C 1.23201,21.3001 1.108,21.1426 1.06401,20.926L 4.80801,12.7936C 5.01501,12.3453 5.87601,11.8458 6.78201,11.8458L 19.218,11.8458L 19.218,20.7865C 19.218,20.9039 19.179,21.0093 19.126,21.1055C 18.759,21.3072 18.29,21.4525 17.804,21.4525M 0.0250092,20.7865C 0.0250092,20.8397 0.0360107,20.8909 0.041008,20.942C 0.0110092,21.2148 0.0620117,21.4806 0.211014,21.7144C 0.379013,21.9782 0.653008,22.1707 0.991013,22.2961C 1.204,22.3964 1.43901,22.4555 1.68901,22.4555L 1.897,22.4555L 17.804,22.4555L 18.554,22.4555C 19.07,22.4555 19.526,22.2138 19.832,21.8427C 20.217,21.588 20.525,21.274 20.686,20.926L 24.43,12.7936C 24.624,12.3734 24.604,11.9441 24.375,11.584C 24.075,11.1136 23.46,10.8428 22.689,10.8428L 20.218,10.8428L 20.218,7.6482C 20.218,6.72748 19.471,5.97823 18.554,5.97823L 16.785,5.97823L 16.785,6.98123L 18.554,6.98123C 18.92,6.98123 19.218,7.2801 19.218,7.6482L 19.218,10.8428L 6.78201,10.8428C 5.56201,10.8428 4.29601,11.5148 3.90001,12.3734L 1.02501,18.6181L 1.02501,7.6482C 1.02501,7.2801 1.32301,6.98123 1.68901,6.98123L 12.43,6.98123L 12.43,5.97823L 9.39301,5.97823C 9.16,4.64924 8.00701,3.63522 6.617,3.63522L 2.82601,3.63522C 1.26701,3.63522 1.52588e-005,4.90704 1.52588e-005,6.4697L 0.0250092,20.7865 Z "/>
-                        <Path Width="7.232" Height="8.78283" Canvas.Left="11.0828" Canvas.Top="0.046648" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 14.1988,1.72723L 14.1988,8.82948L 15.1988,8.82948L 15.1988,1.72723L 17.6218,4.06619L 18.3148,3.34302L 15.0458,0.186592C 14.8518,0 14.5458,0 14.3518,0.186592L 11.0828,3.34302L 11.7758,4.06619L 14.1988,1.72723 Z "/>
+                    <Canvas Width="24.624"
+                            Height="22.4555">
+                        <Path Width="24.5624"
+                              Height="18.8203"
+                              Canvas.Left="1.52588e-005"
+                              Canvas.Top="3.63522"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 23.522,12.3734L 20.218,19.5508L 20.218,11.8458L 22.689,11.8458C 23.149,11.8458 23.444,11.9862 23.533,12.1236C 23.549,12.1507 23.593,12.2189 23.522,12.3734 Z M 1.897,21.4525C 1.7,21.4525 1.54,21.4235 1.40601,21.3834C 1.23201,21.3001 1.108,21.1426 1.06401,20.926L 4.80801,12.7936C 5.01501,12.3453 5.87601,11.8458 6.78201,11.8458L 19.218,11.8458L 19.218,20.7865C 19.218,20.9039 19.179,21.0093 19.126,21.1055C 18.759,21.3072 18.29,21.4525 17.804,21.4525M 0.0250092,20.7865C 0.0250092,20.8397 0.0360107,20.8909 0.041008,20.942C 0.0110092,21.2148 0.0620117,21.4806 0.211014,21.7144C 0.379013,21.9782 0.653008,22.1707 0.991013,22.2961C 1.204,22.3964 1.43901,22.4555 1.68901,22.4555L 1.897,22.4555L 17.804,22.4555L 18.554,22.4555C 19.07,22.4555 19.526,22.2138 19.832,21.8427C 20.217,21.588 20.525,21.274 20.686,20.926L 24.43,12.7936C 24.624,12.3734 24.604,11.9441 24.375,11.584C 24.075,11.1136 23.46,10.8428 22.689,10.8428L 20.218,10.8428L 20.218,7.6482C 20.218,6.72748 19.471,5.97823 18.554,5.97823L 16.785,5.97823L 16.785,6.98123L 18.554,6.98123C 18.92,6.98123 19.218,7.2801 19.218,7.6482L 19.218,10.8428L 6.78201,10.8428C 5.56201,10.8428 4.29601,11.5148 3.90001,12.3734L 1.02501,18.6181L 1.02501,7.6482C 1.02501,7.2801 1.32301,6.98123 1.68901,6.98123L 12.43,6.98123L 12.43,5.97823L 9.39301,5.97823C 9.16,4.64924 8.00701,3.63522 6.617,3.63522L 2.82601,3.63522C 1.26701,3.63522 1.52588e-005,4.90704 1.52588e-005,6.4697L 0.0250092,20.7865 Z " />
+                        <Path Width="7.232"
+                              Height="8.78283"
+                              Canvas.Left="11.0828"
+                              Canvas.Top="0.046648"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 14.1988,1.72723L 14.1988,8.82948L 15.1988,8.82948L 15.1988,1.72723L 17.6218,4.06619L 18.3148,3.34302L 15.0458,0.186592C 14.8518,0 14.5458,0 14.3518,0.186592L 11.0828,3.34302L 11.7758,4.06619L 14.1988,1.72723 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -266,12 +548,43 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="23.6467" Height="24.8225">
-                        <Path Width="16.867" Height="21.237" Canvas.Left="0" Canvas.Top="3.5855" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 15.867,23.8225L 1,23.8225L 1,4.5855L 5.56,4.5855L 5.56,3.5855L 0,3.5855L 0,24.8225L 16.867,24.8225L 16.867,22.6025L 15.867,22.6025L 15.867,23.8225 Z "/>
-                        <Path Width="16.867" Height="21.237" Canvas.Left="6.77969" Canvas.Top="-7.62939e-006" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 22.6467,20.237L 7.77969,20.237L 7.77969,0.999992L 18.7907,0.999992L 18.8877,1.09698L 18.8877,4.76L 22.5507,4.76L 22.6467,4.85601M 19.2047,-7.62939e-006L 6.77969,-7.62939e-006L 6.77969,21.237L 23.6467,21.237L 23.6467,4.44201L 19.2047,-7.62939e-006 Z "/>
-                        <Path Width="10.505" Height="1" Canvas.Left="9.96121" Canvas.Top="7.3615" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 9.96121,8.3615L 20.4662,8.3615L 20.4662,7.3615L 14.1052,7.3615L 9.96121,7.3615L 9.96121,8.3615 Z "/>
-                        <Path Width="10.505" Height="1" Canvas.Left="9.96121" Canvas.Top="10.8605" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 9.96121,11.8605L 20.4662,11.8605L 20.4662,10.8605L 14.2302,10.8605L 9.96121,10.8605L 9.96121,11.8605 Z "/>
-                        <Path Width="10.505" Height="1" Canvas.Left="9.96121" Canvas.Top="14.3596" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 9.96121,15.3596L 20.4662,15.3596L 20.4662,14.3596L 14.6362,14.3596L 9.96121,14.3596L 9.96121,15.3596 Z "/>
+                    <Canvas Width="23.6467"
+                            Height="24.8225">
+                        <Path Width="16.867"
+                              Height="21.237"
+                              Canvas.Left="0"
+                              Canvas.Top="3.5855"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 15.867,23.8225L 1,23.8225L 1,4.5855L 5.56,4.5855L 5.56,3.5855L 0,3.5855L 0,24.8225L 16.867,24.8225L 16.867,22.6025L 15.867,22.6025L 15.867,23.8225 Z " />
+                        <Path Width="16.867"
+                              Height="21.237"
+                              Canvas.Left="6.77969"
+                              Canvas.Top="-7.62939e-006"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 22.6467,20.237L 7.77969,20.237L 7.77969,0.999992L 18.7907,0.999992L 18.8877,1.09698L 18.8877,4.76L 22.5507,4.76L 22.6467,4.85601M 19.2047,-7.62939e-006L 6.77969,-7.62939e-006L 6.77969,21.237L 23.6467,21.237L 23.6467,4.44201L 19.2047,-7.62939e-006 Z " />
+                        <Path Width="10.505"
+                              Height="1"
+                              Canvas.Left="9.96121"
+                              Canvas.Top="7.3615"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 9.96121,8.3615L 20.4662,8.3615L 20.4662,7.3615L 14.1052,7.3615L 9.96121,7.3615L 9.96121,8.3615 Z " />
+                        <Path Width="10.505"
+                              Height="1"
+                              Canvas.Left="9.96121"
+                              Canvas.Top="10.8605"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 9.96121,11.8605L 20.4662,11.8605L 20.4662,10.8605L 14.2302,10.8605L 9.96121,10.8605L 9.96121,11.8605 Z " />
+                        <Path Width="10.505"
+                              Height="1"
+                              Canvas.Left="9.96121"
+                              Canvas.Top="14.3596"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 9.96121,15.3596L 20.4662,15.3596L 20.4662,14.3596L 14.6362,14.3596L 9.96121,14.3596L 9.96121,15.3596 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -287,9 +600,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="23.51" Height="24.73">
-                        <Path Width="23.51" Height="24.73" Canvas.Left="0" Canvas.Top="-2.28882e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 1,9.93901C 1,5.00999 5.01,0.999977 9.939,0.999977C 14.868,0.999977 18.877,5.00999 18.877,9.93901C 18.877,14.868 14.868,18.877 9.939,18.877C 5.01,18.877 1,14.868 1,9.93901 Z M 23.51,24.04L 16.859,17.058C 18.717,15.251 19.877,12.73 19.877,9.93901C 19.877,4.45903 15.419,-2.28882e-005 9.939,-2.28882e-005C 4.458,-2.28882e-005 0,4.45903 0,9.93901C 0,15.419 4.458,19.877 9.939,19.877C 12.269,19.877 14.411,19.065 16.107,17.717L 22.787,24.73L 23.51,24.04 Z "/>
-                        <Path Width="7.353" Height="7.24902" Canvas.Left="3.4385" Canvas.Top="2.68999" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 3.4385,9.93901C 5.1105,3.94499 10.7915,2.68999 10.7915,2.68999C 6.3305,2.83 3.9605,3.98003 3.4385,9.93901 Z "/>
+                    <Canvas Width="23.51"
+                            Height="24.73">
+                        <Path Width="23.51"
+                              Height="24.73"
+                              Canvas.Left="0"
+                              Canvas.Top="-2.28882e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 1,9.93901C 1,5.00999 5.01,0.999977 9.939,0.999977C 14.868,0.999977 18.877,5.00999 18.877,9.93901C 18.877,14.868 14.868,18.877 9.939,18.877C 5.01,18.877 1,14.868 1,9.93901 Z M 23.51,24.04L 16.859,17.058C 18.717,15.251 19.877,12.73 19.877,9.93901C 19.877,4.45903 15.419,-2.28882e-005 9.939,-2.28882e-005C 4.458,-2.28882e-005 0,4.45903 0,9.93901C 0,15.419 4.458,19.877 9.939,19.877C 12.269,19.877 14.411,19.065 16.107,17.717L 22.787,24.73L 23.51,24.04 Z " />
+                        <Path Width="7.353"
+                              Height="7.24902"
+                              Canvas.Left="3.4385"
+                              Canvas.Top="2.68999"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 3.4385,9.93901C 5.1105,3.94499 10.7915,2.68999 10.7915,2.68999C 6.3305,2.83 3.9605,3.98003 3.4385,9.93901 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -305,11 +631,36 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="23" Height="23">
-                        <Path Width="11.206" Height="11.2407" Canvas.Left="0" Canvas.Top="0" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 8.08099,0L 3.125,0C 1.39899,0 0,1.40318 0,3.13437L 0,8.10629C 0,9.83646 1.39899,11.2407 3.125,11.2407L 8.08099,11.2407C 9.80701,11.2407 11.206,9.83646 11.206,8.10629L 11.206,3.13437C 11.206,1.40318 9.80701,0 8.08099,0 Z M 8.08099,1.00299C 9.25299,1.00299 10.206,1.95886 10.206,3.13437L 10.206,8.10629C 10.206,9.28076 9.25299,10.2377 8.08099,10.2377L 3.125,10.2377C 1.953,10.2377 1,9.28076 1,8.10629L 1,3.13437C 1,1.95886 1.953,1.00299 3.125,1.00299L 8.08099,1.00299 Z "/>
-                        <Path Width="11.207" Height="11.2407" Canvas.Left="12.4048" Canvas.Top="0" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 20.4868,0L 15.5298,0C 13.8038,0 12.4048,1.40318 12.4048,3.13437L 12.4048,8.10629C 12.4048,9.83646 13.8038,11.2407 15.5298,11.2407L 20.4868,11.2407C 22.2128,11.2407 23.6118,9.83646 23.6118,8.10629L 23.6118,3.13437C 23.6118,1.40318 22.2128,0 20.4868,0 Z M 20.4868,1.00299C 21.6578,1.00299 22.6118,1.95886 22.6118,3.13437L 22.6118,8.10629C 22.6118,9.28076 21.6578,10.2377 20.4868,10.2377L 15.5298,10.2377C 14.3588,10.2377 13.4048,9.28076 13.4048,8.10629L 13.4048,3.13437C 13.4048,1.95886 14.3588,1.00299 15.5298,1.00299L 20.4868,1.00299 Z "/>
-                        <Path Width="11.207" Height="11.2406" Canvas.Left="12.4048" Canvas.Top="12.4426" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 20.4868,12.4426L 15.5298,12.4426C 13.8038,12.4426 12.4048,13.8458 12.4048,15.577L 12.4048,20.5488C 12.4048,22.279 13.8038,23.6832 15.5298,23.6832L 20.4868,23.6832C 22.2128,23.6832 23.6118,22.279 23.6118,20.5488L 23.6118,15.577C 23.6118,13.8458 22.2128,12.4426 20.4868,12.4426 Z M 20.4868,13.4456C 21.6578,13.4456 22.6118,14.4014 22.6118,15.577L 22.6118,20.5488C 22.6118,21.7234 21.6578,22.6802 20.4868,22.6802L 15.5298,22.6802C 14.3588,22.6802 13.4048,21.7234 13.4048,20.5488L 13.4048,15.577C 13.4048,14.4014 14.3588,13.4456 15.5298,13.4456L 20.4868,13.4456 Z "/>
-                        <Path Width="11.206" Height="11.2406" Canvas.Left="0" Canvas.Top="12.4426" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 8.08099,12.4426L 3.125,12.4426C 1.39899,12.4426 0,13.8458 0,15.577L 0,20.5488C 0,22.279 1.39899,23.6832 3.125,23.6832L 8.08099,23.6832C 9.80701,23.6832 11.206,22.279 11.206,20.5488L 11.206,15.577C 11.206,13.8458 9.80701,12.4426 8.08099,12.4426 Z M 8.08099,13.4456C 9.25299,13.4456 10.206,14.4014 10.206,15.577L 10.206,20.5488C 10.206,21.7234 9.25299,22.6802 8.08099,22.6802L 3.125,22.6802C 1.953,22.6802 1,21.7234 1,20.5488L 1,15.577C 1,14.4014 1.953,13.4456 3.125,13.4456L 8.08099,13.4456 Z "/>
+                    <Canvas Width="23"
+                            Height="23">
+                        <Path Width="11.206"
+                              Height="11.2407"
+                              Canvas.Left="0"
+                              Canvas.Top="0"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 8.08099,0L 3.125,0C 1.39899,0 0,1.40318 0,3.13437L 0,8.10629C 0,9.83646 1.39899,11.2407 3.125,11.2407L 8.08099,11.2407C 9.80701,11.2407 11.206,9.83646 11.206,8.10629L 11.206,3.13437C 11.206,1.40318 9.80701,0 8.08099,0 Z M 8.08099,1.00299C 9.25299,1.00299 10.206,1.95886 10.206,3.13437L 10.206,8.10629C 10.206,9.28076 9.25299,10.2377 8.08099,10.2377L 3.125,10.2377C 1.953,10.2377 1,9.28076 1,8.10629L 1,3.13437C 1,1.95886 1.953,1.00299 3.125,1.00299L 8.08099,1.00299 Z " />
+                        <Path Width="11.207"
+                              Height="11.2407"
+                              Canvas.Left="12.4048"
+                              Canvas.Top="0"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 20.4868,0L 15.5298,0C 13.8038,0 12.4048,1.40318 12.4048,3.13437L 12.4048,8.10629C 12.4048,9.83646 13.8038,11.2407 15.5298,11.2407L 20.4868,11.2407C 22.2128,11.2407 23.6118,9.83646 23.6118,8.10629L 23.6118,3.13437C 23.6118,1.40318 22.2128,0 20.4868,0 Z M 20.4868,1.00299C 21.6578,1.00299 22.6118,1.95886 22.6118,3.13437L 22.6118,8.10629C 22.6118,9.28076 21.6578,10.2377 20.4868,10.2377L 15.5298,10.2377C 14.3588,10.2377 13.4048,9.28076 13.4048,8.10629L 13.4048,3.13437C 13.4048,1.95886 14.3588,1.00299 15.5298,1.00299L 20.4868,1.00299 Z " />
+                        <Path Width="11.207"
+                              Height="11.2406"
+                              Canvas.Left="12.4048"
+                              Canvas.Top="12.4426"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 20.4868,12.4426L 15.5298,12.4426C 13.8038,12.4426 12.4048,13.8458 12.4048,15.577L 12.4048,20.5488C 12.4048,22.279 13.8038,23.6832 15.5298,23.6832L 20.4868,23.6832C 22.2128,23.6832 23.6118,22.279 23.6118,20.5488L 23.6118,15.577C 23.6118,13.8458 22.2128,12.4426 20.4868,12.4426 Z M 20.4868,13.4456C 21.6578,13.4456 22.6118,14.4014 22.6118,15.577L 22.6118,20.5488C 22.6118,21.7234 21.6578,22.6802 20.4868,22.6802L 15.5298,22.6802C 14.3588,22.6802 13.4048,21.7234 13.4048,20.5488L 13.4048,15.577C 13.4048,14.4014 14.3588,13.4456 15.5298,13.4456L 20.4868,13.4456 Z " />
+                        <Path Width="11.206"
+                              Height="11.2406"
+                              Canvas.Left="0"
+                              Canvas.Top="12.4426"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 8.08099,12.4426L 3.125,12.4426C 1.39899,12.4426 0,13.8458 0,15.577L 0,20.5488C 0,22.279 1.39899,23.6832 3.125,23.6832L 8.08099,23.6832C 9.80701,23.6832 11.206,22.279 11.206,20.5488L 11.206,15.577C 11.206,13.8458 9.80701,12.4426 8.08099,12.4426 Z M 8.08099,13.4456C 9.25299,13.4456 10.206,14.4014 10.206,15.577L 10.206,20.5488C 10.206,21.7234 9.25299,22.6802 8.08099,22.6802L 3.125,22.6802C 1.953,22.6802 1,21.7234 1,20.5488L 1,15.577C 1,14.4014 1.953,13.4456 3.125,13.4456L 8.08099,13.4456 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -325,10 +676,29 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.634" Height="19.057">
-                        <Path Width="24.634" Height="19.0571" Canvas.Left="-1.52588e-005" Canvas.Top="-1.52588e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 14.597,-1.52588e-005L 10.036,-1.52588e-005C 8.24298,-1.52588e-005 6.50398,0.872589 6.10899,2.08018L 5.57799,3.70407L 4.38499,3.70407C 1.963,3.70407 -1.52588e-005,5.49643 -1.52588e-005,7.70702L -1.52588e-005,15.054C -1.52588e-005,17.2646 1.963,19.057 4.38499,19.057L 20.248,19.057C 22.67,19.057 24.634,17.2646 24.634,15.054L 24.634,7.70702C 24.634,5.49643 22.67,3.70407 20.248,3.70407L 19.055,3.70407L 18.525,2.08018C 18.13,0.872589 16.391,-1.52588e-005 14.597,-1.52588e-005 Z M 14.597,1.00299C 16.106,1.00299 17.355,1.72115 17.574,2.39313L 18.105,4.01701L 18.33,4.70706L 19.055,4.70706L 20.248,4.70706C 22.115,4.70706 23.634,6.05309 23.634,7.70702L 23.634,15.054C 23.634,16.708 22.115,18.054 20.248,18.054L 4.38499,18.054C 2.51799,18.054 0.999985,16.708 0.999985,15.054L 0.999985,7.70702C 0.999985,6.05309 2.51799,4.70706 4.38499,4.70706L 5.57799,4.70706L 6.30298,4.70706L 6.52899,4.01701L 7.05898,2.39313C 7.278,1.72115 8.52698,1.00299 10.036,1.00299L 14.597,1.00299 Z "/>
-                        <Path Width="9.33801" Height="9.36606" Canvas.Left="7.64769" Canvas.Top="6.34026" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 12.3167,7.34326C 10.2937,7.34326 8.64769,8.9942 8.64769,11.0233C 8.64769,13.0524 10.2937,14.7033 12.3167,14.7033C 14.3397,14.7033 15.9857,13.0524 15.9857,11.0233C 15.9857,8.9942 14.3397,7.34326 12.3167,7.34326 Z M 12.3167,15.7063C 9.74168,15.7063 7.64769,13.606 7.64769,11.0233C 7.64769,8.44054 9.74168,6.34026 12.3167,6.34026C 14.8917,6.34026 16.9857,8.44054 16.9857,11.0233C 16.9857,13.606 14.8917,15.7063 12.3167,15.7063 Z "/>
-                        <Path Width="2.48199" Height="2.48946" Canvas.Left="4.11479" Canvas.Top="5.89752" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 5.35577,5.89752C 4.67078,5.89752 4.11479,6.45419 4.11479,7.14221C 4.11479,7.82927 4.67078,8.38698 5.35577,8.38698C 6.04179,8.38698 6.59679,7.82927 6.59679,7.14221C 6.59679,6.45419 6.04179,5.89752 5.35577,5.89752 Z "/>
+                    <Canvas Width="24.634"
+                            Height="19.057">
+                        <Path Width="24.634"
+                              Height="19.0571"
+                              Canvas.Left="-1.52588e-005"
+                              Canvas.Top="-1.52588e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 14.597,-1.52588e-005L 10.036,-1.52588e-005C 8.24298,-1.52588e-005 6.50398,0.872589 6.10899,2.08018L 5.57799,3.70407L 4.38499,3.70407C 1.963,3.70407 -1.52588e-005,5.49643 -1.52588e-005,7.70702L -1.52588e-005,15.054C -1.52588e-005,17.2646 1.963,19.057 4.38499,19.057L 20.248,19.057C 22.67,19.057 24.634,17.2646 24.634,15.054L 24.634,7.70702C 24.634,5.49643 22.67,3.70407 20.248,3.70407L 19.055,3.70407L 18.525,2.08018C 18.13,0.872589 16.391,-1.52588e-005 14.597,-1.52588e-005 Z M 14.597,1.00299C 16.106,1.00299 17.355,1.72115 17.574,2.39313L 18.105,4.01701L 18.33,4.70706L 19.055,4.70706L 20.248,4.70706C 22.115,4.70706 23.634,6.05309 23.634,7.70702L 23.634,15.054C 23.634,16.708 22.115,18.054 20.248,18.054L 4.38499,18.054C 2.51799,18.054 0.999985,16.708 0.999985,15.054L 0.999985,7.70702C 0.999985,6.05309 2.51799,4.70706 4.38499,4.70706L 5.57799,4.70706L 6.30298,4.70706L 6.52899,4.01701L 7.05898,2.39313C 7.278,1.72115 8.52698,1.00299 10.036,1.00299L 14.597,1.00299 Z " />
+                        <Path Width="9.33801"
+                              Height="9.36606"
+                              Canvas.Left="7.64769"
+                              Canvas.Top="6.34026"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 12.3167,7.34326C 10.2937,7.34326 8.64769,8.9942 8.64769,11.0233C 8.64769,13.0524 10.2937,14.7033 12.3167,14.7033C 14.3397,14.7033 15.9857,13.0524 15.9857,11.0233C 15.9857,8.9942 14.3397,7.34326 12.3167,7.34326 Z M 12.3167,15.7063C 9.74168,15.7063 7.64769,13.606 7.64769,11.0233C 7.64769,8.44054 9.74168,6.34026 12.3167,6.34026C 14.8917,6.34026 16.9857,8.44054 16.9857,11.0233C 16.9857,13.606 14.8917,15.7063 12.3167,15.7063 Z " />
+                        <Path Width="2.48199"
+                              Height="2.48946"
+                              Canvas.Left="4.11479"
+                              Canvas.Top="5.89752"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 5.35577,5.89752C 4.67078,5.89752 4.11479,6.45419 4.11479,7.14221C 4.11479,7.82927 4.67078,8.38698 5.35577,8.38698C 6.04179,8.38698 6.59679,7.82927 6.59679,7.14221C 6.59679,6.45419 6.04179,5.89752 5.35577,5.89752 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -344,7 +714,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Path Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 204.643,15.6772L 204.018,14.8962L 191.338,25.0401C 191.22,25.1351 191.151,25.2792 191.151,25.4302C 191.151,25.5821 191.22,25.7261 191.338,25.8212L 204.018,35.9651L 204.643,35.1841L 193.076,25.9302L 215.836,25.9302L 215.836,24.9302L 193.076,24.9302L 204.643,15.6772 Z " Height="21.069" Width="24.685"/>
+                    <Path Stretch="Fill"
+                          Fill="{TemplateBinding Foreground}"
+                          Data="F1 M 204.643,15.6772L 204.018,14.8962L 191.338,25.0401C 191.22,25.1351 191.151,25.2792 191.151,25.4302C 191.151,25.5821 191.22,25.7261 191.338,25.8212L 204.018,35.9651L 204.643,35.1841L 193.076,25.9302L 215.836,25.9302L 215.836,24.9302L 193.076,24.9302L 204.643,15.6772 Z "
+                          Height="21.069"
+                          Width="24.685" />
 
 
                 </ControlTemplate>
@@ -360,7 +734,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Path Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 240.648,25.04L 227.968,14.8959L 227.343,15.6769L 238.91,24.931L 216.15,24.931L 216.15,25.931L 238.91,25.931L 227.343,35.1849L 227.968,35.965L 240.648,25.821C 240.767,25.7259 240.835,25.582 240.835,25.431C 240.835,25.2789 240.767,25.1349 240.648,25.04 Z " Height="21.069" Width="24.685"/>
+                    <Path Stretch="Fill"
+                          Fill="{TemplateBinding Foreground}"
+                          Data="F1 M 240.648,25.04L 227.968,14.8959L 227.343,15.6769L 238.91,24.931L 216.15,24.931L 216.15,25.931L 238.91,25.931L 227.343,35.1849L 227.968,35.965L 240.648,25.821C 240.767,25.7259 240.835,25.582 240.835,25.431C 240.835,25.2789 240.767,25.1349 240.648,25.04 Z "
+                          Height="21.069"
+                          Width="24.685" />
 
                 </ControlTemplate>
             </Setter.Value>
@@ -375,7 +753,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Path Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 244.164,25.6343L 261.319,35.5392L 261.319,15.7292M 261.819,36.9053C 261.733,36.9053 261.646,36.8832 261.569,36.8382L 242.914,26.0672C 242.759,25.9783 242.664,25.8132 242.664,25.6343C 242.664,25.4552 242.759,25.2903 242.914,25.2012L 261.569,14.4302C 261.724,14.3412 261.915,14.3412 262.069,14.4302C 262.224,14.5193 262.319,14.6842 262.319,14.8633L 262.319,36.4053C 262.319,36.5843 262.224,36.7493 262.069,36.8382C 261.992,36.8832 261.906,36.9053 261.819,36.9053 Z " Height="22.541" Width="19.655"/>
+                    <Path Stretch="Fill"
+                          Fill="{TemplateBinding Foreground}"
+                          Data="F1 M 244.164,25.6343L 261.319,35.5392L 261.319,15.7292M 261.819,36.9053C 261.733,36.9053 261.646,36.8832 261.569,36.8382L 242.914,26.0672C 242.759,25.9783 242.664,25.8132 242.664,25.6343C 242.664,25.4552 242.759,25.2903 242.914,25.2012L 261.569,14.4302C 261.724,14.3412 261.915,14.3412 262.069,14.4302C 262.224,14.5193 262.319,14.6842 262.319,14.8633L 262.319,36.4053C 262.319,36.5843 262.224,36.7493 262.069,36.8382C 261.992,36.8832 261.906,36.9053 261.819,36.9053 Z "
+                          Height="22.541"
+                          Width="19.655" />
 
 
 
@@ -391,7 +773,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Path Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 270.667,16.1097L 270.667,35.9197L 287.822,26.0148M 270.167,37.2858C 270.081,37.2858 269.994,37.2627 269.917,37.2187C 269.762,37.1297 269.667,36.9637 269.667,36.7858L 269.667,15.2438C 269.667,15.0647 269.762,14.8998 269.917,14.8107C 270.071,14.7217 270.263,14.7217 270.417,14.8107L 289.072,25.5818C 289.227,25.6708 289.322,25.8357 289.322,26.0148C 289.322,26.1927 289.227,26.3587 289.072,26.4477L 270.417,37.2187C 270.34,37.2627 270.253,37.2858 270.167,37.2858 Z " Height="22.542" Width="19.655"/>
+                    <Path Stretch="Fill"
+                          Fill="{TemplateBinding Foreground}"
+                          Data="F1 M 270.667,16.1097L 270.667,35.9197L 287.822,26.0148M 270.167,37.2858C 270.081,37.2858 269.994,37.2627 269.917,37.2187C 269.762,37.1297 269.667,36.9637 269.667,36.7858L 269.667,15.2438C 269.667,15.0647 269.762,14.8998 269.917,14.8107C 270.071,14.7217 270.263,14.7217 270.417,14.8107L 289.072,25.5818C 289.227,25.6708 289.322,25.8357 289.322,26.0148C 289.322,26.1927 289.227,26.3587 289.072,26.4477L 270.417,37.2187C 270.34,37.2627 270.253,37.2858 270.167,37.2858 Z "
+                          Height="22.542"
+                          Width="19.655" />
 
                 </ControlTemplate>
             </Setter.Value>
@@ -405,7 +791,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Path Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 153.946,24.9305L 153.946,12.9585L 152.946,12.9585L 152.946,24.9305L 140.974,24.9305L 140.974,25.9305L 152.946,25.9305L 152.946,37.9026L 153.946,37.9026L 153.946,25.9305L 165.918,25.9305L 165.918,24.9305L 153.946,24.9305 Z " Height="24.944" Width="24.944"/>
+                    <Path Stretch="Fill"
+                          Fill="{TemplateBinding Foreground}"
+                          Data="F1 M 153.946,24.9305L 153.946,12.9585L 152.946,12.9585L 152.946,24.9305L 140.974,24.9305L 140.974,25.9305L 152.946,25.9305L 152.946,37.9026L 153.946,37.9026L 153.946,25.9305L 165.918,25.9305L 165.918,24.9305L 153.946,24.9305 Z "
+                          Height="24.944"
+                          Width="24.944" />
 
                 </ControlTemplate>
             </Setter.Value>
@@ -421,7 +811,11 @@
                 <ControlTemplate TargetType="{x:Type Label}">
 
 
-                    <Path Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 165.993,24.9305L 165.993,25.9305L 190.993,25.9305L 190.993,24.9305L 175.087,24.9305L 165.993,24.9305 Z " Height="1" Width="25"/>
+                    <Path Stretch="Fill"
+                          Fill="{TemplateBinding Foreground}"
+                          Data="F1 M 165.993,24.9305L 165.993,25.9305L 190.993,25.9305L 190.993,24.9305L 175.087,24.9305L 165.993,24.9305 Z "
+                          Height="1"
+                          Width="25" />
 
 
                 </ControlTemplate>
@@ -437,11 +831,36 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="21.7446" Height="21.8106">
-                        <Path Width="7.925" Height="7.94977" Canvas.Left="13.8196" Canvas.Top="0.000236511" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 21.2446,0.000236511L 15.4666,0.000236511L 15.4666,0.50174L 15.4666,1.00323L 15.9666,1.00323L 20.0376,1.00323L 18.0016,3.0453L 13.8196,7.24091L 14.5266,7.95L 18.7086,3.75446L 20.7446,1.71233L 20.7446,5.79554L 20.7446,6.29705L 21.2446,6.29705L 21.7446,6.29705L 21.7446,0.50174C 21.7446,0.224907 21.5206,0.000236511 21.2446,0.000236511 Z "/>
-                        <Path Width="7.925" Height="7.94878" Canvas.Left="0" Canvas.Top="13.8618" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 1.707,20.8076L 3.743,18.7655L 7.925,14.571L 7.21799,13.8618L 3.036,18.0564L 1,20.0985L 1,16.0153L 1,15.5138L 0,15.5138L 0,21.3091C 0,21.5859 0.223999,21.8106 0.5,21.8106L 6.27799,21.8106L 6.27799,20.8076L 5.77799,20.8076L 1.707,20.8076 Z "/>
-                        <Path Width="7.925" Height="7.94878" Canvas.Left="13.8196" Canvas.Top="13.8615" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 20.7446,15.5135L 20.7446,16.015L 20.7446,20.0982L 18.7086,18.0571L 14.5266,13.8615L 13.8196,14.5707L 18.0016,18.7662L 20.0376,20.8073L 15.9666,20.8073L 15.4666,20.8073L 15.4666,21.3088L 15.4666,21.8103L 21.2446,21.8103C 21.5206,21.8103 21.7446,21.5867 21.7446,21.3088L 21.7446,15.5135L 20.7446,15.5135 Z "/>
-                        <Path Width="7.925" Height="7.94983" Canvas.Left="0.000198364" Canvas.Top="-7.62939e-006" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 7.9252,7.24066L 1.70719,1.00299L 6.2782,1.00299L 6.2782,-7.62939e-006L 0.500198,-7.62939e-006C 0.22319,-7.62939e-006 0.000198364,0.224663 0.000198364,0.501495L 0.000198364,6.29784L 1.0002,6.29784L 1.0002,1.71215L 7.2182,7.94982L 7.9252,7.24066 Z "/>
+                    <Canvas Width="21.7446"
+                            Height="21.8106">
+                        <Path Width="7.925"
+                              Height="7.94977"
+                              Canvas.Left="13.8196"
+                              Canvas.Top="0.000236511"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 21.2446,0.000236511L 15.4666,0.000236511L 15.4666,0.50174L 15.4666,1.00323L 15.9666,1.00323L 20.0376,1.00323L 18.0016,3.0453L 13.8196,7.24091L 14.5266,7.95L 18.7086,3.75446L 20.7446,1.71233L 20.7446,5.79554L 20.7446,6.29705L 21.2446,6.29705L 21.7446,6.29705L 21.7446,0.50174C 21.7446,0.224907 21.5206,0.000236511 21.2446,0.000236511 Z " />
+                        <Path Width="7.925"
+                              Height="7.94878"
+                              Canvas.Left="0"
+                              Canvas.Top="13.8618"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 1.707,20.8076L 3.743,18.7655L 7.925,14.571L 7.21799,13.8618L 3.036,18.0564L 1,20.0985L 1,16.0153L 1,15.5138L 0,15.5138L 0,21.3091C 0,21.5859 0.223999,21.8106 0.5,21.8106L 6.27799,21.8106L 6.27799,20.8076L 5.77799,20.8076L 1.707,20.8076 Z " />
+                        <Path Width="7.925"
+                              Height="7.94878"
+                              Canvas.Left="13.8196"
+                              Canvas.Top="13.8615"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 20.7446,15.5135L 20.7446,16.015L 20.7446,20.0982L 18.7086,18.0571L 14.5266,13.8615L 13.8196,14.5707L 18.0016,18.7662L 20.0376,20.8073L 15.9666,20.8073L 15.4666,20.8073L 15.4666,21.3088L 15.4666,21.8103L 21.2446,21.8103C 21.5206,21.8103 21.7446,21.5867 21.7446,21.3088L 21.7446,15.5135L 20.7446,15.5135 Z " />
+                        <Path Width="7.925"
+                              Height="7.94983"
+                              Canvas.Left="0.000198364"
+                              Canvas.Top="-7.62939e-006"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 7.9252,7.24066L 1.70719,1.00299L 6.2782,1.00299L 6.2782,-7.62939e-006L 0.500198,-7.62939e-006C 0.22319,-7.62939e-006 0.000198364,0.224663 0.000198364,0.501495L 0.000198364,6.29784L 1.0002,6.29784L 1.0002,1.71215L 7.2182,7.94982L 7.9252,7.24066 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -457,9 +876,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="24.401" Height="24.5">
-                        <Path Width="24.401" Height="24.5" Canvas.Left="0" Canvas.Top="-2.28882e-005" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 10.018,23.5L 14.383,23.5L 14.383,19.983L 14.726,19.8689C 15.761,19.5259 16.705,18.9789 17.532,18.2439L 17.802,18.004L 20.852,19.7649L 23.035,15.985L 19.994,14.2289L 20.066,13.876C 20.176,13.344 20.231,12.7959 20.231,12.25C 20.231,11.704 20.176,11.1559 20.066,10.6239L 19.994,10.271L 23.035,8.51494L 20.852,4.73497L 17.802,6.49693L 17.532,6.25597C 16.705,5.52098 15.762,4.97398 14.726,4.63097L 14.383,4.51695L 14.383,0.999977L 10.018,0.999977L 10.018,4.51695L 9.675,4.63097C 8.64,4.97398 7.696,5.52098 6.87,6.25597L 6.59999,6.49693L 3.549,4.73497L 1.36699,8.51494L 4.408,10.271L 4.335,10.6239C 4.226,11.1559 4.17,11.704 4.17,12.25C 4.17,12.7959 4.226,13.344 4.335,13.876L 4.408,14.2289L 1.36699,15.985L 3.549,19.7649L 6.59999,18.004L 6.87,18.2439C 7.696,18.9789 8.64,19.5259 9.675,19.8689L 10.018,19.983M 15.383,24.5L 9.01799,24.5L 9.01799,20.6969C 8.099,20.3509 7.248,19.858 6.481,19.228L 3.183,21.131L 0,15.6189L 3.289,13.72C 3.21,13.235 3.17,12.743 3.17,12.25C 3.17,11.7569 3.21,11.2649 3.289,10.78L 0,8.88097L 3.183,3.36894L 6.481,5.27293C 7.24699,4.64195 8.099,4.14897 9.01799,3.80296L 9.01799,-2.28882e-005L 15.383,-2.28882e-005L 15.383,3.80296C 16.303,4.14897 17.154,4.64195 17.92,5.27293L 21.218,3.36894L 24.401,8.88097L 21.112,10.78C 21.191,11.2649 21.231,11.7569 21.231,12.25C 21.231,12.743 21.191,13.235 21.112,13.72L 24.401,15.6189L 21.218,21.131L 17.92,19.228C 17.153,19.858 16.303,20.3509 15.383,20.6969L 15.383,24.5 Z "/>
-                        <Path Width="7.92001" Height="7.92096" Canvas.Left="8.2406" Canvas.Top="8.28947" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 12.2006,9.28947C 10.5686,9.28947 9.2406,10.6175 9.2406,12.2494C 9.2406,13.8824 10.5686,15.2104 12.2006,15.2104C 13.8326,15.2104 15.1606,13.8824 15.1606,12.2494C 15.1606,10.6175 13.8326,9.28947 12.2006,9.28947 Z M 12.2006,16.2104C 10.0166,16.2104 8.2406,14.4335 8.2406,12.2494C 8.2406,10.0665 10.0166,8.28947 12.2006,8.28947C 14.3846,8.28947 16.1606,10.0665 16.1606,12.2494C 16.1606,14.4335 14.3846,16.2104 12.2006,16.2104 Z "/>
+                    <Canvas Width="24.401"
+                            Height="24.5">
+                        <Path Width="24.401"
+                              Height="24.5"
+                              Canvas.Left="0"
+                              Canvas.Top="-2.28882e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 10.018,23.5L 14.383,23.5L 14.383,19.983L 14.726,19.8689C 15.761,19.5259 16.705,18.9789 17.532,18.2439L 17.802,18.004L 20.852,19.7649L 23.035,15.985L 19.994,14.2289L 20.066,13.876C 20.176,13.344 20.231,12.7959 20.231,12.25C 20.231,11.704 20.176,11.1559 20.066,10.6239L 19.994,10.271L 23.035,8.51494L 20.852,4.73497L 17.802,6.49693L 17.532,6.25597C 16.705,5.52098 15.762,4.97398 14.726,4.63097L 14.383,4.51695L 14.383,0.999977L 10.018,0.999977L 10.018,4.51695L 9.675,4.63097C 8.64,4.97398 7.696,5.52098 6.87,6.25597L 6.59999,6.49693L 3.549,4.73497L 1.36699,8.51494L 4.408,10.271L 4.335,10.6239C 4.226,11.1559 4.17,11.704 4.17,12.25C 4.17,12.7959 4.226,13.344 4.335,13.876L 4.408,14.2289L 1.36699,15.985L 3.549,19.7649L 6.59999,18.004L 6.87,18.2439C 7.696,18.9789 8.64,19.5259 9.675,19.8689L 10.018,19.983M 15.383,24.5L 9.01799,24.5L 9.01799,20.6969C 8.099,20.3509 7.248,19.858 6.481,19.228L 3.183,21.131L 0,15.6189L 3.289,13.72C 3.21,13.235 3.17,12.743 3.17,12.25C 3.17,11.7569 3.21,11.2649 3.289,10.78L 0,8.88097L 3.183,3.36894L 6.481,5.27293C 7.24699,4.64195 8.099,4.14897 9.01799,3.80296L 9.01799,-2.28882e-005L 15.383,-2.28882e-005L 15.383,3.80296C 16.303,4.14897 17.154,4.64195 17.92,5.27293L 21.218,3.36894L 24.401,8.88097L 21.112,10.78C 21.191,11.2649 21.231,11.7569 21.231,12.25C 21.231,12.743 21.191,13.235 21.112,13.72L 24.401,15.6189L 21.218,21.131L 17.92,19.228C 17.153,19.858 16.303,20.3509 15.383,20.6969L 15.383,24.5 Z " />
+                        <Path Width="7.92001"
+                              Height="7.92096"
+                              Canvas.Left="8.2406"
+                              Canvas.Top="8.28947"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 12.2006,9.28947C 10.5686,9.28947 9.2406,10.6175 9.2406,12.2494C 9.2406,13.8824 10.5686,15.2104 12.2006,15.2104C 13.8326,15.2104 15.1606,13.8824 15.1606,12.2494C 15.1606,10.6175 13.8326,9.28947 12.2006,9.28947 Z M 12.2006,16.2104C 10.0166,16.2104 8.2406,14.4335 8.2406,12.2494C 8.2406,10.0665 10.0166,8.28947 12.2006,8.28947C 14.3846,8.28947 16.1606,10.0665 16.1606,12.2494C 16.1606,14.4335 14.3846,16.2104 12.2006,16.2104 Z " />
                     </Canvas>
 
                 </ControlTemplate>
@@ -474,13 +906,50 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Label}">
 
-                    <Canvas Width="25" Height="23.0263">
-                        <Path Width="5.22733" Height="3.71106" Canvas.Left="3.64664" Canvas.Top="19.3152" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 6.8481,20.9675C 6.04941,20.5492 5.30733,20.0278 4.6434,19.4174L 4.53229,19.3152L 3.64664,20.2785L 3.75777,20.3807C 4.50571,21.0678 5.34122,21.6551 6.24117,22.1263C 6.909,22.4763 7.62112,22.7643 8.35739,22.983L 8.50183,23.0263L 8.87396,21.7715L 8.7289,21.7283C 8.07729,21.5356 7.44478,21.2796 6.8481,20.9675 Z "/>
-                        <Path Width="2.91682" Height="5.41109" Canvas.Left="0" Canvas.Top="12.6425" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 1.31764,12.7929L 1.30183,12.6425L 0,12.7767L 0.015213,12.9266C 0.196564,14.687 0.78833,16.4155 1.72548,17.9253L 1.80511,18.0536L 2.91682,17.3636L 2.83719,17.2353C 2.00319,15.8921 1.47778,14.3558 1.31764,12.7929 Z "/>
-                        <Path Width="3.21957" Height="5.36734" Canvas.Left="0.101257" Canvas.Top="4.74561" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 2.17078,4.86798C 1.40158,5.93497 0.820709,7.12088 0.443268,8.3933L 0.442764,8.3933C 0.311111,8.83807 0.204926,9.29121 0.126724,9.74043L 0.101257,9.8893L 1.39032,10.1129L 1.41638,9.96448C 1.48615,9.56146 1.58105,9.15805 1.69801,8.7648C 2.0332,7.63545 2.54922,6.58174 3.23236,5.6337L 3.32083,5.51083L 2.25874,4.74561L 2.17078,4.86798 Z "/>
-                        <Path Width="5.42969" Height="2.6839" Canvas.Left="12.0906" Canvas.Top="0" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 16.8868,2.6839L 17.5203,1.53879L 17.3886,1.46555C 16.6464,1.0542 15.8542,0.722458 15.034,0.480164C 14.1454,0.215744 13.2293,0.0565186 12.3102,0.00785828L 12.1594,0L 12.0906,1.30731L 12.2415,1.31517C 13.0573,1.35793 13.8716,1.49898 14.6615,1.73439C 15.3932,1.95111 16.0975,2.246 16.7546,2.61069L 16.8868,2.6839 Z "/>
-                        <Path Width="5.31476" Height="3.43488" Canvas.Left="4.25217" Canvas.Top="0.242783" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 9.13344,0.275711C 7.4039,0.664459 5.75703,1.45425 4.37013,2.56006L 4.25217,2.65393L 5.06746,3.67766L 5.18593,3.5833C 6.41953,2.59937 7.88362,1.89706 9.41949,1.55255L 9.56693,1.51913L 9.28088,0.242783L 9.13344,0.275711 Z "/>
-                        <Path Width="10.0098" Height="19.4705" Canvas.Left="14.9902" Canvas.Top="3.27072" Stretch="Fill"  Fill="{TemplateBinding Foreground}"  Data="F1 M 24.7837,19.8911L 19.0871,20.8466C 19.3682,20.6176 19.6454,20.3689 19.9137,20.1049L 20.0765,19.9394C 20.3984,19.6091 20.6707,19.3019 20.9635,18.9368L 21.0559,18.8139L 21.0549,18.8129C 21.2112,18.606 21.3592,18.3957 21.4968,18.1873C 21.8521,17.6471 22.1647,17.0461 22.4733,16.3054L 22.5009,16.3168L 22.5584,16.1757C 22.6777,15.8838 22.7923,15.5569 22.9108,15.1736L 22.9471,15.0694C 23.2705,13.9778 23.4347,12.8529 23.4347,11.725C 23.4342,11.4689 23.4258,11.2148 23.4096,10.9607L 23.3629,10.8123L 23.3619,10.8123C 23.2872,9.85397 23.0946,8.90642 22.7879,7.99225L 22.8189,7.98145L 22.7687,7.83891C 22.7309,7.73227 22.6856,7.62857 22.6399,7.52487C 22.6119,7.46245 22.5844,7.39954 22.5589,7.33614L 22.5352,7.27766C 22.4793,7.13857 22.4232,6.99997 22.3603,6.86188C 22.2168,6.54832 22.0463,6.2215 21.8383,5.86223C 21.8132,5.81898 21.7917,5.77426 21.7701,5.72952C 21.7401,5.66811 21.7101,5.60666 21.6732,5.5472L 21.5872,5.42679L 21.5867,5.42728C 21.1046,4.66895 20.5512,3.97942 19.9413,3.37637L 19.8336,3.27072L 18.9137,4.20058L 19.0213,4.30722C 19.6508,4.92892 20.217,5.67154 20.705,6.51392C 20.8996,6.85008 21.0476,7.13316 21.171,7.40445C 21.222,7.51602 21.2678,7.63004 21.3135,7.74358L 21.3464,7.82515C 21.8752,9.13832 22.1342,10.4993 22.1102,11.9475C 22.0998,12.4288 22.0609,12.8932 21.974,13.4191C 21.9656,13.453 21.9573,13.4868 21.9509,13.5222C 21.8659,14.0143 21.7764,14.4089 21.6565,14.7981C 21.366,15.7491 20.9449,16.647 20.4038,17.4677C 20.2489,17.7032 20.0779,17.9396 19.8808,18.1897C 19.6616,18.4674 19.413,18.748 19.1426,19.0242L 18.9982,19.1707C 18.69,19.4729 18.3927,19.7339 18.088,19.9694C 17.6584,20.3025 17.1969,20.6043 16.7119,20.8692L 19.2213,12.8577L 17.9729,12.4666L 15.0207,21.8914C 14.952,22.1096 15.0011,22.3437 15.1515,22.5171C 15.2758,22.6596 15.4556,22.7412 15.6449,22.7412C 15.6803,22.7412 15.7166,22.7382 15.7529,22.7324L 25,21.1818L 24.7837,19.8911 Z "/>
+                    <Canvas Width="25"
+                            Height="23.0263">
+                        <Path Width="5.22733"
+                              Height="3.71106"
+                              Canvas.Left="3.64664"
+                              Canvas.Top="19.3152"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 6.8481,20.9675C 6.04941,20.5492 5.30733,20.0278 4.6434,19.4174L 4.53229,19.3152L 3.64664,20.2785L 3.75777,20.3807C 4.50571,21.0678 5.34122,21.6551 6.24117,22.1263C 6.909,22.4763 7.62112,22.7643 8.35739,22.983L 8.50183,23.0263L 8.87396,21.7715L 8.7289,21.7283C 8.07729,21.5356 7.44478,21.2796 6.8481,20.9675 Z " />
+                        <Path Width="2.91682"
+                              Height="5.41109"
+                              Canvas.Left="0"
+                              Canvas.Top="12.6425"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 1.31764,12.7929L 1.30183,12.6425L 0,12.7767L 0.015213,12.9266C 0.196564,14.687 0.78833,16.4155 1.72548,17.9253L 1.80511,18.0536L 2.91682,17.3636L 2.83719,17.2353C 2.00319,15.8921 1.47778,14.3558 1.31764,12.7929 Z " />
+                        <Path Width="3.21957"
+                              Height="5.36734"
+                              Canvas.Left="0.101257"
+                              Canvas.Top="4.74561"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 2.17078,4.86798C 1.40158,5.93497 0.820709,7.12088 0.443268,8.3933L 0.442764,8.3933C 0.311111,8.83807 0.204926,9.29121 0.126724,9.74043L 0.101257,9.8893L 1.39032,10.1129L 1.41638,9.96448C 1.48615,9.56146 1.58105,9.15805 1.69801,8.7648C 2.0332,7.63545 2.54922,6.58174 3.23236,5.6337L 3.32083,5.51083L 2.25874,4.74561L 2.17078,4.86798 Z " />
+                        <Path Width="5.42969"
+                              Height="2.6839"
+                              Canvas.Left="12.0906"
+                              Canvas.Top="0"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 16.8868,2.6839L 17.5203,1.53879L 17.3886,1.46555C 16.6464,1.0542 15.8542,0.722458 15.034,0.480164C 14.1454,0.215744 13.2293,0.0565186 12.3102,0.00785828L 12.1594,0L 12.0906,1.30731L 12.2415,1.31517C 13.0573,1.35793 13.8716,1.49898 14.6615,1.73439C 15.3932,1.95111 16.0975,2.246 16.7546,2.61069L 16.8868,2.6839 Z " />
+                        <Path Width="5.31476"
+                              Height="3.43488"
+                              Canvas.Left="4.25217"
+                              Canvas.Top="0.242783"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 9.13344,0.275711C 7.4039,0.664459 5.75703,1.45425 4.37013,2.56006L 4.25217,2.65393L 5.06746,3.67766L 5.18593,3.5833C 6.41953,2.59937 7.88362,1.89706 9.41949,1.55255L 9.56693,1.51913L 9.28088,0.242783L 9.13344,0.275711 Z " />
+                        <Path Width="10.0098"
+                              Height="19.4705"
+                              Canvas.Left="14.9902"
+                              Canvas.Top="3.27072"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 24.7837,19.8911L 19.0871,20.8466C 19.3682,20.6176 19.6454,20.3689 19.9137,20.1049L 20.0765,19.9394C 20.3984,19.6091 20.6707,19.3019 20.9635,18.9368L 21.0559,18.8139L 21.0549,18.8129C 21.2112,18.606 21.3592,18.3957 21.4968,18.1873C 21.8521,17.6471 22.1647,17.0461 22.4733,16.3054L 22.5009,16.3168L 22.5584,16.1757C 22.6777,15.8838 22.7923,15.5569 22.9108,15.1736L 22.9471,15.0694C 23.2705,13.9778 23.4347,12.8529 23.4347,11.725C 23.4342,11.4689 23.4258,11.2148 23.4096,10.9607L 23.3629,10.8123L 23.3619,10.8123C 23.2872,9.85397 23.0946,8.90642 22.7879,7.99225L 22.8189,7.98145L 22.7687,7.83891C 22.7309,7.73227 22.6856,7.62857 22.6399,7.52487C 22.6119,7.46245 22.5844,7.39954 22.5589,7.33614L 22.5352,7.27766C 22.4793,7.13857 22.4232,6.99997 22.3603,6.86188C 22.2168,6.54832 22.0463,6.2215 21.8383,5.86223C 21.8132,5.81898 21.7917,5.77426 21.7701,5.72952C 21.7401,5.66811 21.7101,5.60666 21.6732,5.5472L 21.5872,5.42679L 21.5867,5.42728C 21.1046,4.66895 20.5512,3.97942 19.9413,3.37637L 19.8336,3.27072L 18.9137,4.20058L 19.0213,4.30722C 19.6508,4.92892 20.217,5.67154 20.705,6.51392C 20.8996,6.85008 21.0476,7.13316 21.171,7.40445C 21.222,7.51602 21.2678,7.63004 21.3135,7.74358L 21.3464,7.82515C 21.8752,9.13832 22.1342,10.4993 22.1102,11.9475C 22.0998,12.4288 22.0609,12.8932 21.974,13.4191C 21.9656,13.453 21.9573,13.4868 21.9509,13.5222C 21.8659,14.0143 21.7764,14.4089 21.6565,14.7981C 21.366,15.7491 20.9449,16.647 20.4038,17.4677C 20.2489,17.7032 20.0779,17.9396 19.8808,18.1897C 19.6616,18.4674 19.413,18.748 19.1426,19.0242L 18.9982,19.1707C 18.69,19.4729 18.3927,19.7339 18.088,19.9694C 17.6584,20.3025 17.1969,20.6043 16.7119,20.8692L 19.2213,12.8577L 17.9729,12.4666L 15.0207,21.8914C 14.952,22.1096 15.0011,22.3437 15.1515,22.5171C 15.2758,22.6596 15.4556,22.7412 15.6449,22.7412C 15.6803,22.7412 15.7166,22.7382 15.7529,22.7324L 25,21.1818L 24.7837,19.8911 Z " />
                     </Canvas>
 
 
@@ -492,6 +961,230 @@
 
 
 
+
+
+
+    <Style x:Key="icon_逆時針90"
+           TargetType="{x:Type Label}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Canvas Width="22"
+                            Height="22">
+                        <Path Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                          
+                              Data="F1 M 187.444,127.866C 186.083,125.38 183.834,123.574 181.114,122.779C 178.393,121.985 175.526,122.297 173.04,123.658C 171.472,124.516 170.186,125.743 169.235,127.223L 169.235,121.58L 168.235,121.58L 168.235,129.078L 175.733,129.078L 175.733,128.078L 169.892,128.078C 170.767,126.598 171.992,125.372 173.521,124.534C 175.772,123.301 178.369,123.017 180.833,123.739C 183.298,124.458 185.334,126.095 186.567,128.346C 187.8,130.598 188.083,133.195 187.363,135.659C 186.644,138.123 185.007,140.159 182.756,141.393C 178.734,143.595 173.69,142.641 170.761,139.128C 170.363,138.65 170.009,138.13 169.709,137.581L 168.832,138.062C 169.163,138.666 169.553,139.241 169.992,139.768C 172.059,142.247 175.078,143.572 178.147,143.572C 179.882,143.572 181.633,143.148 183.236,142.27C 185.722,140.908 187.528,138.66 188.323,135.94C 189.118,133.219 188.806,130.352 187.444,127.866 Z "
+                              Margin="0,0,5.481,4.008" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="icon_順時針90"
+           TargetType="{x:Type Label}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Canvas Width="22"
+                            Height="22">
+                        <Path Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                       
+                              Data="F1 M 205.974,129.078L 213.472,129.078L 213.472,121.58L 212.472,121.58L 212.472,127.223C 211.521,125.743 210.235,124.516 208.667,123.657C 206.182,122.296 203.314,121.984 200.593,122.778C 197.872,123.573 195.624,125.38 194.263,127.866C 192.901,130.351 192.589,133.219 193.384,135.939C 194.179,138.66 195.985,140.908 198.471,142.269C 200.075,143.148 201.825,143.572 203.56,143.572C 206.628,143.572 209.647,142.246 211.714,139.767C 212.152,139.242 212.543,138.668 212.875,138.061L 211.998,137.581C 211.697,138.131 211.343,138.651 210.946,139.127C 208.016,142.642 202.971,143.594 198.952,141.392C 196.7,140.159 195.063,138.123 194.344,135.659C 193.623,133.195 193.906,130.598 195.14,128.346C 196.373,126.095 198.409,124.458 200.873,123.738C 203.337,123.016 205.934,123.301 208.186,124.534C 209.715,125.372 210.941,126.598 211.815,128.078L 205.974,128.078L 205.974,129.078 Z "
+                              Margin="0,0,5.481,4.008" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="icon_水平翻轉"
+           TargetType="{x:Type Label}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+
+                    <Canvas Width="21.4572"
+                            Height="22.767">
+                        <Rectangle Width="1"
+                                   Height="22.767"
+                                   Canvas.Left="10.2287"
+                                   Canvas.Top="0"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}"
+                                 />
+                        <Path Width="8.60898"
+                              Height="15.495"
+                              Canvas.Left="-1"
+                              Canvas.Top="3.6366"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                            
+                              Data="F1 M 1.00002,5.88162L 1.00002,16.8866L 7.114,11.3836M 1.52588e-005,19.1316L 1.52588e-005,3.6366L 8.60899,11.3836L 1.52588e-005,19.1316 Z " />
+                        <Path Width="8.60899"
+                              Height="15.496"
+                              Canvas.Left="13"
+                              Canvas.Top="3.63602"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                        
+                              Data="F1 M 14.3432,11.384L 20.4572,16.886L 20.4572,5.88202M 21.4572,19.132L 12.8482,11.384L 21.4572,3.63602L 21.4572,19.132 Z " />
+                    </Canvas>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="icon_垂直翻轉"
+           TargetType="{x:Type Label}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+
+                    <Canvas Width="22.767"
+                            Height="21.4575">
+                        <Rectangle Width="22.767"
+                                   Height="1"
+                                   Canvas.Left="0"
+                                   Canvas.Top="10"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}"
+                                  />
+                        <Path Width="15.495"
+                              Height="8.60901"
+                              Canvas.Left="3.63661"
+                              Canvas.Top="13"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                    
+                              Data="F1 M 5.88161,20.4575L 16.8866,20.4575L 11.3836,14.3435M 19.1316,21.4575L 3.63661,21.4575L 11.3836,12.8485L 19.1316,21.4575 Z " />
+                        <Path Width="15.495"
+                              Height="8.60898"
+                              Canvas.Left="3.63661"
+                              Canvas.Top="-1"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                       
+                              Data="F1 M 5.88161,1L 11.3836,7.11398L 16.8866,1M 11.3836,8.60898L 3.63661,0L 19.1316,0L 11.3836,8.60898 Z " />
+                    </Canvas>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="icon_初始化旋轉"
+           TargetType="{x:Type Label}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+
+                    <Canvas Width="22.87"
+                            Height="22.87">
+                        <Path Width="22.87"
+                              Height="22.87"
+                              Canvas.Left="0"
+                              Canvas.Top="1.52588e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                     
+                              Data="F1 M 11.435,20.208C 6.59801,20.208 2.662,16.272 2.662,11.435C 2.662,6.59901 6.596,2.66402 11.46,2.66402L 11.463,2.66402L 11.553,2.66801C 16.325,2.73201 20.207,6.66402 20.205,11.496C 20.172,16.3 16.238,20.208 11.435,20.208 Z M 22.37,10.998L 21.186,10.998C 20.962,6.04802 16.999,2.01701 12.06,1.69902L 12.06,0.500015C 12.06,0.224014 11.836,1.52588e-005 11.56,1.52588e-005C 11.284,1.52588e-005 11.06,0.224014 11.06,0.500015L 11.06,1.68102C 6.014,1.87401 1.944,5.90401 1.687,10.935L 0.5,10.935C 0.223999,10.935 0,11.159 0,11.435C 0,11.711 0.223999,11.935 0.5,11.935L 1.687,11.935C 1.942,16.924 5.94701,20.929 10.935,21.184L 10.935,22.37C 10.935,22.646 11.159,22.87 11.435,22.87C 11.711,22.87 11.935,22.646 11.935,22.37L 11.935,21.184C 16.889,20.929 20.891,16.952 21.177,11.998L 22.37,11.998C 22.646,11.998 22.87,11.774 22.87,11.498C 22.87,11.221 22.646,10.998 22.37,10.998 Z " />
+                        <Path Width="4.51199"
+                              Height="4.51199"
+                              Canvas.Left="9.17891"
+                              Canvas.Top="9.24162"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                          
+                              Data="F1 M 13.6909,11.4976C 13.6909,12.7436 12.6809,13.7536 11.4349,13.7536C 10.1889,13.7536 9.17891,12.7436 9.17891,11.4976C 9.17891,10.2516 10.1889,9.24162 11.4349,9.24162C 12.6809,9.24162 13.6909,10.2516 13.6909,11.4976 Z " />
+                    </Canvas>
+
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="icon_顯示原生右鍵選單"
+           TargetType="{x:Type Label}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+
+                    <Canvas Width="22.1951"
+                            Height="23.1506">
+                        <Path Width="16.526"
+                              Height="13.929"
+                              Canvas.Left="0"
+                              Canvas.Top="9.2216"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                          
+                              Data="F1 M 2.09699,10.5666L 8.712,20.5076L 9.598,15.3806L 13.89,12.4386M 9.27,23.1506L 0,9.2216L 16.526,11.8436L 10.512,15.9666L 9.27,23.1506 Z " />
+                        <Rectangle Width="11.186"
+                                   Height="0.999992"
+                                   Canvas.Left="7.72489"
+                                   Canvas.Top="3.90733"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}"
+                                  />
+                        <Rectangle Width="11.186"
+                                   Height="1"
+                                   Canvas.Left="7.72489"
+                                   Canvas.Top="7.53928"
+                                   Stretch="Fill"
+                                   Fill="{TemplateBinding Foreground}"
+                                  />
+                        <Path Width="14.47"
+                              Height="16.299"
+                              Canvas.Left="7.7251"
+                              Canvas.Top="-1.52588e-005"
+                              Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+   
+                              Data="F1 M 22.1951,16.299L 21.1951,16.299L 21.1951,0.999985L 7.7251,0.999985L 7.7251,-1.52588e-005L 22.1951,-1.52588e-005L 22.1951,16.299 Z " />
+                    </Canvas>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="icon_關閉程式"
+           TargetType="{x:Type Label}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    
+                    <Canvas Width="21"
+                            Height="21">
+                        <Path Stretch="Fill"
+                              Fill="{TemplateBinding Foreground}"
+                              Data="F1 M 213.817,98.383L 213.11,97.676L 203.074,107.712L 193.038,97.676L 192.331,98.383L 202.367,108.419L 192.331,118.455L 193.038,119.162L 203.074,109.126L 213.11,119.162L 213.817,118.455L 203.781,108.419L 213.817,98.383 Z "
+                              Margin="0,0,4.514,4.514" />
+                    </Canvas>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 
 </ResourceDictionary>

@@ -67,9 +67,7 @@
 
                 <Border fw:PointerTracker.Enabled="True"
                         Background="#00000000"
-                        DockPanel.Dock="Right"
-                        Margin="-50,0,0,0"
-                        Padding="50,0,0,0">
+                        DockPanel.Dock="Right">
 
                     <StackPanel Orientation="Horizontal">
 
@@ -1267,7 +1265,7 @@
                             Background="#00000000">
                     <TextBox x:Name="t_選單_大量_資料夾名稱"
                              Height="30"
-                             Text="(C82) [L'ARCHANGE (カグツチ)] ロニエとティーゼがライオスに懲罰権を行使される本+アリスが公理教会でいろいろされちゃう本 (ソードアート・オンライン)"
+                             Text="路徑"
                              Background="{x:Null}"
                              BorderBrush="{x:Null}"
                              Foreground="{DynamicResource sol_白}"

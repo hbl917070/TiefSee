@@ -39,25 +39,25 @@ namespace TiefSee {
                 u_menu_旋轉.func_open(M.but_旋轉);
             };
 
-            u_menu_旋轉.func_add_menu("順時針 90°", null, () => {
+            u_menu_旋轉.func_add_menu_icon("順時針 90°", "icon_順時針90", () => {
                 func_旋轉_順時針_90();
             });
-            u_menu_旋轉.func_add_menu("逆時針 90°", null, () => {
+            u_menu_旋轉.func_add_menu_icon("逆時針 90°", "icon_逆時針90", () => {
                 func_旋轉_逆時針_90();
             });
 
             u_menu_旋轉.func_add_水平線();
 
-            u_menu_旋轉.func_add_menu("水平鏡像", null, () => {
+            u_menu_旋轉.func_add_menu_icon("水平鏡像", "icon_水平翻轉", () => {
                 func_旋轉_水平();
             });
-            u_menu_旋轉.func_add_menu("垂直鏡像", null, () => {
+            u_menu_旋轉.func_add_menu_icon("垂直鏡像", "icon_垂直翻轉", () => {
                 func_旋轉_垂直();
             });
 
             u_menu_旋轉.func_add_水平線();
 
-            u_menu_旋轉.func_add_menu("初始化旋轉", null, () => {
+            u_menu_旋轉.func_add_menu_icon("初始化旋轉", "icon_初始化旋轉", () => {
 
                 if (int_旋轉 == 270) {
                     int_旋轉 = -90;

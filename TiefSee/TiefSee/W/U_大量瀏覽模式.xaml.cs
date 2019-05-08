@@ -33,6 +33,7 @@ namespace TiefSee.W {
         String s_js_array;
         String[] ar_img_path;
 
+        public bool bool_已經載入 = false;
 
         //String s_url = @"D:\GitHub\aeropic\img_view\imgs.html";//
         String s_url = "https://hbl917070.github.io/aeropic/img_view/imgs.html";
@@ -50,7 +51,7 @@ namespace TiefSee.W {
         public static extern bool InternetGetConnectedState(
            ref uint lpdwFlags,
            uint dwReserved
-         );
+        );
 
 
 
@@ -58,18 +59,47 @@ namespace TiefSee.W {
             InitializeComponent();
 
             this.M = m;
-            //this.s_當前目錄 = s_path;
-
-            //M.func_隱藏工具列_套用樣式(false);
-
+         
             //啟動時判斷是否隱藏工具列
             this.Loaded += (serder, e) => {
                 M.func_顯示或隱藏工具列("no");
             };
 
 
-            // if (M.c_localhost == null)
-            //    M.c_localhost = new C_localhost_server(M);
+            //---------------------------------------
+
+
+            //初始化時判斷是否需要 webbrowser 最大化
+            if (M.WindowState == WindowState.Maximized) {
+                WindowsFormsHost_01.Margin = new Thickness(0, 0, 0, 0);
+            }
+
+
+            //初始網頁
+            web01.Navigated += (sender, e) => {
+
+                web01.Document.Focus();
+
+                //讓web也能拖曳視窗
+                web01.Document.MouseDown += ((sender2, e2) => {
+                    web01.Document.Focus();
+
+                    if (e2.MouseButtonsPressed == System.Windows.Forms.MouseButtons.Left)
+                        try {
+                            if (M.fun_判斷滑鼠是否在右下角()) {//讓右下角可以拖曳改變視窗大小
+                                if (M.WindowState != WindowState.Maximized)
+                                    M.c_視窗改變大小.ResizeWindow(ResizeDirection.BottomRight);
+                            }
+                        } catch { }
+
+                });
+
+                event_快速鍵();
+
+            };//Navigated 網頁初始化
+
+
+
 
             //判斷是否連線
             if (true) {
@@ -85,80 +115,34 @@ namespace TiefSee.W {
                 }
             }
 
-
-
-            //載入web_icon
-            /*String s_web_icon = M.fun_執行檔路徑() + "/data/imgs/web_icon.png";
-            if (File.Exists(s_web_icon))
-                img_icon_web.Source = M.fun_get_BitmapImage_s(s_web_icon);*/
-
-
-
-            //初始化時判斷是否需要 webbrowser 最大化
-            if (M.WindowState == WindowState.Maximized) {
-                WindowsFormsHost_01.Margin = new Thickness(0, 0, 0, 0);
-            }
-
-
-
-            //初始網頁
-            web01.Navigated += (sender, e) => {
-
-
-                web01.Document.Focus();
-
-                //延遲載入套用設定
-                /*new Thread(() => {
-                    Thread.Sleep(1);
-                    C_adapter.fun_UI執行緒(() => {
-                        M.c_set.fun_套用setting設定();
-                    });
-                }).Start();*/
-
-
-                //讓web也能拖曳視窗
-                web01.Document.MouseDown += ((sender2, e2) => {
-                    web01.Document.Focus();
-
-
-                    if (e2.MouseButtonsPressed == System.Windows.Forms.MouseButtons.Left)
-                        try {
-                            if (M.fun_判斷滑鼠是否在右下角()) {//讓右下角可以拖曳改變視窗大小
-                                if (M.WindowState != WindowState.Maximized)
-                                    M.c_視窗改變大小.ResizeWindow(ResizeDirection.BottomRight);
-                            }
-                        } catch { }
-
-
-                });
-
-
-                event_快速鍵();
-
-
-
-
-            };//Navigated 網頁初始化
-
-
-
-
-
-
-
-            //String s_url = M.fun_執行檔路徑() + "/data/img_view/imgs.html";
-
-
-
             web01.Navigate(s_url);
 
             web01.ObjectForScripting = new C_web呼叫javaScript(this);//讓網頁允許存取C#
             M.fun_Zoom(web01, 100);//網頁比例100%
 
+
+
+            var tim = new System.Windows.Forms.Timer();
+            tim.Interval = 1000;
+            tim.Tick += (sender, e) => {
+
+                if (bool_已經載入 == false) {
+                    s_url = M.fun_執行檔路徑() + "/data/img_view/imgs.html";
+                    web01.Navigate(s_url);
+                }
+                tim.Stop();
+            };
+            tim.Start();
+            //---------------------------------------
+
+
+
             web01.Navigating += (sender2, e2) => {
-                M.bool_自定圖片名單 = false;
-                M.fun_載入圖片或資料夾(e2.Url.ToString());
-                e2.Cancel = true;
+                if (bool_已經載入) {
+                    M.bool_自定圖片名單 = false;
+                    M.fun_載入圖片或資料夾(e2.Url.ToString());
+                    e2.Cancel = true;
+                }
             };
 
             but_結束大量瀏覽.Click += (sender, e) => {
@@ -172,31 +156,16 @@ namespace TiefSee.W {
                 } catch { }
             });
 
-
-
             but_排序.Click += (sender, e) => {
                 M.c_排序.func_開啟選單_物件下方(but_排序);
                 M.func_下拉選單背景(true, but_排序);
             };
-
             but_上一個資料夾.Click += (sender, e) => {
                 M.func_開啟下一資料夾(0);
             };
             but_下一個資料夾.Click += (sender, e) => {
                 M.func_開啟下一資料夾(1);
             };
-
-            /*
-            but_書籤.Click += (sneder, e) => {
-                M.c_書籤.fun_顯示視窗(but_書籤);
-            };
-
-            but_新增書籤.Click += (sneder, e) => {
-                M.c_書籤.fun_新增書籤();
-            };*/
-
-
-
             but_外部瀏覽器開啟.Click += (sernder, e) => {
                 func_外部瀏覽器開啟();
             };
@@ -211,11 +180,9 @@ namespace TiefSee.W {
 
             //避免網頁還沒載入完成
             try {
-
                 fun_取得圖片名單();
                 web01.Document.InvokeScript("eval", new Object[] { s_js_array });
                 web01.Document.InvokeScript("fun_產生圖片");
-
             } catch { }
         }
 
@@ -609,6 +576,7 @@ namespace TiefSee.W {
         /// </summary>
         /// <returns></returns>
         public String fun_getImgs() {
+            U.bool_已經載入 = true;
             U.WindowsFormsHost_01.Visibility = Visibility.Visible;//預設是隱藏，載入完成才顯示
             U.M.c_set.fun_套用setting設定();
             return U.fun_取得圖片名單();

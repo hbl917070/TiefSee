@@ -42,7 +42,42 @@ namespace TiefSee.W {
 
         }
 
+     
+        /// <summary>
+        /// 圖示 使用 style 的 icon 
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="icon_name"></param>
+        /// <param name="ac"></param>
+        /// <returns></returns>
+        public U_menu_item func_add_menu_icon(String t, String icon_name, Action ac) {
 
+            var umi = func_add_menu(t, null, ac);
+            umi.func_setIcon(icon_name);
+        
+            return umi;
+        }
+
+
+        /// <summary>
+        /// 圖示 使用 圖片路徑
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="img_path"></param>
+        /// <param name="ac"></param>
+        /// <returns></returns>
+        public U_menu_item func_add_menu_imgPath(String t, String img_path, Action ac) {
+
+            BitmapSource img = null;
+            if (System.IO.File.Exists(img_path))
+                try {
+                    img = M.c_影像.func_get_BitmapImage_JPG(img_path);
+                } catch { }
+
+            var umi = func_add_menu(t, img, ac);
+
+            return umi;
+        }
 
 
         /// <summary>
@@ -53,8 +88,6 @@ namespace TiefSee.W {
         /// <param name="ac"></param>
         /// <returns></returns>
         public U_menu_item func_add_menu(String t, BitmapSource img, Action ac) {
-
-         
 
 
             var item = new U_menu_item();
@@ -118,8 +151,8 @@ namespace TiefSee.W {
 
             var pos = System.Windows.Forms.Cursor.Position;
 
-            popup_選單.HorizontalOffset = pos.X /M. d_解析度比例_x - (popup_選單_容器.ActualWidth / M.d_解析度比例_x / 2);
-            popup_選單.VerticalOffset = pos.Y /M. d_解析度比例_y - 35;
+            popup_選單.HorizontalOffset = pos.X / M.d_解析度比例_x - (popup_選單_容器.ActualWidth / M.d_解析度比例_x / 2);
+            popup_選單.VerticalOffset = pos.Y / M.d_解析度比例_y - 35;
 
         }
 
@@ -135,7 +168,7 @@ namespace TiefSee.W {
 
             var pos = System.Windows.Forms.Cursor.Position;
 
-            popup_選單.HorizontalOffset = pos.X /M. d_解析度比例_x;
+            popup_選單.HorizontalOffset = pos.X / M.d_解析度比例_x;
             popup_選單.VerticalOffset = pos.Y / M.d_解析度比例_y - 15;
 
         }

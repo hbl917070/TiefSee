@@ -282,10 +282,33 @@ namespace TiefSee.cs {
 
             u_menu_用外部程式開啟.func_add_水平線();
 
-          
+            if (C_window_AERO.IsWindows10()) {
 
+                // 3D小畫家
+                String s_Paint3D = M.fun_執行檔路徑() + "/data/imgs/icon-Paint3D.png";
+                u_menu_用外部程式開啟.func_add_menu_imgPath("3D小畫家", s_Paint3D, () => {
+                    if (File.Exists(M.ar_path[M.int_目前圖片位置])) { //判別檔案是否存在於對應的路徑
+                        try {
+                            System.Diagnostics.Process.Start("mspaint", '"' + M.ar_path[M.int_目前圖片位置] + '"' + " /ForceBootstrapPaint3D");
+                        } catch (Exception e2) {
+                            MessageBox.Show(e2.ToString(), "失敗");
+                        }
+                    }
+                });
 
-     
+                // win10相片 APP
+                String s_photos = M.fun_執行檔路徑() + "/data/imgs/icon-photos.png";
+                u_menu_用外部程式開啟.func_add_menu_imgPath("相片 APP", s_photos, () => {
+                    if (File.Exists(M.ar_path[M.int_目前圖片位置])) { //判別檔案是否存在於對應的路徑
+                        try {
+                            String url_path = Uri.EscapeDataString(M.ar_path[M.int_目前圖片位置]);
+                            System.Diagnostics.Process.Start("ms-photos:viewer?fileName=" + url_path);
+                        } catch (Exception e2) {
+                            MessageBox.Show(e2.ToString(), "失敗");
+                        }
+                    }
+                });
+            }
 
 
 

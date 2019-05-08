@@ -431,43 +431,54 @@ namespace TiefSee {
                 popup_選單_右鍵.IsOpen = false;
                 fun_用檔案總管開啟目前圖片();
             };
+            u_menu_右鍵_用檔案總管開啟.func_setIcon("icon_外部開啟");
+
 
             u_menu_右鍵_原生右鍵.t01.Text = "檔案右鍵選單";
             u_menu_右鍵_原生右鍵.but01.Click += (senrder, e) => {
                 popup_選單_右鍵.IsOpen = false;
                 c_按鈕選單_其他程式開啟.fun_顯示原生右鍵選單(false);
             };
+            u_menu_右鍵_原生右鍵.func_setIcon("icon_顯示原生右鍵選單");
 
             u_menu_右鍵_複製影像.t01.Text = "複製影像";
             u_menu_右鍵_複製影像.but01.Click += (senrder, e) => {
                 popup_選單_右鍵.IsOpen = false;
                 c_按鈕選單_複製.fun_複製影像();
             };
+            u_menu_右鍵_複製影像.func_setIcon("icon_複製");
+
 
             u_menu_右鍵_刪除圖片.t01.Text = "刪除圖片";
             u_menu_右鍵_刪除圖片.but01.Click += (senrder, e) => {
                 popup_選單_右鍵.IsOpen = false;
                 fun_刪除檔案();
             };
+            u_menu_右鍵_刪除圖片.func_setIcon("icon_垃圾桶");
+
 
             u_menu_右鍵_設定.t01.Text = "設定";
             u_menu_右鍵_設定.but01.Click += (senrder, e) => {
                 popup_選單_右鍵.IsOpen = false;
                 func_開啟_設定();
             };
+            u_menu_右鍵_設定.func_setIcon("icon_設定");
+
 
             u_menu_右鍵_說明.t01.Text = "說明 與 檢查更新";
             u_menu_右鍵_說明.but01.Click += (senrder, e) => {
                 popup_選單_右鍵.IsOpen = false;
                 func_開啟_說明();
             };
+            u_menu_右鍵_說明.func_setIcon("icon_說明");
+
 
             u_menu_右鍵_關閉程式.t01.Text = "關閉程式";
             u_menu_右鍵_關閉程式.but01.Click += (senrder, e) => {
                 popup_選單_右鍵.IsOpen = false;
                 this.Close();
             };
-
+            u_menu_右鍵_關閉程式.func_setIcon("icon_關閉程式");
 
 
 

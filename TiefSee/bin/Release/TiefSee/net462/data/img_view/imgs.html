@@ -7,9 +7,158 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <title>大量瀏覽模式</title>
 
+<script>
+
+///
+///儲存 cookie
+///
+function setCookie(cname, cvalue, exdays) {
+var d = new Date();
+d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+var expires = "expires=" + d.toGMTString();
+document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+///
+///取得 cookie
+///
+function getCookie(cname) {
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for (var i = 0; i < ca.length; i++) {
+var c = ca[i].trim();
+if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+}
+return "";
+}
+
+//上一次的背景顏色，避免載入畫面時閃爍
+var bac_color = getCookie("bac_color");
+if (bac_color != "") {
+document.getElementsByTagName("html")[0].style.backgroundColor = bac_color;
+}
+</script>
+
+<!--交互控制C#-->
+<script>
+
+///
+///由C#呼叫，返回【f】表示目前不可以退出
+///
+function fun_aeropic按下返回鍵() {
+
+if (text_目前焦點 != null) {//如果input text有焦點，就阻止C#的動作
+return "f";
+}
+
+if (bool_視窗開啟) {//如果圖片檢視窗口開啟，就關閉，並且阻止C#的動作
+//fun_close_imgbox();
+return "f";
+}
+
+return "t";
+}
+
+
+///
+///由C#呼叫，設定網頁背景顏色
+///
+function set_bac_color(col) {
+
+setCookie("bac_color", col, 365);//儲存設定-背景顏色
+
+
+//背景顏色
+//get_Id("q").style.backgroundColor = col;
+document.getElementsByTagName("html")[0].style.backgroundColor = col;
+
+//設定捲軸顏色
+document.body.setAttribute("style", "scrollbar-track-color:" + col + ";scrollbar-shadow-color: " + col + ";");
+
+//根據背景顏色來切換主題
+var s_01 = col;
+s_01 = s_01.replace(/[ ]/g, "").replace(/[(]/g, "").replace(/[)]/g, "").replace(/[rgb]/g, "").replace(/[;]/g, "");
+var s_02 = s_01.split(",");
+
+var nnn = 0;
+if (Number(s_02[0]) > 150) { nnn++; }
+if (Number(s_02[1]) > 150) { nnn++; }
+if (Number(s_02[2]) > 150) { nnn++; }
+if (nnn >= 2) {
+document.body.setAttribute("class", "theme_b");
+} else {
+document.body.setAttribute("class", "");
+}
+
+}
+
+
+///
+///呼叫C#開啟『拖曳開啟圖片』的視窗
+///
+function dragHandler(e) {//覆寫HTML的拖曳事件
+
+//避免瀏覽器裡面的文字或圖片也有影響
+/*var ar_input = document.getElementsByTagName("input");
+var bool_foc = false;
+for (var i = 0; i < ar_input.length; i++) {
+if ($(ar_input[i]).is(':focus')) {
+bool_foc = true;
+break;
+}
+}*/
+
+if (window.external.fun_drag_window != undefined) {
+window.external.fun_drag_window();
+}
+
+//e.preventDefault(); //防止瀏覽器執行預設動作
+}
+
+
+var int_66664 = 0;
+
+///
+///呼叫C#開啟圖片
+///
+function fun_open_file(s_img_url) {
+
+try {
+//避免舊的aeropic無法使用
+if ((s_img_url.indexOf("localhost") > -1) == false) {
+s_img_url = decodeURIComponent(s_img_url);
+}
+
+//如果是webbrowser就直接調用C#函數開啟圖片
+window.external.fun_open_file(s_img_url);
+
+} catch (e) {
+
+//外部瀏覽器，使用localhost伺服器處理
+
+int_66664 += 1;//避免每次網址都一樣而無法開啟
+var img_48763 = document.createElement("img");
+img_48763.src = s_img_url + "/open_img/" + int_66664;//訪問此網址就會開啟圖片
+img_48763.style.height = "0px";
+document.body.appendChild(img_48763);
+setTimeout(function () {
+img_48763.parentNode.removeChild(img_48763);
+}, 100);
+
+}
+
+}
+
+
+
+
+</script>
+
 <style type="text/css" id="css"></style>
 <style type="text/css" id="wid"></style>
 <style type="text/css" id="css_noSpacing"></style>
+
+
 
 <!-- css 一般樣式-->
 <style type="text/css">
@@ -28,7 +177,7 @@ user-select: none !important;
 /*背景顏色*/
 
 #q {
-background-color: rgb(30, 30, 30);
+/* background-color: rgb(30, 30, 30); */
 position: fixed;
 top: 0px;
 height: 100vh;
@@ -532,7 +681,9 @@ get_Id(ar[i]).className = "col";
 }
 get_Id(o).className = "col sel";
 
-setCookie("wid", "fun_wid('" + ra + "','" + o + "')", 365);//儲存設定
+//setCookie("wid", "fun_wid('" + ra + "','" + o + "')", 365);//儲存設定
+setCookie("wid_ra", ra, 365);//儲存設定
+setCookie("wid_o", o, 365);//儲存設定
 }
 
 
@@ -595,28 +746,6 @@ setCookie("noSpacing", ra, 365);//儲存設定
 
 
 
-///
-///儲存 cookie
-///
-function setCookie(cname, cvalue, exdays) {
-var d = new Date();
-d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-var expires = "expires=" + d.toGMTString();
-document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-
-///
-///取得 cookie
-///
-function getCookie(cname) {
-var name = cname + "=";
-var ca = document.cookie.split(';');
-for (var i = 0; i < ca.length; i++) {
-var c = ca[i].trim();
-if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-}
-return "";
-}
 
 
 
@@ -1020,7 +1149,7 @@ background-color: rgba(255, 255, 255, 0.4);
 position: fixed;
 bottom: 15px;
 right: 15px;
-width: calc( 50% - 15px);
+width: calc(50% - 15px);
 height: 80px;
 z-index: 200;
 background-color: rgba(0, 0, 0, 0.4);
@@ -1901,6 +2030,16 @@ fun_imgNext();
 e.preventDefault();
 }
 
+} else {//沒有開啟檢視器
+//切換上下頁
+if (currKey == 37) {
+fun_上一頁();
+e.preventDefault();
+}
+if (currKey == 39) {
+fun_下一頁();
+e.preventDefault();
+}
 }
 
 }
@@ -1940,14 +2079,7 @@ if (currKey >= 49 && currKey <= 53) {//上面的鍵盤，49 = 1
 fun_col(currKey - 48, 'r' + (currKey - 48));
 }
 
-//切換上下頁
-if (currKey === 37) {
-fun_上一頁();
-e.preventDefault();
-} else if (currKey === 39) {
-fun_下一頁();
-e.preventDefault();
-}
+
 }
 
 }
@@ -2104,118 +2236,7 @@ fun_優化滾動_time();
 </script>
 
 
-<!--交互控制C#-->
-<script>
 
-
-
-///
-///由C#呼叫，返回【f】表示目前不可以退出
-///
-function fun_aeropic按下返回鍵() {
-
-if (text_目前焦點 != null) {//如果input text有焦點，就阻止C#的動作
-return "f";
-}
-
-if (bool_視窗開啟) {//如果圖片檢視窗口開啟，就關閉，並且阻止C#的動作
-//fun_close_imgbox();
-return "f";
-}
-
-return "t";
-}
-
-
-///
-///由C#呼叫，設定網頁背景顏色
-///
-function set_bac_color(col) {
-
-//背景顏色
-get_Id("q").style.backgroundColor = col;
-
-//設定捲軸顏色
-document.body.setAttribute("style", "scrollbar-track-color:" + col + ";scrollbar-shadow-color: " + col + ";");
-
-//根據背景顏色來切換主題
-var s_01 = col;
-s_01 = s_01.replace(/[ ]/g, "").replace(/[(]/g, "").replace(/[)]/g, "").replace(/[rgb]/g, "").replace(/[;]/g, "");
-var s_02 = s_01.split(",");
-
-var nnn = 0;
-if (Number(s_02[0]) > 150) { nnn++; }
-if (Number(s_02[1]) > 150) { nnn++; }
-if (Number(s_02[2]) > 150) { nnn++; }
-if (nnn >= 2) {
-document.body.setAttribute("class", "theme_b");
-} else {
-document.body.setAttribute("class", "");
-}
-
-}
-
-
-///
-///呼叫C#開啟『拖曳開啟圖片』的視窗
-///
-function dragHandler(e) {//覆寫HTML的拖曳事件
-
-//避免瀏覽器裡面的文字或圖片也有影響
-/*var ar_input = document.getElementsByTagName("input");
-var bool_foc = false;
-for (var i = 0; i < ar_input.length; i++) {
-if ($(ar_input[i]).is(':focus')) {
-bool_foc = true;
-break;
-}
-}*/
-
-if (window.external.fun_drag_window != undefined) {
-window.external.fun_drag_window();
-}
-
-//e.preventDefault(); //防止瀏覽器執行預設動作
-}
-
-
-var int_66664 = 0;
-
-///
-///呼叫C#開啟圖片
-///
-function fun_open_file(s_img_url) {
-
-try {
-//避免舊的aeropic無法使用
-if ((s_img_url.indexOf("localhost") > -1) == false) {
-s_img_url = decodeURIComponent(s_img_url);
-}
-
-//如果是webbrowser就直接調用C#函數開啟圖片
-window.external.fun_open_file(s_img_url);
-
-} catch (e) {
-
-//外部瀏覽器，使用localhost伺服器處理
-
-int_66664 += 1;//避免每次網址都一樣而無法開啟
-var img_48763 = document.createElement("img");
-img_48763.src = s_img_url + "/open_img/" + int_66664;//訪問此網址就會開啟圖片
-img_48763.style.height = "0px";
-document.body.appendChild(img_48763);
-setTimeout(function () {
-img_48763.parentNode.removeChild(img_48763);
-}, 100);
-
-}
-
-}
-
-
-
-
-</script>
 
 </head>
 
@@ -2475,8 +2496,11 @@ eval(s_get_array);
 if (urls.length > 0) {
 
 //var time = new Date();
-
 fun_產生圖片();
+setTimeout(function() {
+
+}, 30);
+
 
 /*var int_毫秒 = (new Date()).getTime() - time.getTime();
 var s_輸出時間差 = (int_毫秒 / 1000) + "秒";
@@ -2512,10 +2536,26 @@ s_noSpacing = cookie_noSpacing;
 fun_noSpacing(s_noSpacing);
 }
 
+
+//上一次的背景顏色
+/*var bac_color = getCookie("bac_color");
+if (bac_color != "") {
+set_bac_color(bac_color);
+}*/
+
+
 //回到以上一選擇的『鎖定寬度』
+var wid_ra = getCookie("wid_ra");
+var wid_o = getCookie("wid_o");
+if (wid_ra == "") { wid_ra = "0" }
+if (wid_o == "") { wid_o = "r2-0" }
 try {
-eval(getCookie("wid") + ";");
-} catch (e) { }
+fun_wid(wid_ra, wid_o);
+} catch (e) {
+fun_wid("0", "r2-0");
+}
+
+
 
 /*
 //如果只有一張圖片，就顯示預設一欄
@@ -2524,9 +2564,9 @@ fun_col("1", "r1");
 } else {*/
 
 //根據上一次的設定回復圖片的『欄』
-var cookie_col = getCookie("col") + "";
+var cookie_col = getCookie("col");
 
-if (cookie_col != "" && cookie_col != undefined) {
+if (cookie_col != "") {
 fun_col(cookie_col, "r" + cookie_col);
 } else {
 fun_col("4", "r4");

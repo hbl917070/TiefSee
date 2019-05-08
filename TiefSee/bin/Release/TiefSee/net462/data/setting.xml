@@ -17,7 +17,7 @@
   <item name="bool_工具列_刪除圖片">True</item>
   <item name="bool_顯示工具列">True</item>
   <item name="bool_顯示exif視窗">False</item>
-  <item name="radio_高品質成像">1</item>
+  <item name="radio_高品質成像">2</item>
   <item name="color_背景顏色">235,35,45,50</item>
   <item name="color_標題列顏色">235,35,45,50</item>
   <item name="color_外框顏色">120,150,150,150</item>

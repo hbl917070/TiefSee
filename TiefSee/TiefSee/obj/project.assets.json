@@ -34,7 +34,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.2/win7-x64": {
+    ".NETFramework,Version=v4.6.2/win7-x86": {
       "JetBrains.Annotations/2018.3.0": {
         "type": "package",
         "compile": {
@@ -181,7 +181,7 @@
       }
     },
     "runtimes": {
-      "win7-x64": {
+      "win7-x86": {
         "#import": []
       }
     }

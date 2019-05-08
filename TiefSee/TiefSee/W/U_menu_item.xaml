@@ -13,6 +13,17 @@
         <StackPanel HorizontalAlignment="Left"
                     Orientation="Horizontal"
                     Height="40">
+            <Grid x:Name="lab_icon_border"
+                Height="28"
+                    Width="28"
+                    Margin="7,0,6,0"
+                    Visibility="Collapsed">
+                <Label x:Name="lab_icon"      
+                       Foreground="{DynamicResource sol_白}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                        />
+            </Grid>
             <Image x:Name="img01"
                    Height="28"
                    Width="28"

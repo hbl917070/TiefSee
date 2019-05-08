@@ -21,5 +21,19 @@ namespace TiefSee.W {
         public U_menu_item() {
             InitializeComponent();
         }
+
+
+        /// <summary>
+        /// 使用 style 的icon 來替代圖片
+        /// </summary>
+        /// <param name="icon_name"></param>
+        public void func_setIcon(String icon_name) {
+
+           lab_icon.Style = (Style)FindResource(icon_name);
+           lab_icon_border.Visibility = Visibility.Visible;
+           img01.Visibility = Visibility.Collapsed;
+
+        }
+
     }
 }
