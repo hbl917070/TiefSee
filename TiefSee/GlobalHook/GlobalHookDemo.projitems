@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a2718781-a88f-41f9-a875-20d4ef787e6d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>GlobalHookDemo</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)HookManager\HookManager.Callbacks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HookManager\HookManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HookManager\HookManager.Structures.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HookManager\HookManager.Windows.cs" />
+  </ItemGroup>
+</Project>
