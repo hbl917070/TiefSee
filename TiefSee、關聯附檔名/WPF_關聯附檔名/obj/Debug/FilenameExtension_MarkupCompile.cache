@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-D:\dongj\Desktop\Coding\Git\TiefSee\TiefSee、關聯附檔名\WPF_關聯附檔名\obj\Release\
+D:\dongj\Desktop\Coding\Git\TiefSee\TiefSee、關聯附檔名\WPF_關聯附檔名\obj\Debug\
 FilenameExtension
 none
 false
-TRACE
+DEBUG;TRACE
 D:\dongj\Desktop\Coding\Git\TiefSee\TiefSee、關聯附檔名\WPF_關聯附檔名\App.xaml
 42025113386
 
@@ -16,5 +16,5 @@ D:\dongj\Desktop\Coding\Git\TiefSee\TiefSee、關聯附檔名\WPF_關聯附檔�
 13-1142990016
 MainWindow.xaml;style\style_button.xaml;style\style_property.xaml;style\style_scrollBar.xaml;
 
-True
+False
 
