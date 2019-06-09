@@ -1,0 +1,1269 @@
+﻿<Window x:Class="TiefSee.W.W_設定"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TiefSee.W"
+        mc:Ignorable="d"
+        Title="TiefSee Setting"
+        Height="1361.1"
+        Width="768"
+        xmlns:ColorPicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+        WindowStartupLocation="CenterOwner"
+        Icon="/TiefSee;component/imgs/5.ico"
+        Background="#FF1E1E1E"
+        InputMethod.IsInputMethodEnabled="False"
+        xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF">
+
+    <Window.Resources>
+        <Style x:Key="ColorComboBoxStyle1"
+               TargetType="{x:Type ColorPicker:ColorComboBox}">
+            <Setter Property="SnapsToDevicePixels"
+                    Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ColorPicker:ColorComboBox}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Border x:Name="OverallBorder"
+                                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"
+                                    BorderThickness="1"
+                                    Grid.Row="1"
+                                    Visibility="Collapsed" />
+                            <Grid Background="Transparent"
+                                  Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="15" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0"
+                                      Margin="4"
+                                      Height="17"
+                                      Width="17">
+                                    <Rectangle>
+                                        <Rectangle.Fill>
+                                            <DrawingBrush TileMode="Tile"
+                                                          Viewport="0,0,11,11"
+                                                          ViewportUnits="Absolute">
+                                                <DrawingBrush.Drawing>
+                                                    <DrawingGroup>
+                                                        <GeometryDrawing Brush="White"
+                                                                         Geometry="M0,0L2,0 2,2 0,2z" />
+                                                        <GeometryDrawing Brush="LightGray"
+                                                                         Geometry="M0,1L2,1 2,2 1,2 1,0 0,0z" />
+                                                    </DrawingGroup>
+                                                </DrawingBrush.Drawing>
+                                            </DrawingBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                    <Rectangle Stroke="Black"
+                                               StrokeThickness="1">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="{Binding SelectedColor, RelativeSource={RelativeSource TemplatedParent}}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Grid>
+                                <TextBlock Grid.Column="1"
+                                           Margin="5,0"
+                                           VerticalAlignment="Center">
+                                    <TextBlock.Text>
+                                        <Binding Path="SelectedColor"
+                                                 RelativeSource="{RelativeSource TemplatedParent}">
+                                            <Binding.Converter>
+                                                <ColorPicker:ColorToStringConverter />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <Grid Grid.Column="2">
+                                    <Border x:Name="ToggleButtonFill"
+                                            Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}"
+                                            Visibility="Hidden" />
+                                    <Border x:Name="ToggleButtonGlass"
+                                            Visibility="Hidden">
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0,1"
+                                                                 StartPoint="0,0">
+                                                <GradientStop Color="#96FFFFFF"
+                                                              Offset="0" />
+                                                <GradientStop Color="#28FFFFFF"
+                                                              Offset="0.5" />
+                                                <GradientStop Color="Transparent"
+                                                              Offset="0.5" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <Border x:Name="ToggleButtonBorder"
+                                            BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"
+                                            BorderThickness="1"
+                                            Visibility="Hidden" />
+                                    <ToggleButton x:Name="PART_ToggleButton"
+                                                  Focusable="False"
+                                                  IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                                        <ToggleButton.Style>
+                                            <Style TargetType="{x:Type ToggleButton}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate>
+                                                            <Grid Background="Transparent">
+                                                                <Path Data="M0,0L3.5,4 7,0z"
+                                                                      Fill="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"
+                                                                      HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center" />
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </Grid>
+                                <Popup x:Name="PART_Popup"
+                                       AllowsTransparency="True"
+                                       Focusable="True"
+                                       IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                       PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}"
+                                       Placement="Bottom"
+                                       StaysOpen="False">
+                                    <Border BorderBrush="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"
+                                            BorderThickness="1"
+                                            Background="#FFF6F6F6"
+                                            Padding="5">
+                                        <ColorPicker:ColorPicker x:Name="PART_ColorPicker" />
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Visibility"
+                                        TargetName="ToggleButtonFill"
+                                        Value="Visible" />
+                                <Setter Property="Visibility"
+                                        TargetName="ToggleButtonGlass"
+                                        Value="Visible" />
+                                <Setter Property="Visibility"
+                                        TargetName="ToggleButtonBorder"
+                                        Value="Visible" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="OverallBorder"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                            </Trigger>
+                            <Trigger Property="IsDropDownOpen"
+                                     Value="True">
+                                <Setter Property="Visibility"
+                                        TargetName="ToggleButtonFill"
+                                        Value="Visible" />
+                                <Setter Property="Visibility"
+                                        TargetName="ToggleButtonGlass"
+                                        Value="Hidden" />
+                                <Setter Property="Visibility"
+                                        TargetName="ToggleButtonBorder"
+                                        Value="Visible" />
+                                <Setter Property="BorderBrush"
+                                        TargetName="OverallBorder"
+                                        Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock"
+               x:Key="t_title">
+            <Setter Property="FontSize"
+                    Value="26"></Setter>
+            <Setter Property="Foreground"
+                    Value="{StaticResource sol_白}"></Setter>
+            <Setter Property="TextWrapping"
+                    Value="Wrap"></Setter>
+            <Setter Property="Margin"
+                    Value="0,50,0,0"></Setter>
+
+            <!--<Setter Property="FontWeight"
+                    Value="Bold"></Setter>-->
+        </Style>
+
+        <Style TargetType="TextBlock"
+               x:Key="t_sub">
+            <Setter Property="FontSize"
+                    Value="17"></Setter>
+            <Setter Property="Foreground"
+                    Value="White"></Setter>
+            <Setter Property="TextWrapping"
+                    Value="Wrap"></Setter>
+
+        </Style>
+
+    </Window.Resources>
+
+    <Grid  fw:PointerTracker.Enabled="True">
+
+        <TabControl x:Name="tabControl_1"
+                    TabStripPlacement="Left">
+
+            <TabControl.Resources>
+
+                <!-- TabControl的樣式 -->
+                <Style TargetType="{x:Type TabControl}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate  TargetType="{x:Type TabControl}">
+                                <DockPanel>
+
+
+                                    <!--button-->
+                                    <Border Grid.Row="0"
+                                            Grid.Column="0"
+                                            Background="#FF2D2D30">
+
+                                        <TabPanel IsItemsHost="True" />
+                                    </Border>
+                                    <Rectangle Height="Auto"
+                                               VerticalAlignment="Stretch"
+                                               Width="5"
+                                               Margin="0,0,-5,0">
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="1,0"
+                                                                 StartPoint="0,0">
+                                                <GradientStop Color="#7F000000"
+                                                              Offset="0" />
+                                                <GradientStop Color="#00000000"
+                                                              Offset="1" />
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                    <!--內容-->
+                                    <Border BorderBrush="{DynamicResource sol_白}"
+                                            Grid.Column="1">
+                                        <ContentPresenter ContentSource="SelectedContent"
+                                                          x:Name="PART_SelectedContentHost" />
+                                    </Border>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
+                <!--button-->
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+
+                                <Border   x:Name="Border"
+                                          BorderBrush="{StaticResource sol_白}"
+                                          Margin="0,3,0,0"
+                                          Padding="5">
+
+                                    <ContentPresenter x:Name="ContentSite"
+                                                      HorizontalAlignment="Left"
+                                                      ContentSource="Header"
+                                                      Margin="10,5,10,5"
+                                                      VerticalAlignment="Center" />
+
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <!--未選-->
+                                    <Trigger Property="IsSelected"
+                                             Value="False">
+                                        <Setter TargetName="Border"
+                                                Property="Background"
+                                                Value="#00000000" />
+                                    </Trigger>
+                                    <!--滑鼠移入-->
+                                    <Trigger Property="IsMouseOver"
+                                             Value="true">
+                                        <Setter TargetName="Border"
+                                                Property="BorderBrush"
+                                                Value="{StaticResource sol_淺藍}" />
+                                        <Setter TargetName="Border"
+                                                Property="Background"
+                                                Value="{StaticResource sol_淺綠40}" />
+                                    </Trigger>
+                                    <!--選中-->
+                                    <Trigger Property="IsSelected"
+                                             Value="True">
+                                        <Setter TargetName="Border"
+                                                Property="Background"
+                                                Value="{StaticResource sol_淺藍40}" />
+                                        <Setter TargetName="Border"
+                                                Property="BorderBrush"
+                                                Value="{StaticResource sol_淺藍}" />
+
+                                    </Trigger>
+
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+
+            <TabItem  Background="{DynamicResource sol_白40}"
+                      FontSize="17">
+                <TabItem.Header>
+                    <Label Content="視窗主題"
+                           Padding="0"
+                           Foreground="{DynamicResource sol_白}" />
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+
+                    <StackPanel  Margin="20,20,0,20">
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0">AERO透明玻璃界面</TextBlock>
+                        <TextBlock Style="{DynamicResource t_sub}"
+                                   Margin="0,5,0,0">win7 或 win10 才有作用。變更設定後需重新啟動程式</TextBlock>
+                        <local:U_switch x:Name="check_aero"
+                                        Margin="0,5,0,0" />
+
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0,50,0,0">視窗顏色</TextBlock>
+
+                        <StackPanel Margin="0,5,0,10"
+                                    Height="35"
+                                    Orientation="Horizontal">
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="標題列顏色"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalAlignment="Center" />
+                            <Border Background="{DynamicResource sol_白40}"
+                                    VerticalAlignment="Top"
+                                    BorderBrush="{DynamicResource sol_白}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Left"
+                                    Margin="10,0,0,0">
+                                <ColorPicker:ColorComboBox x:Name="colorBox_標題列顏色"
+                                                           Foreground="Black"
+                                                           FontSize="14"
+                                                           Style="{DynamicResource ColorComboBoxStyle1}"
+                                                           Height="35"
+                                                           MinWidth="200" />
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,10"
+                                    Height="35"
+                                    Orientation="Horizontal">
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="視窗顏色　"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalAlignment="Center" />
+                            <Border Background="{DynamicResource sol_白40}"
+                                    VerticalAlignment="Top"
+                                    BorderBrush="{DynamicResource sol_白}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Left"
+                                    Margin="10,0,0,0">
+                                <ColorPicker:ColorComboBox x:Name="colorBox_背景顏色"
+                                                           Foreground="Black"
+                                                           FontSize="14"
+                                                           Style="{DynamicResource ColorComboBoxStyle1}"
+                                                           Height="35"
+                                                           MinWidth="200" />
+                            </Border>
+
+                            <Button x:Name="but_複製顏色"
+                                    Style="{DynamicResource ButtonAccentRevealStyle}"
+                                    ToolTip="將『標題列顏色』複製到『視窗顏色』"
+                                    Margin="10,0,0,0">
+                                <Label Content="同標題列"
+                                       Padding="3,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1" />
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,10"
+                                    Height="35"
+                                    Orientation="Horizontal">
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="外框顏色　"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalAlignment="Center" />
+                            <Border Background="{DynamicResource sol_白40}"
+                                    VerticalAlignment="Top"
+                                    BorderBrush="{DynamicResource sol_白}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Left"
+                                    Margin="10,0,0,0">
+                                <ColorPicker:ColorComboBox x:Name="colorBox_外框顏色"
+                                                           Foreground="Black"
+                                                           FontSize="14"
+                                                           Style="{DynamicResource ColorComboBoxStyle1}"
+                                                           Height="35"
+                                                           MinWidth="200" />
+                            </Border>
+                        </StackPanel>
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="套用預設顏色"
+                                   Foreground="{DynamicResource sol_白}"
+                                   VerticalAlignment="Center"
+                                   Margin="0,20,0,0" />
+                        <WrapPanel Margin="0,5,0,0">
+
+                            <Button x:Name="but_套用預設顏色_深色"
+                                    Style="{DynamicResource ButtonAccentRevealStyle}"
+                                    HorizontalAlignment="Left"
+                                    Height="35"
+                                    Margin="0,0,10,0">
+                                <Label Content="深色"
+                                       Padding="5,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1" />
+                            </Button>
+                            <Button x:Name="but_套用預設顏色_淺色"
+                                    Style="{DynamicResource ButtonAccentRevealStyle}"
+                                    HorizontalAlignment="Left"
+                                    Height="35"
+                                    Margin="0,0,10,0">
+                                <Label Content="淺色"
+                                       Padding="5,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1" />
+                            </Button>
+                            <Button x:Name="but_套用預設顏色_藍色"
+                                    Style="{DynamicResource ButtonAccentRevealStyle}"
+                                    HorizontalAlignment="Left"
+                                    Height="35"
+                                    Margin="0,0,10,0">
+                                <Label Content="藍色"
+                                       Padding="5,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1" />
+                            </Button>
+                            <Button x:Name="but_套用預設顏色_綠色"
+                                    Style="{DynamicResource ButtonAccentRevealStyle}"
+                                    HorizontalAlignment="Left"
+                                    Height="35"
+                                    Margin="0,0,10,0">
+                                <Label Content="綠色"
+                                       Padding="5,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1" />
+                            </Button>
+                            <Button x:Name="but_套用預設顏色_紅色"
+                                    Style="{DynamicResource ButtonAccentRevealStyle}"
+                                    HorizontalAlignment="Left"
+                                    Height="35"
+                                    Margin="0,0,10,0">
+                                <Label Content="紅色"
+                                       Padding="5,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1" />
+                            </Button>
+
+                        </WrapPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem  Background="{DynamicResource sol_白40}"
+                      FontSize="17">
+                <TabItem.Header>
+                    <Label Content="界面配置"
+                           Padding="0"
+                           Foreground="{DynamicResource sol_白}" />
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <StackPanel Margin="20,20,20,50">
+
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0,0,0,5"><Run Text="工具列顯示的按鈕" /></TextBlock>
+
+                        <CheckBox x:Name="check_工具列_換頁按鈕"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+
+                                <Label Style="{DynamicResource icon_上一張}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           Text="上一張圖片"
+                                           VerticalAlignment="Center" />
+                                <Label Style="{DynamicResource icon_下一張}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35"
+                                       Margin="20,0,0,0" />
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           Text="下一張圖片"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </CheckBox>
+
+                        <CheckBox x:Name="check_工具列_換資料夾"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+
+                                <Label Style="{DynamicResource icon_上一資料夾}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           Text="上一個資料夾"
+                                           VerticalAlignment="Center" />
+                                <Label Style="{DynamicResource icon_下一資料夾}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35"
+                                       Margin="20,0,0,0" />
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           Text="下一個資料夾"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </CheckBox>
+
+                        <CheckBox x:Name="check_工具列_排序"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_排序}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="設定排序方式" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+
+                        <CheckBox x:Name="check_工具列_外部程式開啟"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_外部開啟}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="用其他程式開啟" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+
+
+
+
+                        <CheckBox x:Name="check_工具列_複製"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_複製}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="複製" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+
+                        <CheckBox x:Name="check_工具列_快速拖曳"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_拖出檔案}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="快速拖曳" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+
+
+
+                        <CheckBox x:Name="check_工具列_刪除圖片"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_垃圾桶}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="刪除圖片" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+
+
+
+                        <CheckBox x:Name="check_工具列_搜圖"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_搜圖}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="在網路搜尋此圖片" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+                        <CheckBox x:Name="check_工具列_大量瀏覽模式"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_大量瀏覽模式}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="進入「大量瀏覽模式」" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+
+                        <CheckBox x:Name="check_工具列_旋轉"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_旋轉}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="旋轉 與 鏡像" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+                        <CheckBox x:Name="check_工具列_放大縮小"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+
+                                <Label Style="{DynamicResource icon_放大}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           Text="放大"
+                                           VerticalAlignment="Center" />
+                                <Label Style="{DynamicResource icon_縮小}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35"
+                                       Margin="20,0,0,0" />
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           Text="縮小"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </CheckBox>
+
+                        <CheckBox x:Name="check_工具列_縮放至視窗大小"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{DynamicResource icon_全滿}"
+                                       Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="縮放至視窗大小" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+                        <CheckBox x:Name="check_工具列_檢視縮放比例"
+                                  Margin="0,0,0,2"
+                                  MinHeight="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Foreground="{DynamicResource sol_淺藍}"
+                                       Width="35"
+                                       Height="35"
+                                       Content="3%" />
+
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"><Run Text="檢視原始大小" /></TextBlock>
+                            </StackPanel>
+                        </CheckBox>
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0,50,0,0">大型上下一張按鈕</TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,15,0,0"
+                                    Visibility="Collapsed">
+                            <RadioButton Margin="0,0,30,0">
+                                <StackPanel Margin="5,0,0,0">
+                                    <Image x:Name="img_大換頁按鈕_不啟用"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                           HorizontalAlignment="Left"
+                                           Width="80" />
+
+                                    <TextBlock Foreground="{DynamicResource sol_白}"
+                                               TextWrapping="Wrap"
+                                               Margin="0,5,0,0"><Run Text="不啟用" /></TextBlock>
+
+                                </StackPanel>
+
+                            </RadioButton>
+                            <RadioButton Margin="0,0,30,0">
+                                <StackPanel Margin="5,0,0,0">
+                                    <Image x:Name="img_大換頁按鈕_下方2"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                           HorizontalAlignment="Left"
+                                           Width="80" />
+
+                                    <TextBlock Foreground="{DynamicResource sol_白}"
+                                               TextWrapping="Wrap"
+                                               Margin="0,5,0,0"><Run Text="視窗下方" /></TextBlock>
+
+                                </StackPanel>
+
+                            </RadioButton>
+                            <RadioButton Margin="0,0,30,0">
+                                <StackPanel Margin="5,0,0,0">
+                                    <Image x:Name="img_大換頁按鈕_兩側"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                           HorizontalAlignment="Left"
+                                           Width="80" />
+
+                                    <TextBlock Foreground="{DynamicResource sol_白}"
+                                               TextWrapping="Wrap"
+                                               Margin="0,5,0,0"><Run Text="視窗兩側" /></TextBlock>
+
+                                </StackPanel>
+
+                            </RadioButton>
+
+
+                        </StackPanel>
+                        <CheckBox x:Name="check_換頁按鈕_下"
+                                  MinHeight="30"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,10,0,0">
+                            <StackPanel Margin="5,0,0,0">
+                                <TextBlock Foreground="{DynamicResource sol_白}"
+                                           TextWrapping="Wrap"><Run Text="啟用大型上下一張按鈕" /></TextBlock>
+
+                                <Image x:Name="img_大換頁按鈕_下方"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                       HorizontalAlignment="Left"
+                                       Width="80"
+                                       Margin="0,5,0,0" />
+                            </StackPanel>
+
+                        </CheckBox>
+
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Background="{DynamicResource sol_白40}"
+                     FontSize="17">
+                <TabItem.Header>
+
+                    <Label Content="設為預設程式"
+                           Padding="0"
+                           Foreground="{DynamicResource sol_白}" />
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel  Margin="20">
+
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0">設為預設開啟圖片的程式</TextBlock>
+                        <DockPanel Margin="0,5,0,0">
+
+                            <TextBlock Style="{DynamicResource t_sub}"
+                                       Text="步驟一、" />
+                            <StackPanel>
+                                <TextBlock Style="{DynamicResource t_sub}"
+                                           Text="把 TiefSee 關聯到特定的檔案類型，讓 TiefSee 變成預設開啟圖片的程式" />
+                                <Button x:Name="but_設定附檔名關聯"
+                                        Style="{DynamicResource ButtonAccentRevealStyle}"
+                                        HorizontalAlignment="Left"
+                                        Margin="0,5,0,0">
+
+                                    <Label Content="設定圖片關聯"
+                                           Foreground="{DynamicResource sol_白}"
+                                           VerticalContentAlignment="Center"
+                                           BorderBrush="{DynamicResource sol_白40}"
+                                           BorderThickness="1"
+                                           Height="35" />
+
+                                </Button>
+                            </StackPanel>
+                        </DockPanel>
+                        <DockPanel Margin="0,15,0,0">
+                            <TextBlock Style="{DynamicResource t_sub}"
+                                       Text="步驟二、" />
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Style="{DynamicResource t_sub}"
+                                           Text="(win10才需要做第二步) 開啟系統設定，將「相片檢視器」設定為 TiefSee" />
+                                <Button x:Name="but_開啟系統設定"
+                                        Style="{DynamicResource ButtonAccentRevealStyle}"
+                                        HorizontalAlignment="Left"
+                                        Margin="0,5,0,0">
+
+                                    <Label Content="開啟系統設定"
+                                           Foreground="{DynamicResource sol_白}"
+                                           VerticalContentAlignment="Center"
+                                           BorderBrush="{DynamicResource sol_白40}"
+                                           BorderThickness="1"
+                                           Height="35" />
+
+                                </Button>
+
+                            </StackPanel>
+
+                        </DockPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem  Background="{DynamicResource ForegroundColorBrush}"
+                      FontSize="17">
+                <TabItem.Header>
+                    <Label Content="快速啟動"
+                           Padding="0"
+                           Foreground="{DynamicResource sol_白}" />
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="20,20,20,50">
+
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0"><Run Text="快速啟動" /></TextBlock>
+
+
+
+                        <TextBlock Style="{DynamicResource t_sub}"
+                                   Margin="0,5,0,0"><Run Text="讓程式常駐在背景，能夠提升開啟圖片的速度。" /></TextBlock>
+                        <TextBlock Style="{DynamicResource t_sub}"
+                                   Margin="0,5,0,0"><Run Text="如需要完關閉程式，在工作列右下角找到 TiefSee 圖示，滑鼠右鍵點擊：結束「快速啟動」" /></TextBlock>
+                        <local:U_switch x:Name="switch_快速啟動"
+                                        Margin="0,5,0,0" />
+
+                        <StackPanel x:Name="st_快速啟動子選項">
+                            <TextBlock Style="{DynamicResource t_title}"
+                                       Margin="0,50,0,0"><Run Text="開機自動啟動" /></TextBlock>
+                            <TextBlock Style="{DynamicResource t_sub}"
+                                       Margin="0,5,0,0"><Run Text="電腦開機後，自動讓 TiefSee 常駐在背景" /></TextBlock>
+                            <local:U_switch x:Name="switch_開機自動啟動"
+                                            Margin="0,5,0,0" />
+
+                            <TextBlock Style="{DynamicResource t_sub}"
+                                       Margin="0,15,0,0"><Run Text="開啟 Windows 的「啟動資料夾」" /></TextBlock>
+                            <Button x:Name="but_開啟_啟動資料夾"
+                                    Style="{DynamicResource ButtonAccentRevealStyle}"
+                                    HorizontalAlignment="Left"
+                                    Margin="0,5,0,0">
+
+                                <Label Content="開啟資料夾"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1"
+                                       Height="35" />
+
+                            </Button>
+
+
+
+
+                            <TextBlock Style="{DynamicResource t_title}"
+                                       Margin="0,50,0,0"><Run Text="快速預覽圖片" /></TextBlock>
+                            <TextBlock Style="{DynamicResource t_sub}"
+                                       Margin="0,5,0,0"><Run Text="當 TiefSee 常駐在背景時，快速預覽 桌面、資料夾、資源回收桶 裡面的圖片" /></TextBlock>
+
+
+                            <StackPanel>
+
+
+
+                                <TextBlock TextWrapping="Wrap"
+                                           Text="長按「鍵盤空白鍵」時啟動"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           Margin="0,10,0,0" />
+                                <local:U_switch x:Name="switch_快速預覽_空白鍵"
+                                                Margin="0,5,0,0" />
+
+                                <TextBlock TextWrapping="Wrap"
+                                           Text="長按「滑鼠滾輪」時啟動"
+                                           Foreground="White"
+                                           VerticalAlignment="Center"
+                                           Margin="0,20,0,0" />
+                                <local:U_switch x:Name="switch_快速預覽_滑鼠滾輪"
+                                                Margin="0,5,0,0" />
+
+                            </StackPanel>
+
+
+
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem  Background="{DynamicResource sol_白40}"
+                      FontSize="17">
+                <TabItem.Header>
+                    <Label Content="其他"
+                           Padding="0"
+                           Foreground="{DynamicResource sol_白}" />
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel  Margin="20,20,20,50">
+
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0"><Run Text="滑鼠滾輪" /></TextBlock>
+                        <TextBlock Style="{DynamicResource t_sub}"
+                                   Text="設定滑鼠滾輪對應的操作"
+                                   Margin="0,5,0,0" />
+                        <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource sol_白40}"
+                                Margin="0,5,0,0">
+                            <StackPanel Margin="10,5,0,5">
+                                <RadioButton x:Name="radio_滾輪_縮放圖片"
+                                             IsChecked="True">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="縮放圖片"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_滾輪_切換圖片"
+                                             IsChecked="True">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="切換上下一張圖片"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_滾輪_上下移動圖片"
+                                             IsChecked="True">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="上下移動圖片"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_GIF_wpf1_Copy1"
+                                             IsChecked="True"
+                                             Visibility="Collapsed">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="切換上下一張圖片，如果圖片大於視窗，則改為上下移動圖片"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_GIF_wpf1_Copy2"
+                                             IsChecked="True"
+                                             Visibility="Collapsed">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="切換上下一張圖片，如果圖片大於視窗，且圖片不是在頂部或底部，則改為上下移動圖片"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_GIF_wpf1_Copy3"
+                                             IsChecked="True"
+                                             Visibility="Collapsed">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="上下移動圖片，如果圖片已經移動到頂部或底部，則改為切換上下一張圖片"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                            </StackPanel>
+
+                        </Border>
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0,60,0,0"><Run Text="GIF渲染模式" /></TextBlock>
+                        <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource sol_白40}"
+                                Margin="0,5,0,0">
+                            <StackPanel Margin="10,5,0,5">
+                                <RadioButton x:Name="radio_GIF_DGI">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="GDI：載入速度快，但是背景無法透明化"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_GIF_wpf"
+                                             IsChecked="True">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="DirectX：支援背景透明化，但速度較慢，且需要更多記憶體"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                            </StackPanel>
+
+                        </Border>
+
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0,60,5,0"><Run Text="高品質成像-硬體加速" /></TextBlock>
+                        <TextBlock Style="{DynamicResource t_sub}"
+                                   Margin="0,5,0,0"><Run Text="如果圖片無法顯示，請使用「模式2」" /><LineBreak /><Run Text="如果程式會閃退，請使用「模式3」" /><LineBreak /><Run Text="如果連「模式3」也閃退，那就使用「模式4」" /></TextBlock>
+                        <Border BorderThickness="1"
+                                BorderBrush="{DynamicResource sol_白40}"
+                                Margin="0,5,0,0">
+                            <StackPanel Margin="10,5,0,5">
+                                <RadioButton x:Name="radio_高品質成像_1"
+                                             IsChecked="True">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="模式1：GPU運算，速度最快"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_高品質成像_2">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="模式2：GPU運算，速度次快"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_高品質成像_3">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="模式3：CPU運算，速度普通"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                                <RadioButton x:Name="radio_高品質成像_4">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="模式4：完全關閉硬體加速"
+                                               Foreground="White"
+                                               Margin="5,5,0,5"
+                                               VerticalAlignment="Center" />
+                                </RadioButton>
+                            </StackPanel>
+
+                        </Border>
+
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0,60,0,0"><Run Text="清除 cookies" /></TextBlock>
+
+                        <TextBlock Style="{DynamicResource t_sub}"
+                                   Text="如果 大量瀏覽模式 有無法讀取圖片的現象，可以嘗試 清除cookies"
+                                   Margin="0,5,0,0" />
+
+                        <Button x:Name="but_清除cookies"
+                                Style="{DynamicResource ButtonAccentRevealStyle}"
+                                Height="35"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Background="{DynamicResource sol_黑40}">
+                            <Border BorderBrush="{DynamicResource sol_白40}"
+                                    BorderThickness="1">
+                                <StackPanel Orientation="Horizontal"
+                                            Width="67">
+                                    <Image Height="22"
+                                           Width="22"
+                                           Source="/TiefSee;component/imgs/清除.png"
+                                           Margin="3,0,0,0" />
+                                    <Label Content="清除"
+                                           Padding="3,0"
+                                           Foreground="{DynamicResource sol_白}"
+                                           VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </Button>
+                        <TextBlock Style="{DynamicResource t_title}"
+                                   Margin="0,60,0,0"><Run Text="修改進階設定" /></TextBlock>
+                        <TextBlock Style="{DynamicResource t_sub}"
+                                   Text="用記事本開啟「config.xml」即可編輯進階設定。包含：預設瀏覽器、用外部程式開啟的名單"
+                                   Margin="0,5,0,0" />
+                        <Button x:Name="but_進階設定"
+                                Style="{DynamicResource ButtonAccentRevealStyle}"
+                                Height="35"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Background="{DynamicResource sol_黑40}">
+                            <Border BorderBrush="{DynamicResource sol_白40}"
+                                    BorderThickness="1">
+                                <StackPanel Orientation="Horizontal"
+                                            Width="103">
+                                    <Image Height="22"
+                                           Width="22"
+                                           Source="/TiefSee;component/imgs/設定.png"
+                                           Margin="3,0,0,0" />
+                                    <Label Content="進階設定"
+                                           Padding="3,0"
+                                           Foreground="{DynamicResource sol_白}"
+                                           VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Border>
+                        </Button>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem  Background="{DynamicResource ForegroundColorBrush}"
+                      FontSize="17">
+                <TabItem.Header>
+                    <Label Content="關於"
+                           Padding="0"
+                           Foreground="{DynamicResource sol_白}" />
+                </TabItem.Header>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <StackPanel Margin="20"
+                                        Orientation="Horizontal">
+                                <Image Height="40"
+                                       Width="40"
+                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                       Source="/TiefSee;component/imgs/5.ico" />
+                                <TextBox Text="TiefSee"
+                                         Foreground="{DynamicResource sol_白}"
+                                         FontSize="36"
+                                         VerticalAlignment="Center"
+                                         Background="{x:Null}"
+                                         BorderBrush="{x:Null}"
+                                         IsReadOnly="True" />
+                            </StackPanel>
+                            <TextBox x:Name="text_作者資訊"
+                                     Background="{x:Null}"
+                                     BorderBrush="{x:Null}"
+                                     Text="版本：  1.0.0&#xA;作者：  hbl917070（深海異音）&#xA;email：hbl917070@gmail.com"
+                                     Foreground="{DynamicResource sol_白}"
+                                     FontFamily="微軟正黑體"
+                                     IsReadOnly="True"
+                                     VerticalContentAlignment="Center" />
+                        </WrapPanel>
+                        <WrapPanel Margin="0,30,0,0"
+                                   HorizontalAlignment="Center">
+                            <Button x:Name="but_檢查更新"
+                                    Style="{DynamicResource ButtonAccentRevealStyle_80}"
+                                    Height="50"
+                                    HorizontalAlignment="Center"
+                                    Width="170"
+                                    Margin="10"
+                                    Background="{DynamicResource sol_黑40}">
+                                <Label Content="檢查更新"
+                                       Padding="3,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1"
+                                       HorizontalContentAlignment="Center" />
+                            </Button>
+                            <Button x:Name="but_討論區"
+                                    Style="{DynamicResource ButtonAccentRevealStyle_80}"
+                                    Height="50"
+                                    HorizontalAlignment="Center"
+                                    Width="170"
+                                    Margin="10"
+                                    Background="{DynamicResource sol_黑40}">
+                                <Label Content="開啟 討論區"
+                                       Padding="3,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1"
+                                       HorizontalContentAlignment="Center" />
+                            </Button>
+                            <Button x:Name="but_官網"
+                                    Style="{DynamicResource ButtonAccentRevealStyle_80}"
+                                    Height="50"
+                                    HorizontalAlignment="Center"
+                                    Width="170"
+                                    Margin="10"
+                                    Background="{DynamicResource sol_黑40}">
+                                <Label Content="開啟 官網"
+                                       Padding="3,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1"
+                                       HorizontalContentAlignment="Center" />
+                            </Button>
+                            <Button x:Name="but_作者小屋"
+                                    Style="{DynamicResource ButtonAccentRevealStyle_80}"
+                                    Height="50"
+                                    HorizontalAlignment="Center"
+                                    Width="170"
+                                    Margin="10"
+                                    Background="{DynamicResource sol_黑40}">
+                                <Label Content="開啟 作者小屋"
+                                       Padding="3,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1"
+                                       HorizontalContentAlignment="Center" />
+
+                            </Button>
+                            <Button x:Name="but_下載Pixiv動圖"
+                                    Style="{DynamicResource ButtonAccentRevealStyle_80}"
+                                    Height="50"
+                                    HorizontalAlignment="Center"
+                                    Width="170"
+                                    Margin="10"
+                                    Background="{DynamicResource sol_黑40}">
+                                <Label Content="下載Pixiv動圖教學"
+                                       Padding="3,0"
+                                       Foreground="{DynamicResource sol_白}"
+                                       VerticalContentAlignment="Center"
+                                       BorderBrush="{DynamicResource sol_白40}"
+                                       BorderThickness="1"
+                                       HorizontalContentAlignment="Center" />
+                            </Button>
+
+                        </WrapPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>
