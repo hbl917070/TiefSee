@@ -122,7 +122,7 @@ namespace WPF_關聯附檔名 {
 
                 // 登錄哪一些副檔名預設使用 TiefSee 開啟
                 foreach (var item in ar_副檔名) {
-                    using (var reg_filenameExtension = Registry.CurrentUser.CreateSubKey($@"Software\Classes\.{item}")) {
+                    using (var reg_filenameExtension = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{item}")) {
                         reg_filenameExtension.SetValue(String.Empty, s_appName, RegistryValueKind.String);
                     }
                 }
@@ -161,10 +161,10 @@ namespace WPF_關聯附檔名 {
                 reg_appSupportedTypes = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{s_appName}\SupportedTypes");
                 reg_appSupportedTypes.SetValue(String.Empty, String.Empty, RegistryValueKind.String);
                 foreach (var item in ar_副檔名)
-                    reg_appSupportedTypes.SetValue($".{item}", String.Empty, RegistryValueKind.String);
+                    reg_appSupportedTypes.SetValue($"{item}", String.Empty, RegistryValueKind.String);
 
                 foreach (var item in ar_副檔名) {
-                    using (var reg_filenameExtension = Registry.CurrentUser.CreateSubKey($@"Software\Classes\.{item}")) {
+                    using (var reg_filenameExtension = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{item}")) {
                         reg_filenameExtension.SetValue(String.Empty, s_appName, RegistryValueKind.String);
                     }
                 }
