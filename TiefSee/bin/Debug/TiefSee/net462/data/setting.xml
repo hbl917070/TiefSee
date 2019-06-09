@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <item name="bool_aero">True</item>
+  <item name="bool_工具列_換頁按鈕">False</item>
+  <item name="bool_換頁按鈕_下">True</item>
+  <item name="bool_工具列_外部程式開啟">True</item>
+  <item name="bool_工具列_大量瀏覽模式">True</item>
+  <item name="bool_工具列_搜圖">True</item>
+  <item name="bool_工具列_旋轉">True</item>
+  <item name="bool_工具列_放大縮小">False</item>
+  <item name="bool_工具列_檢視縮放比例">True</item>
+  <item name="bool_工具列_縮放至視窗大小">True</item>
+  <item name="bool_工具列_複製">True</item>
+  <item name="bool_工具列_換資料夾">False</item>
+  <item name="bool_工具列_排序">False</item>
+  <item name="bool_工具列_快速拖曳">True</item>
+  <item name="bool_工具列_刪除圖片">True</item>
+  <item name="bool_顯示工具列">True</item>
+  <item name="bool_顯示exif視窗">False</item>
+  <item name="radio_高品質成像">2</item>
+  <item name="color_背景顏色">235,35,45,50</item>
+  <item name="color_標題列顏色">235,35,45,50</item>
+  <item name="color_外框顏色">120,150,150,150</item>
+  <item name="e_gif_type">1</item>
+  <item name="_bool_快速預覽_滑鼠滾輪">True</item>
+  <item name="_bool_快速預覽_空白鍵">True</item>
+  <item name="_bool_快速啟動">True</item>
+  <item name="_e_滾輪用途">1</item>
+</settings>

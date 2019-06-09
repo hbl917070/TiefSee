@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush  x:Key="sol_白"
+                      Color="White"></SolidColorBrush>
+    <SolidColorBrush  x:Key="sol_白40"
+                      Color="#66FFFFFF"></SolidColorBrush>
+    <SolidColorBrush  x:Key="sol_白80"
+                      Color="#B2FFFFFF"></SolidColorBrush>
+
+    <SolidColorBrush  x:Key="sol_黑"
+                      Color="Black"></SolidColorBrush>
+    <SolidColorBrush  x:Key="sol_黑40"
+                      Color="#66000000"></SolidColorBrush>
+    <SolidColorBrush  x:Key="sol_黑60"
+                      Color="#99000000"></SolidColorBrush>
+
+    <SolidColorBrush  x:Key="sol_淺藍"
+                      Color="#FF4BC8FF"></SolidColorBrush>
+    <SolidColorBrush  x:Key="sol_淺藍40"
+                      Color="#664BC8FF"></SolidColorBrush>
+
+    <SolidColorBrush  x:Key="sol_淺綠"
+                      Color="#FF64FF4B"></SolidColorBrush>
+    <SolidColorBrush  x:Key="sol_淺綠40"
+                      Color="#6664FF4B"></SolidColorBrush>
+</ResourceDictionary>

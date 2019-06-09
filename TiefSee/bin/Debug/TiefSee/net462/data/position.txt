@@ -1,0 +1,5 @@
+﻿width: 692
+height: 586
+left: 183
+top: 158
+max: False

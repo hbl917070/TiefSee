@@ -1,0 +1,2696 @@
+﻿<!doctype html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>大量瀏覽模式</title>
+
+<script>
+
+///
+///儲存 cookie
+///
+function setCookie(cname, cvalue, exdays) {
+var d = new Date();
+d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+var expires = "expires=" + d.toGMTString();
+document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+///
+///取得 cookie
+///
+function getCookie(cname) {
+var name = cname + "=";
+var ca = document.cookie.split(';');
+for (var i = 0; i < ca.length; i++) {
+var c = ca[i].trim();
+if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+}
+return "";
+}
+
+//上一次的背景顏色，避免載入畫面時閃爍
+var bac_color = getCookie("bac_color");
+if (bac_color != "") {
+document.getElementsByTagName("html")[0].style.backgroundColor = bac_color;
+}
+</script>
+
+<!--交互控制C#-->
+<script>
+
+///
+///由C#呼叫，返回【f】表示目前不可以退出
+///
+function fun_aeropic按下返回鍵() {
+
+if (text_目前焦點 != null) {//如果input text有焦點，就阻止C#的動作
+return "f";
+}
+
+if (bool_視窗開啟) {//如果圖片檢視窗口開啟，就關閉，並且阻止C#的動作
+//fun_close_imgbox();
+return "f";
+}
+
+return "t";
+}
+
+
+///
+///由C#呼叫，設定網頁背景顏色
+///
+function set_bac_color(col) {
+
+setCookie("bac_color", col, 365);//儲存設定-背景顏色
+
+
+//背景顏色
+//get_Id("q").style.backgroundColor = col;
+document.getElementsByTagName("html")[0].style.backgroundColor = col;
+
+//設定捲軸顏色
+document.body.setAttribute("style", "scrollbar-track-color:" + col + ";scrollbar-shadow-color: " + col + ";");
+
+//根據背景顏色來切換主題
+var s_01 = col;
+s_01 = s_01.replace(/[ ]/g, "").replace(/[(]/g, "").replace(/[)]/g, "").replace(/[rgb]/g, "").replace(/[;]/g, "");
+var s_02 = s_01.split(",");
+
+var nnn = 0;
+if (Number(s_02[0]) > 150) { nnn++; }
+if (Number(s_02[1]) > 150) { nnn++; }
+if (Number(s_02[2]) > 150) { nnn++; }
+if (nnn >= 2) {
+document.body.setAttribute("class", "theme_b");
+} else {
+document.body.setAttribute("class", "");
+}
+
+}
+
+
+///
+///呼叫C#開啟『拖曳開啟圖片』的視窗
+///
+function dragHandler(e) {//覆寫HTML的拖曳事件
+
+//避免瀏覽器裡面的文字或圖片也有影響
+/*var ar_input = document.getElementsByTagName("input");
+var bool_foc = false;
+for (var i = 0; i < ar_input.length; i++) {
+if ($(ar_input[i]).is(':focus')) {
+bool_foc = true;
+break;
+}
+}*/
+
+if (window.external.fun_drag_window != undefined) {
+window.external.fun_drag_window();
+}
+
+//e.preventDefault(); //防止瀏覽器執行預設動作
+}
+
+
+var int_66664 = 0;
+
+///
+///呼叫C#開啟圖片
+///
+function fun_open_file(s_img_url) {
+
+try {
+//避免舊的aeropic無法使用
+if ((s_img_url.indexOf("localhost") > -1) == false) {
+s_img_url = decodeURIComponent(s_img_url);
+}
+
+//如果是webbrowser就直接調用C#函數開啟圖片
+window.external.fun_open_file(s_img_url);
+
+} catch (e) {
+
+//外部瀏覽器，使用localhost伺服器處理
+
+int_66664 += 1;//避免每次網址都一樣而無法開啟
+var img_48763 = document.createElement("img");
+img_48763.src = s_img_url + "/open_img/" + int_66664;//訪問此網址就會開啟圖片
+img_48763.style.height = "0px";
+document.body.appendChild(img_48763);
+setTimeout(function () {
+img_48763.parentNode.removeChild(img_48763);
+}, 100);
+
+}
+
+}
+
+
+
+
+</script>
+
+<style type="text/css" id="css"></style>
+<style type="text/css" id="wid"></style>
+<style type="text/css" id="css_noSpacing"></style>
+
+
+
+<!-- css 一般樣式-->
+<style type="text/css">
+html,
+body {
+margin: 0px;
+/*禁止選取*/
+-webkit-touch-callout: none !important;
+-webkit-user-select: none !important;
+-moz-user-select: none !important;
+-ms-user-select: none !important;
+user-select: none !important;
+}
+
+
+/*背景顏色*/
+
+#q {
+/* background-color: rgb(30, 30, 30); */
+position: fixed;
+top: 0px;
+height: 100vh;
+width: 100vw;
+z-index: -555;
+}
+
+body {
+/*IE 捲軸自動隱藏*/
+/*-ms-overflow-style: -ms-autohiding-scrollbar;*/
+/*捲軸顏色*/
+scrollbar-track-color: #1e1e1e;
+scrollbar-arrow-color: #fff;
+scrollbar-face-color: #777;
+scrollbar-shadow-color: #1e1e1e;
+}
+
+html {
+font-family: "微軟正黑體";
+background-color: #000000;
+}
+
+/*選擇欄位數量的框*/
+
+.col_table {
+color: #fff;
+background-color: rgba(94, 94, 94, 0.50);
+border-radius: 5px;
+padding: 5px;
+box-shadow: 0px 0px 16px 1px #000000;
+}
+
+.col {
+width: 50px;
+font-size: 20px !important;
+text-align: center;
+padding-right: 15px;
+padding-left: 15px;
+}
+
+.col:hover {
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sel {
+/*選中的狀態*/
+outline: 3px solid #4CB4FF;
+}
+
+.sp:hover {
+/*border: 1px solid #4CB4FF;*/
+}
+
+.tab {
+/*上面選擇【欄】的標題與排版*/
+margin-left: 15px;
+color: #FFFFFF;
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
+.tab h2 {
+line-height: 30px;
+font-size: 20px;
+height: 30px;
+margin: 0px;
+white-space: nowrap;
+}
+
+/*右上角的超連結*/
+
+.tit {
+position: relative;
+}
+
+.open_url {
+display: block;
+width: 30px;
+height: 30px;
+float: right;
+background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMC4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4yIiBiYXNlUHJvZmlsZT0idGlueSIgaWQ9IuWcluWxpF8xIg0KCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUwIDUwIg0KCSBvdmVyZmxvdz0ic2Nyb2xsIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny43LDI2LjNjLTAuNy0xLTItMS42LTMuNi0xLjZoLTMuM3YtNC41YzAtMi44LTIuMy01LjEtNS4xLTUuMWgtMS4ydjMuNWgxLjJjMC45LDAsMS42LDAuNywxLjYsMS42djQuNQ0KCQloLTIyYy0yLjUsMC01LDEuMy01LjgsMy4xTDUuNCwzN1YyMC4yYzAtMC45LDAuNy0xLjYsMS42LTEuNmgxOC4zdi0zLjVoLTYuNHYtMC42YzAtMi44LTIuMy01LjEtNS4xLTUuMUg3Yy0yLjgsMC01LjEsMi4zLTUuMSw1LjENCgkJdjUuMmMwLDAuMSwwLDAuMSwwLDAuMmMwLDAuMSwwLDAuMSwwLDAuMnYyMmMwLDIuOCwyLjMsNS4xLDUuMSw1LjFoMjguN2MxLjYsMCwzLTAuOCw0LTEuOWMwLjYtMC41LDEuMS0xLDEuNC0xLjZsNi44LTE0LjcNCgkJQzQ4LjMsMjguMiw0OC4yLDI3LjIsNDcuNywyNi4zeiBNMTIuNCwyOS4xYzAuMi0wLjUsMS42LTEuMywzLTEuM2gyMnYxNC40YzAsMC42LTAuNCwxLjItMC45LDEuNGMtMC40LDAuMS0wLjcsMC4yLTEuMSwwLjJINw0KCQljLTAuNSwwLTAuOS0wLjItMS4yLTAuNUwxMi40LDI5LjF6IE01LDE1LjVjMC4yLTAuMSwwLjMtMC4xLDAuNS0wLjJDNS40LDE1LjQsNS4yLDE1LjQsNSwxNS41eiBNNiwxNS4yYzAuMy0wLjEsMC43LTAuMSwxLTAuMQ0KCQlDNi42LDE1LjEsNi4zLDE1LjEsNiwxNS4yeiBNMy41LDE2LjRDMy41LDE2LjUsMy41LDE2LjUsMy41LDE2LjRDMy41LDE2LjUsMy41LDE2LjUsMy41LDE2LjR6IE00LjQsMTUuOGMtMC4xLDAtMC4yLDAuMS0wLjMsMC4xDQoJCUM0LjMsMTUuOSw0LjQsMTUuOCw0LjQsMTUuOHogTTQwLjgsMzd2LTkuMmgzLjNjMC41LDAsMC43LDAuMSwwLjksMC4yTDQwLjgsMzd6Ii8+DQoJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTIzLjgsMTEuNGMwLjQsMCwwLjgtMC4xLDEuMS0wLjRsMy4zLTMuMnYxMy4xYzAsMC44LDAuNywxLjUsMS41LDEuNWMwLjgsMCwxLjUtMC43LDEuNS0xLjVWNy44bDMuMywzLjINCgkJYzAuMywwLjMsMC43LDAuNCwxLjEsMC40YzAuNCwwLDAuOC0wLjIsMS4xLTAuNWMwLjYtMC42LDAuNi0xLjYsMC0yLjJsLTUuOS01LjdjMCwwLDAsMCwwLDBjLTAuMS0wLjEtMC4zLTAuMi0wLjQtMC4zYzAsMCwwLDAsMCwwDQoJCWMwLDAsMCwwLDAsMGMwLDAsMCwwLDAsMGMtMC4xLTAuMS0wLjMtMC4xLTAuNS0wLjFjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjLTAuMiwwLTAuMywwLTAuNSwwLjENCgkJYzAsMCwwLDAtMC4xLDBjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjLTAuMiwwLjEtMC4zLDAuMi0wLjQsMC4zYzAsMCwwLDAsMCwwbC01LjksNS43Yy0wLjYsMC42LTAuNiwxLjYsMCwyLjINCgkJQzIzLDExLjMsMjMuNCwxMS40LDIzLjgsMTEuNHoiLz4NCjwvZz4NCjwvc3ZnPg0K);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top: 0px;
+right: 0px;
+opacity: 0;
+}
+
+.open_url:hover {
+background-color: rgba(75, 200, 255, 0.40);
+opacity: 1;
+}
+
+.div_l_t_menu {
+overflow-x: auto;
+overflow-y: hidden;
+margin-left: -15px;
+padding-left: 15px;
+}
+
+#lock_width_div {
+transition: all 0.4s;
+transform-origin: top;
+height: 180px;
+min-width: 620px;
+padding-left: 30px;
+margin-left: -15px;
+overflow: hidden;
+}
+
+.none {
+opacity: 0;
+height: 0px !important;
+min-width: 0px !important;
+width: 0px !important;
+pointer-events: none;
+}
+
+/*捲動度率的DIV*/
+
+#div_wheel {
+position: fixed;
+background: rgba(10, 10, 10, 0.55);
+color: #fff;
+pointer-events: none;
+z-index: 999999;
+white-space: nowrap;
+font-size: 12px;
+padding: 5px;
+border-radius: 10px;
+}
+</style>
+
+
+
+<!-- css 右上角換頁選單-->
+<style type="text/css">
+#div_r_t {
+position: fixed;
+right: 5px;
+top: 5px;
+left: auto;
+z-index: 30;
+padding: 3px;
+background-color: rgba(94, 94, 94, 0.50);
+border-radius: 5px;
+box-shadow: 0px 0px 16px 1px #000000;
+
+transition: all 0.5s;
+overflow: hidden;
+height: 45px;
+
+}
+
+
+.div_r_t_hide {
+/*啟用隱藏時，整個DIV向右移動*/
+transform: translateX(100%);
+right: 22px !important;
+}
+
+.div_r_t_hide #r_t_hide svg {
+/*箭頭旋轉180度*/
+transform: rotate(180deg);
+}
+
+#r_t_hide {
+/*按鈕-隱藏*/
+height: 35px;
+width: 15px;
+background-color: rgba(0, 0, 0, 0.0);
+color: #FFF;
+outline: solid 1px rgba(255, 255, 255, 0);
+border: none;
+margin: 5px 0px;
+padding: 3px;
+float: left;
+}
+
+#r_t_hide svg {
+transition: transform 0.5s;
+}
+
+#r_t_next,
+#r_t_prev,
+#div_r_t select {
+height: 35px;
+background-color: rgba(0, 0, 0, 0.30);
+color: #FFF;
+outline: solid 1px rgba(255, 255, 255, 0.4);
+border: none;
+margin: 5px;
+padding: 3px;
+float: left;
+}
+
+#div_r_t select {
+font-size: 16px !important;
+font-weight: 900;
+font-family: "微軟正黑體";
+}
+
+#r_t_next,
+#r_t_prev {
+width: 80px;
+}
+
+
+
+#div_r_t button:hover,
+#div_r_t select:hover {
+/*background-color: rgba(75, 200, 255, 0.40);*/
+background-color: rgba(75, 200, 255, 0.1);
+outline: solid 1px rgba(75, 200, 255, 0.4);
+}
+
+#div_r_t button:active {
+outline: solid 1px rgba(0, 177, 255, 1) !important;
+}
+
+option {
+background-color: rgb(0, 0, 0);
+font-size: 24px;
+height: 35px;
+line-height: 35px;
+}
+
+option:hover {
+background-color: #555;
+color: #FFF;
+}
+</style>
+
+
+
+<!-- js 計算圖片長寬-->
+<script>
+
+///
+///取得物件
+///
+function get_Id(obj_id) {
+return document.getElementById(obj_id);
+}
+
+///
+///把【長、寬】顯示在圖片上面
+///
+function d(img, aa) {
+var size = fun_getImgSize(img);
+get_Id(aa).innerHTML = "( " + size[0] + " , " + size[1] + " )";
+}
+
+
+///
+///取得圖片長寬
+///
+function fun_getImgSize(img) {
+var nWidth;
+var nHeight;
+
+if (img.naturalWidth) { // 現代瀏覽器
+nWidth = img.naturalWidth;
+nHeight = img.naturalHeight;
+} else { // IE6/7/8
+var image = new Image();
+// image.src = img.src;
+image.src = urls[Number(img.id.replace("img_", ""))];
+nWidth = image.width;
+nHeight = image.height;
+image = null;
+}
+return new Array(nWidth, nHeight);
+}
+
+</script>
+
+
+
+<!--css 框 -->
+<style type="text/css">
+.no_sel {
+/*禁止選取*/
+-webkit-touch-callout: none !important;
+-webkit-user-select: none !important;
+-moz-user-select: none !important;
+-ms-user-select: none !important;
+user-select: none !important;
+}
+
+/*放所有圖片的list*/
+
+#div_imgs {
+margin-top: 0px;
+padding-left: 15px;
+padding-top: 10px;
+margin-bottom: 50px;
+overflow: auto;
+}
+
+/*圖片容器的外層*/
+
+.sp_box {
+display: block;
+text-align: center;
+float: left;
+box-sizing: content-box;
+transition: width 0.4s !important;
+}
+
+/*圖片容器*/
+
+.sp {
+outline: solid 1px rgba(255, 255, 255, 0.3);
+font-size: 15px !important;
+text-align: center;
+display: block;
+overflow: auto;
+margin-bottom: 15px;
+margin-right: 15px;
+}
+
+/*圖片的上方列*/
+
+.sp .tit {
+height: 40px;
+color: #fff;
+}
+
+/*圖片編號*/
+
+.sp .tit .no {
+height: 40px;
+margin: 0px 10px;
+float: left;
+font-size: 20px !important;
+line-height: 40px;
+color: #fff;
+transform: scaleY(2);
+display: block;
+}
+
+.sp .tit .wh {
+height: 20px;
+text-align: left;
+overflow: hidden;
+}
+
+/*編號右邊的區塊*/
+
+.sp .tit .le {
+background-color: rgba(0, 0, 0, 0);
+display: block;
+overflow: hidden;
+}
+
+.sp input {
+height: 20px;
+width: 100%;
+border: none;
+background-color: rgba(250, 250, 250, 0.0);
+padding: 0px 3px 0px 3px;
+color: #fff;
+display: inline-block;
+}
+
+.sp .cont {
+position: relative;
+margin: 10px;
+}
+
+.sp img {
+position: absolute;
+top: 0px;
+right: 0px;
+bottom: 0px;
+left: 0px;
+margin: auto;
+max-width: 100%;
+max-height: 100%;
+pointer-events: none !important;
+/*無法點擊*/
+}
+</style>
+
+
+<!--CSS 變更 欄-->
+<style>
+.w1 .sp_box {
+width: 100%;
+}
+
+.w1 .sp img {
+max-width: 100%;
+}
+
+.w1 .sp img {
+position: static !important;
+}
+
+/*--------------*/
+
+.w2 .sp_box {
+width: 50%;
+}
+
+.w2 .sp .cont {
+height: 50vw;
+}
+
+/*--------------*/
+
+.w3 .sp_box {
+width: 33.33%;
+}
+
+.w3 .sp .cont {
+height: 33vw;
+}
+
+/*--------------*/
+
+.w4 .sp_box {
+width: 25%;
+}
+
+.w4 .sp .cont {
+height: 25vw;
+}
+
+/*--------------*/
+
+.w5 .sp_box {
+width: 20%;
+}
+
+.w5 .sp .cont {
+height: 20vw;
+}
+</style>
+
+
+
+<!-- js 改變欄位數-->
+<script type="text/javascript">
+
+var int_width_css = "";//記錄【鎖定寬度】的全域變數
+var s_noSpacing = "no";//記錄『無間距模式』的全域變數
+
+
+///
+///變更欄的數量
+///
+function fun_col(ra, o) {//column
+
+//如果不是在單欄的狀態下，就取消鎖定寬度
+if (o == "r1") {
+get_Id("lock_width_div").setAttribute("class", "tab");
+get_Id("wid").innerHTML = int_width_css;
+fun_noSpacing(s_noSpacing);//啟用 『無間距模式』
+} else {
+get_Id("lock_width_div").setAttribute("class", "tab none");
+get_Id("wid").innerHTML = "";
+fun_noSpacing("none");//取消 『無間距模式』
+}
+
+
+//變更CSS
+get_Id("div_imgs").setAttribute("class", "w" + ra);
+
+//更改選中的樣式
+var ar = new Array("r1", "r2", "r3", "r4", "r5");
+for (var i = 0; i < ar.length; i++) {
+get_Id(ar[i]).className = "col";
+}
+get_Id(o).className = "col sel";
+
+setCookie("col", ra, 365);//儲存設定
+}
+
+
+
+///
+///鎖定寬度
+///
+function fun_wid(ra, o) {//lock width
+
+if (ra == "0") {
+get_Id("wid").innerHTML = "";
+int_width_css = "img {}";
+} else {
+int_width_css = "IMG{width:" + ra + "%;}"
+get_Id("wid").innerHTML = int_width_css;
+}
+
+//更改選中樣式
+var ar = new Array("r2-0", "r2-40", "r2-50", "r2-60", "r2-70", "r2-80", "r2-90", "r2-100");
+for (var i = 0; i < ar.length; i++) {
+get_Id(ar[i]).className = "col";
+}
+get_Id(o).className = "col sel";
+
+//setCookie("wid", "fun_wid('" + ra + "','" + o + "')", 365);//儲存設定
+setCookie("wid_ra", ra, 365);//儲存設定
+setCookie("wid_o", o, 365);//儲存設定
+}
+
+
+///
+///無間距模式
+///
+function fun_noSpacing(ra) {//lock width
+
+
+//如果是切換圖片欄位，就取消無間距模式，並且不記錄
+if (ra == "none") {
+
+get_Id("css_noSpacing").innerHTML = "";
+return;
+
+} else if (ra == "no") {
+
+get_Id("css_noSpacing").innerHTML = "";
+
+} else {
+
+var style =
+".sp {" +
+"    margin-bottom: " + ra + "px !important;" +
+"    outline: none !important;" +
+"    display: block !important;" +
+"}" +
+"" +
+".sp img {" +
+"    margin-top: 0px !important;" +
+"    margin-bottom: 0px !important;" +
+"    display: block !important;" +
+"}" +
+"" +
+".tit {" +
+"    display: none !important;" +
+"}" +
+".sp .cont {" +
+"margin:0px !important;" +
+"}"
+;
+
+get_Id("css_noSpacing").innerHTML = style;
+}
+
+//更改選中樣式
+var ar = new Array("r3-no", "r3-0", "r3-20", "r3-40", "r3-60");
+for (var i = 0; i < ar.length; i++) {
+get_Id(ar[i]).className = "col";
+}
+get_Id("r3-" + ra).className = "col sel";
+
+s_noSpacing = ra;
+setCookie("noSpacing", ra, 365);//儲存設定
+
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<!-- js 換頁-->
+<script type="text/javascript">
+
+var int_flag = 0;
+var int_number = 40;
+var str_TagName = "span";
+var str_divPageClassName = "div_page";
+
+
+///
+///
+///
+function fun_初始_換頁事件() {
+
+var imgs = document.getElementsByTagName(str_TagName);
+int_flag = 0;
+fun_隱藏不需要的按鈕();
+fun_刷新();
+}
+
+
+///
+///
+///
+function fun_隱藏不需要的按鈕() {
+
+var x = document.getElementsByClassName(str_divPageClassName).length;
+
+if (x == 1) {
+get_Id("div_r_t").style.display = "none";
+get_Id("bottom").style.display = "none";
+return;
+} else {
+get_Id("div_r_t").style.display = "block";
+get_Id("bottom").style.display = "block";
+}
+
+
+if (int_flag <= 0) {
+get_Id("r_t_prev").style.display = "none";
+get_Id("prev2").style.display = "none";
+} else {
+get_Id("r_t_prev").style.display = "inline";
+get_Id("prev2").style.display = "inline";
+}
+
+if (int_flag >= x - 1) {
+get_Id("r_t_next").style.display = "none";
+get_Id("next2").style.display = "none";
+} else {
+get_Id("r_t_next").style.display = "inline";
+get_Id("next2").style.display = "inline";
+}
+
+}
+
+
+///
+///
+///
+function fun_下一頁() {
+
+var imgs = document.getElementsByTagName(str_TagName);
+var divPage = document.getElementsByClassName(str_divPageClassName);
+
+
+int_flag++;
+
+fun_隱藏不需要的按鈕();
+
+if ((int_flag) >= divPage.length) {
+int_flag--;
+return;
+}
+
+//更新下拉選單
+get_Id("r_t_select_page").selectedIndex = get_Id("r_t_select_page").selectedIndex + 1;
+
+//換頁
+for (var i = 0; i < divPage.length; i++) {
+
+var imgs = divPage[i].getElementsByTagName(str_TagName);
+
+if (i == int_flag) {
+divPage[i].style.display = "block";//顯示頁
+
+for (var j = 0; j < imgs.length; j++) {//顯示圖片
+var x = imgs[j].getElementsByTagName("img")[0];
+x.src = x.alt;
+}
+
+} else {
+divPage[i].style.display = "none";
+
+for (var j = 0; j < imgs.length; j++) {
+imgs[j].getElementsByTagName("img")[0].src = "";
+}
+}
+
+}//for
+
+fun_捲動到最上面();
+
+
+// fun_刷新()
+}
+
+
+///
+///
+///
+function fun_上一頁() {
+
+
+int_flag--;
+fun_隱藏不需要的按鈕();
+
+if (int_flag < 0) {
+int_flag = 0;
+return;
+}
+
+
+var divPage = document.getElementsByClassName(str_divPageClassName);
+
+//更新下拉選單
+get_Id("r_t_select_page").selectedIndex = get_Id("r_t_select_page").selectedIndex - 1;
+
+
+for (var i = 0; i < divPage.length; i++) {
+
+var imgs = divPage[i].getElementsByTagName(str_TagName);
+
+if (i == int_flag) {
+divPage[i].style.display = "block";//顯示頁
+
+for (var j = 0; j < imgs.length; j++) {//顯示圖片
+var x = imgs[j].getElementsByTagName("img")[0];
+x.src = x.alt;
+}
+
+} else {
+divPage[i].style.display = "none";
+
+for (var j = 0; j < imgs.length; j++) {
+imgs[j].getElementsByTagName("img")[0].src = "";
+}
+}
+
+}//for
+
+fun_捲動到最上面();
+//fun_刷新();
+}
+
+
+///
+///
+///
+function fun_刷新() {
+
+var imgs = document.getElementsByTagName(str_TagName);
+
+if (get_Id('r_t_select_page').options.length * int_number != imgs.length) {
+
+//重新產生下拉選單
+get_Id('r_t_select_page').options.length = 0;//清除
+for (var i = 0; true; i++) {
+
+var text = (i + 1) + ": " + (i * int_number + 1) + "~" + ((i + 1) * int_number);
+var varItem = new Option(text, i);
+varItem.height = "40px";
+get_Id("r_t_select_page").options.add(varItem);
+
+//最後一筆
+if ((i + 1) * int_number >= imgs.length) {
+varItem.innerHTML = (i + 1) + ": " + (i * int_number + 1) + "~" + urls.length;//根據圖片總數量來填寫最後一筆的文字
+break;
+}
+
+}
+}
+
+get_Id("r_t_select_page").value = int_flag;//設定目光前選擇的頁數
+
+}
+
+
+///
+///
+///
+function fun_選頁(page) {
+
+int_flag = page * 1;
+
+var divPage = document.getElementsByClassName(str_divPageClassName);
+fun_隱藏不需要的按鈕();
+
+//換頁
+for (var i = 0; i < divPage.length; i++) {
+
+var imgs = divPage[i].getElementsByTagName(str_TagName);
+
+if (i == int_flag) {
+divPage[i].style.display = "block";//顯示頁
+
+for (var j = 0; j < imgs.length; j++) {//顯示圖片
+var x = imgs[j].getElementsByTagName("img")[0];
+x.src = x.alt;
+}
+
+} else {
+divPage[i].style.display = "none";
+
+for (var j = 0; j < imgs.length; j++) {
+imgs[j].getElementsByTagName("img")[0].src = "";
+}
+}
+
+}//for
+
+
+fun_捲動到最上面();
+
+
+}
+
+
+///
+///捲動到最上面
+///
+function fun_捲動到最上面() {
+var sch = get_Id("div_imgs").offsetTop - 10;
+window.document.documentElement.scrollTop = sch;//捲動至最上面
+window.document.body.scrollTop = sch;
+}
+
+</script>
+
+
+
+<!--========================================-->
+<!-- css 圖片檢視視窗-->
+<style type="text/css">
+#img_box {
+/*主題視窗*/
+width: 94vw;
+height: 98vh;
+position: fixed;
+left: 3vw;
+right: 3vw;
+top: 1vh;
+bottom: 1vh;
+background-color: rgba(94, 94, 94, 0.50);
+border-radius: 10px;
+box-shadow: 0px 0px 16px 1px;
+z-index: 100;
+}
+
+
+
+#img_content {
+position: absolute;
+top: 40px;
+left: 5px;
+right: 5px;
+bottom: 5px;
+border: 1px solid rgba(255, 255, 255, 0.4);
+overflow: hidden;
+border-radius: 0px 0px 8px 8px;
+/*scroll auto hidden*/
+/* margin: 10px; */
+}
+
+#img_w {
+/*圖片外曾（拖曳用）*/
+min-width: 100%;
+min-height: 100%;
+position: relative;
+}
+
+#img_img {
+position: absolute;
+}
+
+#img_d {
+/*底色*/
+height: 100vh;
+width: 100vw;
+background-color: rgba(0, 0, 0, 0.0);
+position: fixed;
+top: 0px;
+z-index: 99;
+}
+
+.img_tit {
+height: 40px;
+background-color: rgba(255, 255, 255, 0.0);
+position: absolute;
+top: 0px;
+left: 5px;
+right: 5px;
+}
+
+.img_text {
+position: absolute;
+left: 0px;
+right: 350px;
+top: 0px;
+height: 40px;
+}
+
+#img_t1,
+#img_t2 {
+font-size: 16px !important;
+display: block;
+background-color: rgba(87, 13, 13, 0.0);
+color: #fff;
+border: none;
+height: 18px;
+display: inline-block;
+position: absolute;
+left: 0px;
+width: 100%;
+}
+
+#img_t1 {
+top: 20px;
+}
+
+#img_t2 {
+top: 2px;
+left: -5px;
+}
+
+#text_scale {
+float: right;
+background-color: rgba(0, 0, 0, 0.30);
+outline: 1px solid rgba(255, 255, 255, 0.70);
+width: 26px;
+height: 26px;
+margin: 7px;
+display: block;
+font-size: 18px !important;
+font-family: "微軟正黑體";
+font-weight: 900;
+color: #fff;
+text-align: center;
+border: none;
+}
+
+.img_tit button {
+width: 40px;
+height: 40px;
+background-color: rgba(0, 0, 0, 0);
+border: none;
+float: right;
+background-position: center center !important;
+background-repeat: no-repeat !important;
+background-size: 80% 80%;
+}
+
+/*縮放模式 - 選中的按鈕*/
+
+.bu_sel {
+/*border: solid 4px #4CB4FF !important;
+width: 40px !important;
+height: 40px !important;*/
+background-color: rgba(0, 162, 255, 0.4) !important;
+}
+
+.img_tit button:hover {
+background-color: rgba(0, 122, 255, 0.40);
+}
+
+.img_tit button:focus {
+outline: 0;
+}
+
+.img_tit .break {
+margin: 5px 4px;
+border: none;
+float: right;
+width: 1px;
+height: 30px;
+background-color: rgba(255, 255, 255, 0.4);
+}
+
+/*切換圖片上下張*/
+
+#but_r,
+#but_l {
+position: fixed;
+bottom: 15px;
+right: 15px;
+width: calc(50% - 15px);
+height: 80px;
+z-index: 200;
+background-color: rgba(0, 0, 0, 0.4);
+/*box-shadow: 0px 0px 16px 1px;*/
+opacity: 0;
+outline: 0;
+border: none;
+}
+
+#but_l {
+left: 15px;
+}
+
+#but_l:active {
+/*因為原本就已經有用變形，所以要另外覆寫一次*/
+/*transform: translateY(3px);
+background-color: rgba(66, 166, 112, 1) !important;*/
+outline: solid 1px rgba(0, 177, 255, 0.4) !important;
+}
+
+#but_r:hover,
+#but_l:hover {
+opacity: 1;
+}
+</style>
+
+
+
+<!-- css 白底主題-->
+<style>
+body.theme_b {
+scrollbar-arrow-color: rgb(119, 119, 119) !important;
+}
+
+/*圖片框*/
+
+.theme_b .sp {
+outline: solid 1px rgba(0, 0, 0, 0.3);
+}
+
+.theme_b .sp input,
+.theme_b .sp div {
+color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/*功能選單*/
+
+.theme_b .col_table {
+background-color: rgba(255, 255, 255, 0.4) !important;
+box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.5);
+}
+
+.theme_b .tab h2 {
+color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.theme_b .col_table td {
+color: rgba(0, 0, 0, 1) !important;
+}
+
+.theme_b .col_table td:hover {
+background-color: rgba(0, 111, 160, 0.28);
+}
+
+.theme_b .col_table td:active {
+background-color: rgba(0, 160, 33, 0.5) !important;
+}
+
+/*右上角換頁的選單*/
+
+.theme_b #div_r_t {
+background-color: rgba(255, 255, 255, 0.4) !important;
+box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.5);
+}
+
+/*hover*/
+
+.theme_b #div_r_t button:hover,
+.theme_b #div_r_t select:hover,
+.theme_b #prev2:hover,
+.theme_b #next2:hover {
+background-color: rgba(0, 111, 160, 0.68);
+}
+
+/*hover*/
+
+.theme_b #div_r_t button:active,
+.theme_b #div_r_t select:active,
+.theme_b #prev2:active,
+.theme_b #next2:active {
+background-color: rgba(0, 160, 33, 0.5) !important;
+}
+</style>
+
+<!-- CSS - 背景圖片 -->
+<style>
+.icon_left_80 {
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsSAAALEgHS3X78AAACZ0lEQVR4nO2c0U3DMBRFbxH/dANWYAMYoRtQJqAjMAKdgLIBbEA36ApsUCYoivQqWeaFJnlJ/Gzf84PkDwhX1yep7WZxOp1AhnPF7GwwQCMM0AgDNMIAjTBAIwzQSA4BLgHs5Kc7rj1eVMAdgA8AtzK0dnFVAZ4b2IT1FYT36DFArw18BfAcje2lja7w1sCltC4ObwvgAcAx0XW14qmBse8afgBs5CbiEi8NjH3X8C2tcxsenDSwzXcrj1M2JmUDs/OdRqoGZuk7jRQNzNZ3GnM3MGvfaczVwCJ8pzFHA4vxncbUDSzKdxpTNrA432lM0cBifacxdgOL9p3GmA0s3ncaYzWwCt9pWBtYle80LA2szncaQxtYpe80hjSwWt9p9Glg9b7T6NpA+q6FLg2k7/7hUgPpuwu0NZC+64jWQPquB/Ep/bVM25voV3wCOHj8BxLxcv6zcYBHJTzyl8V5hAcsjcQO3HAK90P7phJvIj3QpvBBQtwHY00j36SdJKDNgUd53ttG48/yfOjyvHIKLt1Emmn7JFP4zH3Q0urpchfeSRu/g7FbaaK7M8tz0/Uxhl5soc9zIL2oMORBml4MGPpJhF4ULB/lqvciRvgsXL0Xx1pMqNaLY67GVOnFsZezqvPiFOuBVXlxygXVKrw49Yp08V6cY0m/aC/OtSdSrBfn3lQqzospduWK8mKqbc1ivJhyX7gIL3rYWM/ai15OJmTrRU9HO7L0orezMdl50evhojYvrhJek4r3t/iG53TePfowh9cgL8WBG49Hi/keaSM8YGmEARphgEYYoBEGaIQBGmGAFgD8Am3+yBKeg64xAAAAAElFTkSuQmCC);
+background-size: auto 80%;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.icon_right_80 {
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAAAsSAAALEgHS3X78AAACaUlEQVR4nO2c0U0CQRRFr8Z/6IAW6EA7kA7ECqAE7UAqcEuwBOjAFugAKoAQHrAZnhj27ezemXnnhzjGZLm5e5idGXzY7XZwmvPo2dnwAI14gEY8QCMeoBEP0IgHaIQ1wCGASl6pYQ3wC8AbgF8AY4Lr+RPGAKcS3oERgKWMUcIY4A+AVe3nAYBvaSUdjAFuALwAWATjM2kjlReZP4XnAN4BbGtjz2xeZJ/GVNLGdW2MyospzANPjaP0YioTaVovpvYkQufFFB/lqLyY6rMwjRdTXkyg8GIOqzG9ejGX5azevJjTemAvXsxtQbVzL+a6It2ZF3Ne0u/Ei7nviUT3YgmbSlG9WNKuXBQvlrat2boXS9wXbtWLpW6st+bF0k8mmL1YeoCwetEDPNLYix7ghUZe9ACvucuL4Sn9j+6vl5ZDWK/BxW0l4Oo0EAbo33n4n239dvZb2MhT8Oefyb2DeNy6hc/4N5V0pjJ9GdR+e5gnTuTD5EzYQOcY3CzIYSXhbcJ83IEXhjLfC8NbyPzwKjx4A8+M5WTsqDZ2NWXR8AYefbcMwltL626GB2/gfb7TKLWBjXynUWIDG/tOo7QGmnynUVIDzb7TKKGBrflOI/cGtuo7jZwb2LrvNHJtYBTfaeTWwKi+08ipgdF9p5FLAzvxnUYODezMdxopN7Bz32mk2sBefKeRYgN7851Gag3s1XcaqTSQwncaKTSQxnca7A2k8p0GcwPpfKfB2EBa32kwNnAi5/FO0PhOg/VsTCX/P0s9j8IEqwPntVeqWzbET2cZ8aMdRjxAIx6gEQ/QiAdoxAM04gFaALAHE6HHx/eNQ30AAAAASUVORK5CYII=);
+background-size: auto 80%;
+background-position: center;
+background-repeat: no-repeat;
+}
+</style>
+
+
+<!-- js 拖曳-->
+<script>
+
+var xxx;
+var yyy;
+var double_keen = 1.5;//拖曳靈敏度
+var int_縮放起始值 = 99;
+var int_圖片邊距 = 40;
+
+
+var obj_img;//圖片物件
+var obj_img_content;//圖片物件的容器
+
+
+//拖曳時用的
+var m_x;
+var m_y;
+var m_top;
+var m_left;
+
+
+
+///
+///
+///
+function main() {
+
+
+try {
+//禁止右鍵選單
+document.oncontextmenu = new Function("return false");
+} catch (e) { }
+
+
+fun_處理text焦點();
+fun_初始化滑鼠優化滾動();
+
+//初始化物件
+obj_img_content = get_Id("img_content");
+obj_img = get_Id("img_img");
+
+
+///
+///按下時，註冊事件
+///
+obj_img_content.addEventListener("mousedown", function (e) {//按下時，註冊事件
+
+m_x = e.screenX;
+m_y = e.screenY;
+
+/*var int_捲軸寬度x = obj_img_content.offsetWidth - obj_img_content.clientWidth;
+var int_捲軸寬度y = obj_img_content.offsetHeight - obj_img_content.clientHeight;
+if (e.pageX > obj_img_content.offsetWidth - int_捲軸寬度x) {
+return;
+}
+if (e.pageY > obj_img_content.offsetHeight - int_捲軸寬度y) {
+return;
+}*/
+
+e.preventDefault();//取消點擊事件
+
+document.onmousemove = mousemove;
+
+m_top = fun_nub(obj_img.style.top);
+m_left = fun_nub(obj_img.style.left);
+
+}, false);
+
+
+///
+///滑鼠移動時
+///
+function mousemove(e) {
+
+
+var int_top = m_top - (m_y - e.screenY) * double_keen;
+var int_left = m_left - (m_x - e.screenX) * double_keen;
+
+obj_img.style.top = int_top + "px";
+obj_img.style.left = int_left + "px";
+
+fun_beyond(e);//避免超出範圍
+
+}
+
+
+///
+///放開時，取消事件
+///
+document.onmouseup = function (e) {
+
+
+
+if (bool_滾動頁面) {      //優化滑鼠滾動
+
+
+//如果放開的位置與點下的位置一樣，就不取消，讓他支持按著
+if (Math.abs(ar_滾動優化_點擊時坐標[0] - e.clientX) < 2 && Math.abs(ar_滾動優化_點擊時坐標[1] - e.clientY) < 2) {
+return;
+}
+
+document.onmousemove = null;//刪除『滑鼠移動事件』
+get_Id("div_wheel").style.display = "none";
+bool_滾動頁面 = false;
+document.body.style.pointerEvents = "";
+int_滾動優化_目前速度 = 0;
+$("html").stop(false, false);
+
+} else {
+
+document.onmousemove = null;//刪除『滑鼠移動事件』
+
+}
+
+}
+}
+
+
+
+///
+///處理圖片超過邊界的函數
+///
+function fun_beyond(e) {
+
+var o_l = fun_nub(obj_img.style.left);
+var o_t = fun_nub(obj_img.style.top);
+
+
+if (obj_img.offsetWidth > obj_img_content.offsetWidth && o_l > int_圖片邊距) {//寬度大於容器時，限制往右移
+obj_img.style.left = int_圖片邊距 + "px";
+if (e != undefined) {//拖曳超過邊界時，讓滑鼠能夠立即返回
+m_x = e.screenX;
+m_left = int_圖片邊距;
+}
+}
+if (obj_img.offsetWidth <= obj_img_content.offsetWidth) {//寬度小於容器時，圖片置中
+obj_img.style.left = (obj_img_content.offsetWidth - obj_img.offsetWidth) / 2 + "px";
+}
+
+if (obj_img.offsetWidth > obj_img_content.offsetWidth && o_l < obj_img_content.offsetWidth - obj_img.offsetWidth - int_圖片邊距) {//寬度大於容器時，限制往左移
+obj_img.style.left = obj_img_content.offsetWidth - obj_img.offsetWidth - int_圖片邊距 + "px";
+if (e != undefined) {
+m_x = e.screenX;
+m_left = fun_nub(obj_img.style.left);
+}
+}
+
+if (obj_img.offsetHeight > obj_img_content.offsetHeight && o_t > int_圖片邊距) {
+obj_img.style.top = int_圖片邊距 + "px";
+if (e != undefined) {
+m_y = e.screenY;
+m_top = int_圖片邊距;
+}
+}
+if (obj_img.offsetHeight <= obj_img_content.offsetHeight) {
+obj_img.style.top = (obj_img_content.offsetHeight - obj_img.offsetHeight) / 2 + "px";
+}
+
+if (obj_img.offsetHeight > obj_img_content.offsetHeight && o_t < obj_img_content.offsetHeight - obj_img.offsetHeight - 40) {
+obj_img.style.top = obj_img_content.offsetHeight - obj_img.offsetHeight - int_圖片邊距 + "px";
+if (e != undefined) {
+m_y = e.screenY;
+m_top = fun_nub(obj_img.style.top);
+}
+}
+
+
+}
+
+
+
+
+</script>
+
+
+<!-- js 縮放-->
+<script>
+
+var int_size = 100;
+var bool_視窗開啟 = false;
+var img_sel = 0;
+var img_size;
+
+// 註冊滾動事件
+if ('onmousewheel' in window) {
+window.onmousewheel = MouseWheel;
+} else if ('onmousewheel' in document) {
+document.onmousewheel = MouseWheel;
+} else if ('addEventListener' in window) {
+window.addEventListener("mousewheel", MouseWheel, true);
+window.addEventListener("DOMMouseScroll", MouseWheel, true);
+}
+
+///
+///滑鼠捲動時
+///
+function MouseWheel(e) {
+
+if (bool_視窗開啟 == false) {
+return;
+}
+
+e.preventDefault();//禁止頁面滾動
+e = e || window.event;
+
+//如果焦點在【比例文字框】上
+if (text_目前焦點 === get_Id("text_scale")) {
+
+var v = 100;
+
+if (e.wheelDelta <= 0 || e.detail > 0) {
+v = Number(get_Id("text_scale").value) - 10;
+} else {
+v = Number(get_Id("text_scale").value) + 10;
+}
+
+if (v < 10) {
+v = 10;
+} else if (v > 500) {
+v = 500;
+} else if (isNaN(v)) {
+v = 100;
+}
+
+get_Id("text_scale").value = v;
+
+} else {
+
+//縮放計算
+if (e.wheelDelta <= 0 || e.detail > 0) {
+fun_imgSizeSubtrat(e);
+} else {
+fun_imgSizeAdd(e);
+}
+
+
+}//if
+
+
+}//function
+
+
+
+
+
+///
+///縮小圖片
+///
+function fun_imgSizeSubtrat(e) {
+
+int_size *= 0.9;
+if (int_size <= 5) {
+int_size /= 0.9;
+return;
+}
+
+//如果不是透過滾輪來縮放，就從中央作為縮放起點
+if (e === undefined) {
+e = { clientX: 0, clientY: 0 };
+e.clientX = obj_img_content.offsetWidth / 2 + obj_img_content.offsetLeft;
+e.clientY = obj_img_content.offsetHeight / 2 + obj_img_content.offsetTop;
+}
+
+//計算游標目前在圖片的坐標
+xxx = e.clientX - (get_Id("img_box")).offsetLeft - 0 - fun_nub(obj_img.style.left) - obj_img_content.offsetLeft;
+yyy = e.clientY - (get_Id("img_box")).offsetTop - 0 - fun_nub(obj_img.style.top) - obj_img_content.offsetTop;
+
+//計算圖片改變大小後的差距
+var xx2 = obj_img.offsetWidth - obj_img.offsetWidth * 0.9;
+var yy2 = obj_img.offsetHeight - obj_img.offsetHeight * 0.9;
+
+//儲存目前的捲軸位置
+var top2 = fun_nub(obj_img.style.top);
+var left2 = fun_nub(obj_img.style.left);
+
+fun_imgSizeChange();//改變大小
+
+obj_img.style.top = top2 + ((yyy / obj_img.offsetHeight) * yy2) * 0.9 + "px";
+obj_img.style.left = left2 + ((xxx / obj_img.offsetWidth) * xx2) * 0.9 + "px";
+
+fun_beyond();//定位
+
+}
+
+
+
+///
+///放大圖片
+///
+function fun_imgSizeAdd(e) {
+
+int_size *= 1.1;
+if (int_size >= 6000) {
+int_size /= 1.1;
+return;
+}
+
+fun_imgSizeChange();
+
+//如果不是透過滾輪來縮放，就從中央作為縮放起點
+if (e == undefined) {
+e = { clientX: 0, clientY: 0 };
+e.clientX = obj_img_content.offsetWidth / 2 + obj_img_content.offsetLeft;
+e.clientY = obj_img_content.offsetHeight / 2 + obj_img_content.offsetTop;
+}
+
+
+xxx = e.clientX - (get_Id("img_box")).offsetLeft - 0 - fun_nub(obj_img.style.left) - obj_img_content.offsetLeft;
+yyy = e.clientY - (get_Id("img_box")).offsetTop - 0 - fun_nub(obj_img.style.top) - obj_img_content.offsetTop;
+
+var xx2 = obj_img.offsetWidth - obj_img.offsetWidth / 1.1;
+var yy2 = obj_img.offsetHeight - obj_img.offsetHeight / 1.1;
+
+obj_img.style.top = "" + (fun_nub(obj_img.style.top) - ((yyy / obj_img.offsetHeight) * yy2) * 1.1) + "px";
+obj_img.style.left = "" + (fun_nub(obj_img.style.left) - ((xxx / obj_img.offsetWidth) * xx2) * 1.1) + "px";
+
+fun_beyond();//定位
+}
+
+
+///
+///轉數字。"12.3px" => 12.3
+///
+function fun_nub(nn) {
+return Number(nn.replace("px", ""));
+}
+
+</script>
+
+
+<!-- js 圖片檢視視窗-->
+<script>
+
+
+///
+///
+///
+function fun_右鍵關閉(event) {
+var btnNum = event.button;
+if (btnNum == 2) {
+fun_close_imgbox();
+}
+}
+
+
+
+///
+///關閉視窗
+///
+function fun_close_imgbox() {
+bool_視窗開啟 = false;
+get_Id("img_box").style.display = "none";
+get_Id("img_d").style.display = "none";
+get_Id("but_r").style.display = "none";
+get_Id("but_l").style.display = "none";
+
+document.body.style.paddingRight = "0px";
+document.body.style.overflow = "auto";
+get_Id("div_隱藏區塊").setAttribute("class", "");
+
+}
+
+
+
+////
+///開啟視窗
+///
+function fun_open_imgbox(x) {
+
+
+
+img_sel = x;
+bool_視窗開啟 = true;
+
+img_size = fun_getImgSize(get_Id("img_" + img_sel));//取得圖片寬高
+var int_捲軸寬度 = getScrollerWidth();
+
+get_Id("img_box").style.display = "block";
+get_Id("img_d").style.display = "block";
+get_Id("but_r").style.display = "block";
+get_Id("but_l").style.display = "block";
+get_Id("img_img").src = urls[x];
+get_Id("img_open_url").href = urls[img_sel];
+get_Id("div_隱藏區塊").setAttribute("class", "div_隱藏區塊_hide");
+document.body.style.paddingRight = int_捲軸寬度 + "px";
+document.body.style.overflow = "hidden";
+
+fun_100scale();
+fun_imgTitle();
+}
+
+///
+///取得捲軸寬度
+///
+function getScrollerWidth() {
+var scr = null;
+var inn = null;
+var wNoScroll = 0;
+var wScroll = 0;
+scr = document.createElement('div');
+scr.style.position = 'absolute';
+scr.style.top = '-1000px';
+scr.style.left = '-1000px';
+scr.style.width = '100px';
+scr.style.height = '50px';
+scr.padding = '0px';
+scr.margin = '0px';
+scr.style.overflow = 'hidden';
+inn = document.createElement('div');
+inn.style.width = '100%';
+inn.style.height = '200px';
+inn.padding = '0px';
+inn.margin = '0px';
+scr.appendChild(inn);
+document.getElementsByTagName('html')[0].appendChild(scr);
+wNoScroll = inn.offsetWidth;
+scr.style.overflow = 'auto';
+wScroll = inn.offsetWidth;
+document.getElementsByTagName('html')[0].removeChild(document.getElementsByTagName('html')[0].lastChild);
+return (wNoScroll - wScroll);
+}
+
+///
+//修改視窗顯示的資訊
+///
+function fun_imgTitle() {
+get_Id("img_t2").value = "『 " + (Number(img_sel) + 1) + " / " + urls.length + " 』　　W:" + img_size[0] + "　　H:" + img_size[1];
+
+/*var path = decodeURIComponent(urls[img_sel]);//不要顯示出『file:///』
+if (path.substr(0, 8) == "file:///")
+path = path.substr(8);*/
+
+var s_title = decodeURIComponent(urls[img_sel]);//從網址編碼轉回原本的字串
+s_title = s_title.substring(s_title.lastIndexOf("/") + 1);
+try {
+s_title = decodeURIComponent(s_title);
+} catch (eee) { }
+
+
+
+
+get_Id("img_t1").value = s_title//從網址編碼轉回原本的字串
+}
+
+var bool_width;//判斷縮放方式
+var st_zoomMode = "full";
+
+
+///
+///選擇縮放模式
+///
+function fun_zoomMode(x) {
+
+//如果x = null ，就是自動判斷
+
+if (x != null) {
+
+st_zoomMode = x;
+get_Id("bu_full").className = "";
+get_Id("bu_full_h").className = "";
+get_Id("bu_full_v").className = "";
+
+if (x == 'full') {
+get_Id("bu_full").className = "bu_sel";
+} else if (x == 'v') {
+get_Id("bu_full_v").className = "bu_sel";
+} else if (x == 'h') {
+get_Id("bu_full_h").className = "bu_sel";
+}
+
+}
+
+fun_100scale();
+}
+
+
+///
+///圖片 初始 & 最大 化
+///
+function fun_100scale() {
+
+int_size = 100;
+
+try {
+//int_size = int_縮放起始值;
+int_size = Number(get_Id("text_scale").value);
+if (int_size < 10) {
+int_size = 10;
+} else if (int_size > 500) {
+int_size = 500;
+} else if (isNaN(int_size)) {
+int_size = 100;
+}
+int_縮放起始值 = int_size + "";
+} catch (e) {
+int_size = 100;
+int_縮放起始值 = "100";
+}
+
+if (st_zoomMode == "full") {//圖片滿版，需要判斷
+
+if (img_size[0] && img_size[1]) {
+
+if ((img_size[0] / obj_img_content.offsetWidth) > (img_size[1] / obj_img_content.offsetHeight)) {
+bool_width = true;
+} else {
+bool_width = false;
+}
+} else {
+bool_width = false;
+}
+} else if (st_zoomMode == "v") {
+bool_width = false;
+} else if (st_zoomMode == "h") {
+bool_width = true;
+}
+
+fun_imgSizeChange();
+
+//計算圖片目前的size
+var w6 = img_size[0];
+var h6 = img_size[1];
+if (bool_width) {
+w6 = obj_img_content.offsetWidth * int_size / 100;
+h6 = (img_size[1] / img_size[0]) * w6;
+} else {
+h6 = obj_img_content.offsetHeight * int_size / 100;
+w6 = (img_size[0] / img_size[1]) * h6;
+
+}
+
+//修改圖片的X軸Y軸(至中對齊)
+obj_img.style.left = (obj_img_content.offsetWidth - w6) / 2 + "px";
+obj_img.style.top = (obj_img_content.offsetHeight - h6) / 2 + "px";
+
+/*
+setTimeout(function () {
+obj_img.style.left = (obj_img_content.offsetWidth - obj_img.offsetWidth) / 2 + "px";
+obj_img.style.top = (obj_img_content.offsetHeight - obj_img.offsetHeight) / 2 + "px";
+}, 1);*/
+
+}
+
+
+
+///
+///縮放
+///
+function fun_imgSizeChange() {
+
+if (bool_width) {
+//get_Id("img_img").style.width = int_size + "%";
+obj_img.style.width = (obj_img_content.offsetWidth * int_size / 100) + "px";
+obj_img.style.height = "auto";
+} else {
+//get_Id("img_img").style.height = int_size + "%";
+obj_img.style.height = (obj_img_content.offsetHeight * int_size / 100) + "px";
+obj_img.style.width = "auto";
+}
+
+document.onmousemove = null;//取消拖曳事件
+
+}
+
+
+var text_目前焦點 = null;
+
+
+///
+///
+///
+function fun_處理text焦點() {
+
+var ar_text = ["img_t1", "img_t2", "text_scale"];
+
+//點擊圖片時，讓所有文字框都失去焦點
+get_Id("img_content").onclick = function () {
+for (var i = 0; i < ar_text.length; i++) {
+get_Id(ar_text[i]).blur();
+}
+};
+
+
+//當文字框有焦點時，禁止快速鍵
+for (var i = 0; i < ar_text.length; i++) {
+get_Id(ar_text[i]).onfocus = function (e) {
+text_目前焦點 = e.target; //e.target=觸發該事件的物件
+}
+get_Id(ar_text[i]).onblur = function () {
+text_目前焦點 = null;
+}
+}
+}
+
+
+
+
+
+///
+///
+///
+var event_上下鍵控制body捲動 = function () {
+
+var key_654 = 0;
+var bool_執行中 = false;
+
+///
+/// 每100毫秒就判斷一次是否捲動
+///
+function fun_控制捲動() {
+bool_執行中 = true;
+
+//控制body的捲軸
+if (key_654 === "up") {
+
+/*window.document.body.scrollTop -= 50;
+window.document.documentElement.scrollTop -= 50;*/
+
+$("html").stop(true, true);
+$('html').animate({
+scrollTop: window.document.documentElement.scrollTop - 250
+}, 150, "linear", function () { });
+
+setTimeout(function () {
+fun_控制捲動();
+}, 151);
+return;
+
+} else if (key_654 === "down") {
+
+$("html").stop(true, true);
+$('html').animate({
+scrollTop: window.document.documentElement.scrollTop + 250
+}, 150, "linear", function () { });
+
+setTimeout(function () {
+fun_控制捲動();
+}, 151);
+return;
+}
+
+
+bool_執行中 = false;
+}
+
+
+///
+/// 放開時取消捲動
+///
+document.addEventListener("keyup", function (e) {
+var currKey = 0, e = e || event;
+currKey = e.keyCode || e.which || e.charCode;
+
+if (currKey == 38) {
+key_654 = "0";
+e.preventDefault();
+} else if (currKey == 40) {
+key_654 = "0";
+e.preventDefault();
+}
+});
+
+
+///
+/// 按下時開始捲動
+///
+document.addEventListener("keydown", function (e) {
+
+if (bool_視窗開啟 == false) {
+
+if (bool_執行中) {//避免重複執行
+e.preventDefault();
+return;
+}
+
+var currKey = 0, e = e || event;
+currKey = e.keyCode || e.which || e.charCode;
+
+if (currKey == 38) {
+key_654 = "up";
+fun_控制捲動();
+e.preventDefault();
+} else if (currKey == 40) {
+key_654 = "down";
+fun_控制捲動();
+e.preventDefault();
+}
+
+}
+
+});
+}
+
+event_上下鍵控制body捲動();
+
+
+///
+///按下按鍵
+///
+document.onkeydown = function (e) {
+
+var currKey = 0, e = e || event;
+currKey = e.keyCode || e.which || e.charCode;
+
+
+//判斷ctrl跟shile是左邊還是右邊
+if (e.location == 1 || e.keyLocation == 1) {
+var keyPosition = 'left';
+} else if (e.location == 2 || e.keyLocation == 2) {
+var keyPosition = 'right';
+}
+
+
+
+//如果焦點在【比例文字框】上
+if (text_目前焦點 === get_Id("text_scale")) {
+if (currKey === 13) { // enter
+fun_zoomMode(null);//全滿
+}
+}
+
+if (text_目前焦點 != null)
+return;
+
+
+
+if (bool_視窗開啟) {//開啟檢視器時
+
+if (currKey === 38 || currKey === 104) {//上 8
+
+obj_img.style.top = fun_nub(obj_img.style.top) + 50 + "px";
+fun_beyond();//避免超出位置
+e.preventDefault();
+
+} else if (currKey === 40 || currKey === 101) {//下 5
+
+obj_img.style.top = fun_nub(obj_img.style.top) - 50 + "px";
+fun_beyond();//避免超出位置
+e.preventDefault();
+
+} else if (currKey === 100) {//左 4
+
+obj_img.style.left = fun_nub(obj_img.style.left) + 50 + "px";
+fun_beyond();//避免超出位置
+e.preventDefault();
+
+} else if (currKey === 102) {//右 6
+
+obj_img.style.left = fun_nub(obj_img.style.left) - 50 + "px";
+fun_beyond();//避免超出位置
+e.preventDefault();
+
+} else if (currKey === 107 || (currKey === 16 && keyPosition == "right")) {// 放大 + 右shift
+fun_imgSizeAdd();
+e.preventDefault();
+} else if (currKey === 109 || (currKey === 17 && keyPosition == "right")) {//縮小 - ctrl
+fun_imgSizeSubtrat();
+e.preventDefault();
+}
+
+else if (currKey === 37) {//切換上下張圖片
+fun_imgPrev();
+e.preventDefault();
+} else if (currKey === 39) {
+fun_imgNext();
+e.preventDefault();
+}
+
+} else {//沒有開啟檢視器
+//切換上下頁
+if (currKey == 37) {
+fun_上一頁();
+e.preventDefault();
+}
+if (currKey == 39) {
+fun_下一頁();
+e.preventDefault();
+}
+}
+
+}
+
+
+
+///
+///放開按鍵時
+///
+document.onkeyup = function (e) {
+
+
+if (text_目前焦點 != null) {
+return;
+}
+
+var currKey = 0, e = e || event;
+currKey = e.keyCode || e.which || e.charCode;
+//var keyName = String.fromCharCode(currKey);
+// alert("按鍵碼: " + currKey + " 字元: " + keyName);
+
+if (bool_視窗開啟) {
+
+if (currKey == 27 || currKey == 8) {//esc 、 backSpace
+fun_close_imgbox();//關閉視窗
+}
+
+} else {//沒有開啟檢視器
+
+//用數字鍵盤切換顯示的欄
+if (currKey >= 97 && currKey <= 101) {//右邊的鍵盤，97=1
+fun_col(currKey - 96, 'r' + (currKey - 96));
+}
+
+//用數字鍵盤切換顯示的欄
+if (currKey >= 49 && currKey <= 53) {//上面的鍵盤，49 = 1
+fun_col(currKey - 48, 'r' + (currKey - 48));
+}
+
+
+}
+
+}
+
+
+///
+///檢視下一張圖片
+///
+function fun_imgNext() {
+img_sel++;
+if (img_sel >= urls.length)
+img_sel = 0;
+
+fun_判斷是否需要換頁();
+img_size = fun_getImgSize(get_Id("img_" + img_sel));
+get_Id("img_open_url").href = urls[img_sel];
+fun_imgTitle();
+fun_100scale();
+get_Id("img_img").src = urls[img_sel];
+fun_捲動到目前圖片的位置();
+}
+
+
+///
+///檢視上一張圖片
+///
+function fun_imgPrev() {
+img_sel--;
+if (img_sel < 0)
+img_sel = urls.length - 1;
+
+fun_判斷是否需要換頁();
+
+img_size = fun_getImgSize(get_Id("img_" + img_sel));
+get_Id("img_open_url").href = urls[img_sel];
+fun_imgTitle();
+fun_100scale();
+get_Id("img_img").src = urls[img_sel];
+fun_捲動到目前圖片的位置();
+}
+
+///
+///
+///
+function fun_判斷是否需要換頁() {
+
+if (img_sel < (int_flag * 40) || img_sel >= ((int_flag + 1) * 40)) {
+int_flag = Math.floor(img_sel / 40);
+get_Id("r_t_select_page").value = int_flag;//設定目光前選擇的頁數
+fun_選頁(int_flag);
+}
+}
+
+///
+///
+///
+function fun_捲動到目前圖片的位置() {
+var sch = document.getElementsByClassName("sp")[img_sel].offsetTop;
+window.document.documentElement.scrollTop = sch;//捲動至最上面
+window.document.body.scrollTop = sch;
+}
+
+</script>
+
+
+<!--優化滑鼠中鍵的捲動-->
+<script>
+
+var bool_滾動頁面 = false;
+var int_滾動優化_目前速度 = 0;
+var ar_滾動優化_點擊時坐標 = {};
+
+///
+///
+///
+function fun_初始化滑鼠優化滾動() {
+
+var int_滾動優化_Y = 0;
+var div_wheel = get_Id("div_wheel");
+
+
+document.addEventListener("mousedown", function (e) {//按下時，註冊事件
+if (e.button == 1) {//滑鼠滾輪按下去
+
+if (bool_滾動頁面) {
+e.preventDefault();//取消點擊事件
+return;
+}
+
+//顯示捲動速率的div
+div_wheel.style.top = e.clientY - 20 + "px";
+div_wheel.style.left = e.clientX - 25 + "px";
+div_wheel.style.display = "block";
+
+ar_滾動優化_點擊時坐標 = new Array(e.clientX, e.clientY);
+
+int_滾動優化_Y = e.screenY;
+document.onmousemove = mousemove_滾動優化;//註冊滑鼠移動事件
+
+e.preventDefault();//取消點擊事件
+
+int_滾動優化_目前速度 = 0;
+div_wheel.innerHTML = "－ 0 －";
+bool_滾動頁面 = true;
+
+document.body.style.pointerEvents = "none";//避免放開滑鼠時誤觸其他按鈕
+}
+}, false);
+
+
+///
+///滑鼠移動時
+///
+function mousemove_滾動優化(e) {
+
+//微調速率
+var int_YY = -(int_滾動優化_Y - e.screenY) / 2.5;
+int_滾動優化_目前速度 = int_YY + Math.abs(int_YY) * (int_YY / 100);
+int_滾動優化_目前速度 = Math.round(int_滾動優化_目前速度 * 1.5);
+
+
+//顯示目前的速度
+var ss7 = "－";
+if (int_滾動優化_目前速度 < 0) {
+ss7 = "▲";
+} if (int_滾動優化_目前速度 > 0) {
+ss7 = "▼";
+}
+div_wheel.innerHTML = ss7 + " " + Math.abs(int_滾動優化_目前速度) + " " + ss7;
+}
+
+
+
+///
+///每100毫秒判斷一次捲動頁面
+///
+function fun_優化滾動_time() {
+setTimeout(function () {
+if (bool_滾動頁面) {
+$("html").stop(true, true);
+$('html').animate({
+scrollTop: window.document.documentElement.scrollTop + int_滾動優化_目前速度
+}, 150, "linear", function () { }
+);
+}
+fun_優化滾動_time();
+}, 151);
+}
+
+
+fun_優化滾動_time();
+
+}
+</script>
+
+
+
+
+</head>
+
+
+<body ondragover="javascript: dragHandler(event);">
+
+
+
+<div id="div_test" style="color:#FFF;display:none;"></div>
+
+<!--顯示捲動速率-->
+<div id="div_wheel" style="display:none;"></div>
+
+<!--背景顏色(由C#控制)-->
+<div id="q"></div>
+
+<!--底色-->
+<div id="img_d" style="display:none;" onclick="fun_close_imgbox()"></div>
+
+<!--切換圖片上下張的按鈕-->
+<button id="but_r" class="icon_right_80" style="display:none;" onclick="fun_imgNext()"></button>
+<button id="but_l" class="icon_left_80" style="display:none;" onclick="fun_imgPrev()"></button>
+
+
+<style>
+.div_隱藏區塊_hide {
+opacity: 0.1 !important;
+}
+
+.div_隱藏區塊_hide #div_r_t {
+display: none !important;
+}
+</style>
+
+
+<div id="div_隱藏區塊">
+
+<!--左上角選單-->
+<div class="div_l_t_menu">
+<div class="tab no_sel">
+<h2>Column（欄）</h2>
+<table border="0" class="col_table">
+<tr>
+<td class="col" onclick="fun_col('1','r1')" id="r1">１</td>
+<td class="col" onclick="fun_col('2','r2')" id="r2">２</td>
+<td class="col sel" onclick="fun_col('3','r3')" id="r3">３</td>
+<td class="col" onclick="fun_col('4','r4')" id="r4">４</td>
+<td class="col" onclick="fun_col('5','r5')" id="r5">５</td>
+</tr>
+</table>
+</div>
+
+<div class="none" id="lock_width_div">
+
+<h2 class="no_sel">No spacing（無間距模式）</h2>
+<table border="0" class="col_table">
+<tr>
+<td class="col  sel" onclick="fun_noSpacing('no')" id="r3-no">no</td>
+<td class="col" onclick="fun_noSpacing('0')" id="r3-0">0</td>
+<td class="col" onclick="fun_noSpacing('20')" id="r3-20">20</td>
+<td class="col" onclick="fun_noSpacing('40')" id="r3-40">40</td>
+<td class="col" onclick="fun_noSpacing('60')" id="r3-60">60</td>
+</tr>
+</table>
+
+<div style="height:20px;"></div>
+
+<h2 class="no_sel">Lock width（鎖定寬度）</h2>
+<table border="0" class="col_table">
+<tr>
+<td class="col  sel" onclick="fun_wid('0','r2-0')" id="r2-0">no</td>
+<td class="col" onclick="fun_wid('40','r2-40')" id="r2-40">40%</td>
+<td class="col" onclick="fun_wid('50','r2-50')" id="r2-50">50%</td>
+<td class="col" onclick="fun_wid('60','r2-60')" id="r2-60">60%</td>
+<td class="col" onclick="fun_wid('70','r2-70')" id="r2-70">70%</td>
+<td class="col" onclick="fun_wid('80','r2-80')" id="r2-80">80%</td>
+<td class="col" onclick="fun_wid('90','r2-90')" id="r2-90">90%</td>
+<td class="col" onclick="fun_wid('100','r2-100')" id="r2-100">100%</td>
+</tr>
+</table>
+
+</div>
+
+</div>
+
+
+
+<script>
+function func_rt_hide() {
+if (get_Id("div_r_t").getAttribute("class") === "div_r_t_hide") {
+get_Id("div_r_t").setAttribute("class", "");
+} else {
+get_Id("div_r_t").setAttribute("class", "div_r_t_hide");
+}
+}
+</script>
+
+<!--右上角的換頁選單-->
+<div id="div_r_t" onselectstart="return false">
+<button id="r_t_hide" class="" onclick="func_rt_hide()" title="顯示 或 隱藏">
+<svg version="1.1" x="0px" y="0px" viewBox="0 0 10 35">
+<polygon style="fill: #FFFFFF;" class="st0" points="9,17.5 5,22.8 1,28.2 1,17.5 1,6.8 5,12.2 " />
+</svg>
+</button>
+<button id="r_t_prev" class="icon_left_80" onclick="fun_上一頁()"></button>
+<select id="r_t_select_page" onchange="fun_選頁(this.value)"></select>
+<button id="r_t_next" class="icon_right_80" onclick="fun_下一頁()"></button>
+
+</div>
+
+
+<!--圖片 list-->
+<div id="div_imgs">
+</div>
+
+
+<!--最底下的換頁按鈕-->
+<style type="text/css">
+#bottom {
+height: 80px;
+margin: 15px;
+}
+
+#next2 {
+float: right;
+}
+
+#bottom #prev2,
+#bottom #next2 {
+height: 100%;
+width: 50%;
+
+color: #FFF;
+font-size: 50px !important;
+border: none;
+
+background-color: rgba(0, 0, 0, 0);
+}
+
+#bottom #prev2:hover,
+#bottom #next2:hover {
+/*background-color: rgba(75, 200, 255, 0.40);*/
+background-color: rgba(0, 0, 0, 0.4);
+outline: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+button,
+.tab td {}
+
+button:active,
+.tab td:active {
+opacity: 1;
+outline: solid 1px rgba(0, 177, 255, 0.4) !important;
+
+}
+</style>
+
+<div id="bottom">
+<button id="prev2" class="icon_left_80" onclick="fun_上一頁()"></button>
+<button id="next2" class="icon_right_80" onclick="fun_下一頁()"></button>
+</div>
+
+</div>
+
+
+
+
+<!--圖片檢視視窗-->
+<div id="img_box" style="display:none;" onmouseup="fun_右鍵關閉(event)">
+
+<!--上方工具列-->
+<div class="img_tit">
+
+<!--按鈕群-->
+<div style="float:right;">
+<button onclick="fun_close_imgbox()" title="close" style="background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUwIDUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MCA1MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qze2ZpbGw6I0ZGRkZGRjt9DQo8L3N0eWxlPg0KPGcgaWQ9IuWcluWxpF80Ij4NCgk8cG9seWdvbiBjbGFzcz0ic3QzIiBwb2ludHM9IjQwLjIsMTMuNiAzNi40LDkuOCAyNSwyMS4yIDEzLjYsOS44IDkuOCwxMy42IDIxLjIsMjUgOS44LDM2LjQgMTMuNiw0MC4yIDI1LDI4LjggMzYuNCw0MC4yIA0KCQk0MC4yLDM2LjQgMjguOCwyNSAJIi8+DQo8L2c+DQo8L3N2Zz4NCg==)"></button>
+<div class="break"></div>
+<a target='_blank' id="img_open_url"></a>
+<button onclick="fun_open_file(get_Id('img_img').src)" title="open image" style="background-size:70% 70%;background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMC4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4yIiBiYXNlUHJvZmlsZT0idGlueSIgaWQ9IuWcluWxpF8xIg0KCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUwIDUwIg0KCSBvdmVyZmxvdz0ic2Nyb2xsIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik00Ny43LDI2LjNjLTAuNy0xLTItMS42LTMuNi0xLjZoLTMuM3YtNC41YzAtMi44LTIuMy01LjEtNS4xLTUuMWgtMS4ydjMuNWgxLjJjMC45LDAsMS42LDAuNywxLjYsMS42djQuNQ0KCQloLTIyYy0yLjUsMC01LDEuMy01LjgsMy4xTDUuNCwzN1YyMC4yYzAtMC45LDAuNy0xLjYsMS42LTEuNmgxOC4zdi0zLjVoLTYuNHYtMC42YzAtMi44LTIuMy01LjEtNS4xLTUuMUg3Yy0yLjgsMC01LjEsMi4zLTUuMSw1LjENCgkJdjUuMmMwLDAuMSwwLDAuMSwwLDAuMmMwLDAuMSwwLDAuMSwwLDAuMnYyMmMwLDIuOCwyLjMsNS4xLDUuMSw1LjFoMjguN2MxLjYsMCwzLTAuOCw0LTEuOWMwLjYtMC41LDEuMS0xLDEuNC0xLjZsNi44LTE0LjcNCgkJQzQ4LjMsMjguMiw0OC4yLDI3LjIsNDcuNywyNi4zeiBNMTIuNCwyOS4xYzAuMi0wLjUsMS42LTEuMywzLTEuM2gyMnYxNC40YzAsMC42LTAuNCwxLjItMC45LDEuNGMtMC40LDAuMS0wLjcsMC4yLTEuMSwwLjJINw0KCQljLTAuNSwwLTAuOS0wLjItMS4yLTAuNUwxMi40LDI5LjF6IE01LDE1LjVjMC4yLTAuMSwwLjMtMC4xLDAuNS0wLjJDNS40LDE1LjQsNS4yLDE1LjQsNSwxNS41eiBNNiwxNS4yYzAuMy0wLjEsMC43LTAuMSwxLTAuMQ0KCQlDNi42LDE1LjEsNi4zLDE1LjEsNiwxNS4yeiBNMy41LDE2LjRDMy41LDE2LjUsMy41LDE2LjUsMy41LDE2LjRDMy41LDE2LjUsMy41LDE2LjUsMy41LDE2LjR6IE00LjQsMTUuOGMtMC4xLDAtMC4yLDAuMS0wLjMsMC4xDQoJCUM0LjMsMTUuOSw0LjQsMTUuOCw0LjQsMTUuOHogTTQwLjgsMzd2LTkuMmgzLjNjMC41LDAsMC43LDAuMSwwLjksMC4yTDQwLjgsMzd6Ii8+DQoJPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTIzLjgsMTEuNGMwLjQsMCwwLjgtMC4xLDEuMS0wLjRsMy4zLTMuMnYxMy4xYzAsMC44LDAuNywxLjUsMS41LDEuNWMwLjgsMCwxLjUtMC43LDEuNS0xLjVWNy44bDMuMywzLjINCgkJYzAuMywwLjMsMC43LDAuNCwxLjEsMC40YzAuNCwwLDAuOC0wLjIsMS4xLTAuNWMwLjYtMC42LDAuNi0xLjYsMC0yLjJsLTUuOS01LjdjMCwwLDAsMCwwLDBjLTAuMS0wLjEtMC4zLTAuMi0wLjQtMC4zYzAsMCwwLDAsMCwwDQoJCWMwLDAsMCwwLDAsMGMwLDAsMCwwLDAsMGMtMC4xLTAuMS0wLjMtMC4xLTAuNS0wLjFjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjLTAuMiwwLTAuMywwLTAuNSwwLjENCgkJYzAsMCwwLDAtMC4xLDBjMCwwLDAsMCwwLDBjMCwwLDAsMCwwLDBjLTAuMiwwLjEtMC4zLDAuMi0wLjQsMC4zYzAsMCwwLDAsMCwwbC01LjksNS43Yy0wLjYsMC42LTAuNiwxLjYsMCwyLjINCgkJQzIzLDExLjMsMjMuNCwxMS40LDIzLjgsMTEuNHoiLz4NCjwvZz4NCjwvc3ZnPg0K);"></button>
+<div class="break"></div>
+<button onclick="fun_imgSizeAdd()" title="Zoom in image" style="background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUwIDUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MCA1MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2Rpc3BsYXk6bm9uZTt9DQoJLnN0MXtkaXNwbGF5OmlubGluZTt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnIGlkPSLlnJblsaRfMSIgY2xhc3M9InN0MCI+DQoJPHJlY3QgY2xhc3M9InN0MSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIi8+DQo8L2c+DQo8ZyBpZD0i5ZyW5bGkXzIiPg0KCTxyZWN0IHg9IjIyLjMiIHk9IjYuMSIgY2xhc3M9InN0MiIgd2lkdGg9IjUuNCIgaGVpZ2h0PSIzNy44Ii8+DQoJPHJlY3QgeD0iNi4xIiB5PSIyMi4zIiBjbGFzcz0ic3QyIiB3aWR0aD0iMzcuOCIgaGVpZ2h0PSI1LjQiLz4NCjwvZz4NCjwvc3ZnPg0K)"></button>
+<button onclick="fun_imgSizeSubtrat()" title="Narrow pictures" style="background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUwIDUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MCA1MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2Rpc3BsYXk6bm9uZTt9DQoJLnN0MXtkaXNwbGF5OmlubGluZTt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnIGlkPSLlnJblsaRfMSIgY2xhc3M9InN0MCI+DQoJPHJlY3QgY2xhc3M9InN0MSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIi8+DQo8L2c+DQo8ZyBpZD0i5ZyW5bGkXzIiPg0KCTxyZWN0IHg9IjYuMSIgeT0iMjIuMyIgY2xhc3M9InN0MiIgd2lkdGg9IjM3LjgiIGhlaWdodD0iNS40Ii8+DQo8L2c+DQo8L3N2Zz4NCg==)"></button>
+<div class="break"></div>
+<button id="bu_full" onclick="fun_zoomMode('full')" title="auto full" class="bu_sel" style="background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjUwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDUwIDUwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MCA1MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjcuOCw2LjggMTUuMSw2LjggMTUuMSwzLjMgNC4zLDMuMyA0LjMsMTQuMSA3LjgsMTQuMSAiLz4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iMzYuOSwzLjMgMzYuOSw2LjggNDQuMiw2LjggNDQuMiwxNC4xIDQ3LjcsMTQuMSA0Ny43LDMuMyAiLz4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iNDQuMiw0My4yIDM2LjksNDMuMiAzNi45LDQ2LjcgNDcuNyw0Ni43IDQ3LjcsMzUuOSA0NC4yLDM1LjkgIi8+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjcuOCwzNS45IDQuMywzNS45IDQuMyw0Ni43IDE1LjEsNDYuNyAxNS4xLDQzLjIgNy44LDQzLjIgIi8+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjI4LjIyNywyNy4yMjYgMzcuMDQsMjcuMjI2IDM3LjA0LDMzLjk2MyA0MS4zNTIsMjkuNDggNDUuNjY3LDI0Ljk5OSA0MS4zNTIsMjAuNTE5IDM3LjA0LDE2LjAzNyANCgkzNy4wNCwyMi43NzMgMjguMjI4LDIyLjc3MyAyOC4yMjgsMTMuOTYxIDM0Ljk2MywxMy45NjEgMzAuNDgxLDkuNjQ4IDI2LDUuMzMzIDIxLjUyLDkuNjQ4IDE3LjAzNywxMy45NjEgMjMuNzc0LDEzLjk2MSANCgkyMy43NzQsMjIuNzczIDE0Ljk2MSwyMi43NzMgMTQuOTYxLDE2LjAzNyAxMC42NDgsMjAuNTE5IDYuMzMzLDI1IDEwLjY0OCwyOS40OCAxNC45NjEsMzMuOTYzIDE0Ljk2MSwyNy4yMjYgMjMuNzc0LDI3LjIyNiANCgkyMy43NzQsMzYuMDQgMTcuMDM3LDM2LjA0IDIxLjUyLDQwLjM1MiAyNi4wMDEsNDQuNjY3IDMwLjQ4MSw0MC4zNTIgMzQuOTYzLDM2LjA0IDI4LjIyNywzNi4wNCAiLz4NCjwvc3ZnPg0K)"></button>
+<button id="bu_full_h" onclick="fun_zoomMode('h')" title="horizontal full" style="background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjUwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDUwIDUwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MCA1MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjMuMywxNC4xIDYuOCwxNC4xIDYuOCw2LjggMTQuMSw2LjggMTQuMSwzLjMgMy4zLDMuMyAiLz4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iMzUuOSwzLjMgMzUuOSw2LjggNDMuMiw2LjggNDMuMiwxNC4xIDQ2LjcsMTQuMSA0Ni43LDMuMyAiLz4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iNDMuMiw0My4yIDM1LjksNDMuMiAzNS45LDQ2LjcgNDYuNyw0Ni43IDQ2LjcsMzUuOSA0My4yLDM1LjkgIi8+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjYuOCwzNS45IDMuMywzNS45IDMuMyw0Ni43IDE0LjEsNDYuNyAxNC4xLDQzLjIgNi44LDQzLjIgIi8+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjM2LjAzOSwzMy45NjMgNDAuMzUyLDI5LjQ4MSA0NC42NjcsMjUgNDAuMzUyLDIwLjUyIDM2LjAzOSwxNi4wMzcgMzYuMDM5LDIyLjc3NCAxMy45NiwyMi43NzQgDQoJMTMuOTYsMTYuMDM3IDkuNjQ4LDIwLjUyIDUuMzMzLDI1LjAwMSA5LjY0OCwyOS40ODEgMTMuOTYsMzMuOTYzIDEzLjk2LDI3LjIyNyAzNi4wMzksMjcuMjI4ICIvPg0KPC9zdmc+DQo=)"></button>
+<button id="bu_full_v" onclick="fun_zoomMode('v')" title="vertical full" style="background-image:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjUwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDUwIDUwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MCA1MCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjMuMywxNC4xIDYuOCwxNC4xIDYuOCw2LjggMTQuMSw2LjggMTQuMSwzLjMgMy4zLDMuMyAiLz4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iMzUuOSwzLjMgMzUuOSw2LjggNDMuMiw2LjggNDMuMiwxNC4xIDQ2LjcsMTQuMSA0Ni43LDMuMyAiLz4NCjxwb2x5Z29uIGZpbGw9IiNGRkZGRkYiIHBvaW50cz0iNDMuMiw0My4yIDM1LjksNDMuMiAzNS45LDQ2LjcgNDYuNyw0Ni43IDQ2LjcsMzUuOSA0My4yLDM1LjkgIi8+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjYuOCwzNS45IDMuMywzNS45IDMuMyw0Ni43IDE0LjEsNDYuNyAxNC4xLDQzLjIgNi44LDQzLjIgIi8+DQo8cG9seWdvbiBmaWxsPSIjRkZGRkZGIiBwb2ludHM9IjMzLjk2MywxMy45NjEgMjkuNDgxLDkuNjQ4IDI1LDUuMzMzIDIwLjUyLDkuNjQ4IDE2LjAzNywxMy45NjEgMjIuNzc0LDEzLjk2MSAyMi43NzQsMzYuMDQgDQoJMTYuMDM3LDM2LjA0IDIwLjUyLDQwLjM1MiAyNS4wMDEsNDQuNjY3IDI5LjQ4MSw0MC4zNTIgMzMuOTYzLDM2LjA0IDI3LjIyNywzNi4wNCAyNy4yMjgsMTMuOTYxICIvPg0KPC9zdmc+DQo=)"></button>
+
+<input type="text" id="text_scale" title="預設的縮放比例" />
+
+<script type="text/javascript">
+get_Id("text_scale").value = "95";//設定初始值
+</script>
+</div>
+
+<!--檔名、圖片size-->
+<div class="img_text">
+<input type="text" id="img_t1" readonly='readonly'>
+<input type="text" id="img_t2" readonly='readonly'>
+</div>
+
+</div>
+
+<!--縮放圖片的視窗-->
+<div id="img_content">
+<div id="img_w">
+<img id="img_img" />
+</div>
+</div>
+
+
+</div>
+
+
+
+
+<!--<script src="urls.js" type="text/javascript"></script>-->
+<script src="jquery-3.2.1.min.js"></script>
+
+
+
+<!--初始化-->
+<script>
+
+var urls = undefined;
+var fun = undefined;
+
+//取得網址列的參數
+var url_input = location.search.replace(/\?/g, '');
+
+if (url_input.length > 5) {
+
+//只用urls.js來解析(用外部瀏覽器開啟)
+/*var obj_script = document.createElement("script");
+obj_script.type = "text/javascript";
+obj_script.src = (url_input);
+document.getElementsByTagName("head")[0].appendChild(obj_script);*/
+
+//因為無法顯示檔名，所以直接隱藏
+var obj_style = document.createElement("style");
+obj_style.innerHTML = ".le input[type=text], #img_t1{display:none}";
+document.getElementsByTagName("head")[0].appendChild(obj_style);
+
+var ars = url_input.split(",");
+var s_localhost = "http://localhost:" + ars[0] + "/" + ars[1] + "/";
+urls = new Array();
+for (var i = 0; i < ars[2]; i++) {
+urls.push(s_localhost + i);
+}
+
+} else {
+//從C#取得圖片網址
+var s_get_array = window.external.fun_getImgs();//取得javascript字串【var urls = array....】
+eval(s_get_array);
+}
+
+
+if (urls.length > 0) {
+
+//var time = new Date();
+fun_產生圖片();
+setTimeout(function() {
+
+}, 30);
+
+
+/*var int_毫秒 = (new Date()).getTime() - time.getTime();
+var s_輸出時間差 = (int_毫秒 / 1000) + "秒";
+alert(s_輸出時間差);*/
+
+} else {
+get_Id("div_imgs").innerHTML =
+"<div style='color:#FFF;background:rgba(0,0,0,0.5);padding:20px;margin:20px'>" +
+"<h1>未檢測到圖片</h1>" +
+"<h2>大量瀏覽模式可以解析的格式包含：jpg、png、gif、bmp、tif、svg</h2>" +
+"</div>";
+}
+
+
+main();
+
+
+
+
+///
+///
+///
+function fun_產生圖片() {
+
+//捲動至最上面
+window.document.documentElement.scrollTop = 0;
+window.document.body.scrollTop = 0;
+
+//根據上一次的設定回復『無間距模式』的選項
+var cookie_noSpacing = getCookie("noSpacing");
+if (cookie_noSpacing != "") {
+s_noSpacing = cookie_noSpacing;
+fun_noSpacing(s_noSpacing);
+}
+
+
+//上一次的背景顏色
+/*var bac_color = getCookie("bac_color");
+if (bac_color != "") {
+set_bac_color(bac_color);
+}*/
+
+
+//回到以上一選擇的『鎖定寬度』
+var wid_ra = getCookie("wid_ra");
+var wid_o = getCookie("wid_o");
+if (wid_ra == "") { wid_ra = "0" }
+if (wid_o == "") { wid_o = "r2-0" }
+try {
+fun_wid(wid_ra, wid_o);
+} catch (e) {
+fun_wid("0", "r2-0");
+}
+
+
+
+/*
+//如果只有一張圖片，就顯示預設一欄
+if (urls.length == 1) {
+fun_col("1", "r1");
+} else {*/
+
+//根據上一次的設定回復圖片的『欄』
+var cookie_col = getCookie("col");
+
+if (cookie_col != "") {
+fun_col(cookie_col, "r" + cookie_col);
+} else {
+fun_col("4", "r4");
+}
+//}
+
+var s_sum = "";
+s_sum += ("<div class='div_page'>");
+
+for (var i = 0; i < urls.length; i++) {
+
+//網址（如果是本地圖片就在前面加上【file:///】
+var src = (urls[i].substring(0, 4).toUpperCase() == "HTTP") ? urls[i] : "file:///" + urls[i];
+
+//檔名
+//var s_title = decodeURIComponent(urls[i]);//從網址編碼轉回原本的字串
+//s_title = s_title.substring(s_title.lastIndexOf("/") + 1);
+
+//檔名
+var s_title = urls[i];
+try {
+s_title = decodeURIComponent(urls[i]);//從網址編碼轉回原本的字串
+} catch (eee) { }
+s_title = s_title.substring(s_title.lastIndexOf("/") + 1);
+try {
+s_title = decodeURIComponent(s_title);
+} catch (eee) { }
+s_title = s_title.substring(s_title.lastIndexOf("\\") + 1);
+
+if (i < 40) {
+s_sum += (
+"<div class='sp_box'><span class='sp'>" +
+"<div class='tit'>" +
+"<a  class='open_url' ></a>" +
+"<div class='no'>" + (i + 1) + "</div>" +
+"<div class='le'>" + "<div style='height=1px'></div>" +
+"<div class='wh' id='" + i + "'>---</div>" +
+"<input type='text'  value='" + s_title + "' readonly='readonly'>" +
+"</div>" +
+"</div>" +
+"<div class='cont'>" +
+"<img id='img_" + i + "' alt=\"" + src + "\" src=\"" + src + "\">" +
+"</div></span></div>"
+);
+} else {
+s_sum += (
+"<div class='sp_box'><span class='sp'>" +
+"<div class='tit'>" +
+"<a class='open_url' ></a>" +
+"<div class='no'>" + (i + 1) + "</div>" +
+"<div class='le'>" +
+"<div class='wh' id='" + i + "'>---</div>" +
+"<input type='text'  value='" + s_title + "' readonly='readonly'>" +
+"</div>" +
+"</div>" +
+"<div class='cont'>" +
+"<img id='img_" + i + "' alt=\"" + src + "\" >" +
+"</div></span></div>"
+);
+}
+
+urls[i] = src;
+
+if ((i + 1) % 40 == 0) {
+if (urls.length % 40 === 0 && i + 1 === urls.length) {
+} else {
+s_sum += ("</div><div class='div_page' style='display:none;'>");
+}
+}
+
+}//for
+
+s_sum += ("</div>");
+
+get_Id("div_imgs").innerHTML = s_sum;
+
+
+//處理所有圖片的事件
+for (var i = 0; i < urls.length; i++) {
+(function () {
+var x45 = i;
+document.getElementsByClassName("open_url")[i].addEventListener("click", function () {
+fun_open_file(urls[x45]);
+});
+document.getElementsByClassName("cont")[i].addEventListener("click", function (e) {
+if (e.button == 1) {//避免IE9滑鼠滾輪按下去也執行
+return;
+}
+fun_open_imgbox(x45);
+});
+get_Id("img_" + x45).addEventListener("load", function () {
+d(get_Id("img_" + x45), x45);
+});
+})()
+}
+
+fun_初始_換頁事件();
+}
+
+
+</script>
+
+
+<script>
+//重新整理後，捲動至最上面
+window.onbeforeunload = function () {
+window.scrollTo(0, 0);
+}
+</script>
+
+
+<script>
+(function (i, s, o, g, r, a, m) {
+i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+(i[r].q = i[r].q || []).push(arguments)
+}, i[r].l = 1 * new Date(); a = s.createElement(o),
+m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-56186804-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</body>
+
+</html>

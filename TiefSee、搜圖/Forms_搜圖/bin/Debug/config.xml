@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+
+
+	<!--會優先使用第一個，如果第一個不存在就是用第二個，以此類推-->
+	<item name="預設瀏覽器">
+	
+		<path>C:\Program Files (x86)\Mozilla Firefox\firefox.exe</path>
+		<path>C:\Program Files\Mozilla Firefox\firefox.exe</path>
+		
+		<path>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</path>
+		<path>C:\Program Files\Google\Chrome\Application\chrome.exe</path>
+			
+		<path>C:\Program Files (x86)\Opera\launcher.exe</path>
+		<path>C:\Program Files\Opera\launcher.exe</path>
+		
+		<path>C:\Program Files\Internet Explorer\iexplore.exe</path>
+	
+	</item>
+
+
+</settings>

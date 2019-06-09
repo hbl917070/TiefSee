@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+
+
+	<!-- 進階設定，修改完後需要重新啟動 TiefSee 才會生效 -->
+	
+	
+	<!-- 預設瀏覽器 -->
+	<!--
+		1.需要用到瀏覽器的地方。例如：線上搜圖、開啟說明、用瀏覽器開啟大量瀏覽模式		
+		2.會優先使用第一個，如果第一個不存在就是用第二個，以此類推
+	-->
+	<item name="預設瀏覽器">
+
+		<path>C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</path>
+		<path>C:\Program Files\Google\Chrome\Application\chrome.exe</path>
+
+		<path>C:\Program Files (x86)\Mozilla Firefox\firefox.exe</path>
+		<path>C:\Program Files\Mozilla Firefox\firefox.exe</path>
+					
+		<path>C:\Program Files (x86)\Opera\launcher.exe</path>
+		<path>C:\Program Files\Opera\launcher.exe</path>
+		
+		<path>C:\Program Files\Internet Explorer\iexplore.exe</path>
+	
+	</item>
+
+	
+	
+	<!-- 使用外部程式開啟圖片 -->
+	<!-- 	
+		有兩種模式：
+		1.【type="absolute"】 直接輸入程式的絕對路徑
+		2.【type="start_menu"】 會從windows的開始選單裡面搜尋包含特定關鍵字的程式
+
+		補充：
+		1.如果檔案不存在就會被無視
+		2.列表的順序會跟這裡的順序一樣
+		3.不區分大小寫
+	-->
+	<item name="使用其他程式開啟">
+	
+		<!-- 絕對路徑 -->
+		<path type="absolute" name="小畫家">C:\Windows\system32\mspaint.exe</path>			
+		<path type="absolute" name="Google Chrome">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</path>
+		<path type="absolute" name="Google Chrome">C:\Program Files\Google\Chrome\Application\chrome.exe</path>
+	
+	
+		<!-- 搜尋【開始選單】裡面的程式，輸入局部關鍵字即可，不用輸入完整路徑或完整名稱 -->
+		<path type="start_menu">photoshop</path>
+		<path type="start_menu">illustrator</path>		
+		<path type="start_menu">Lightroom</path>
+		<path type="start_menu">Paint</path>
+		<path type="start_menu">photo</path>
+		<path type="start_menu">gimp</path>
+		<path type="start_menu">FireAlpaca</path>
+		<path type="start_menu">openCanvas</path>
+		<path type="start_menu">SAI</path>
+		<path type="start_menu">Pixia</path>
+		<path type="start_menu">AzPainter2</path>
+		<path type="start_menu">CorelDRAW</path>
+		<path type="start_menu">Krita</path>
+		<path type="start_menu">Artweaver</path>
+		<path type="start_menu">Lightroom</path>
+		<path type="start_menu">Perfect Effects</path>
+		<path type="start_menu">Artweaver</path>
+				
+		<path type="start_menu">Honeyview</path>
+		<path type="start_menu">ACDSee</path>
+		<path type="start_menu">IrfanView</path>
+		<path type="start_menu">XnView</path>
+		<path type="start_menu">FastStone</path>
+		<path type="start_menu">Hamana</path>
+		<path type="start_menu">Vieas</path>
+		<path type="start_menu">FreeVimager</path>
+		<path type="start_menu">Imagine</path>
+		<path type="start_menu">XnConvert</path>
+		<path type="start_menu">FotoSketcher</path>
+		<path type="start_menu">PhoXo</path>
+
+	</item>
+	
+
+</settings>

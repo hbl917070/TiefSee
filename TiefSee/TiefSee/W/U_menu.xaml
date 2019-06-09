@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="TiefSee.W.U_menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TiefSee.W"
+             mc:Ignorable="d"
+             xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+             d:DesignHeight="300"
+             d:DesignWidth="300">
+
+    <Popup x:Name="popup_選單"
+           AllowsTransparency="True">
+        <Grid x:Name="popup_選單_容器"
+              MinWidth="30"
+              MinHeight="30">
+
+
+
+            <Path Stretch="Fill"
+                  Fill="{DynamicResource sol_淺藍40}"
+                  Data="F1 M 248.646,-63.603L 261.875,-55.5208L 275.104,-47.4386L 248.646,-47.4386L 222.188,-47.4386L 235.417,-55.5208L 248.646,-63.603 Z "
+                  Width="10"
+                  Height="5"
+                  VerticalAlignment="Top"
+                  Margin="0"
+                  Visibility="Collapsed" />
+
+
+
+            <Border BorderBrush="{DynamicResource sol_淺藍40}"
+                    CornerRadius="0"
+                    BorderThickness="1.5"
+                    Margin="4">
+                <Border.Effect>
+                    <BlurEffect Radius="5" />
+                </Border.Effect>
+            </Border>
+
+            <Border Margin="5"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource sol_淺藍40}"
+                    CornerRadius="0"
+                    Background="#CC000000" />
+            <ScrollViewer Margin="5,15"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="st_容器"
+                            Panel.ZIndex="5"
+                            fw:PointerTracker.Enabled="True"
+                            Background="#00000000" />
+
+            </ScrollViewer>
+
+        </Grid>
+
+    </Popup>
+</UserControl>
