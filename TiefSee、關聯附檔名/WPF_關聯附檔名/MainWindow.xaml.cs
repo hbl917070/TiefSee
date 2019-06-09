@@ -67,7 +67,7 @@ namespace WPF_關聯附檔名 {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click_AssociateFilenameExtension(object sender, RoutedEventArgs e) {
+        private void Button_Click_AssociateFilenameEx(object sender, RoutedEventArgs e) {
 
             if (File.Exists(s_appPath) == false) {
                 MessageBox.Show($"關聯失敗，找不到 {s_appName} 的路徑：\n({s_appPath})。", String.Empty, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -76,13 +76,13 @@ namespace WPF_關聯附檔名 {
 
             string[] ar_副檔名 = t_副檔名.Text.Split('\n');
 
-            StringBuilder s_invalidFilenameExtensionsInformation = new StringBuilder();
+            StringBuilder s_invalidFilenameExInfo = new StringBuilder();
             try {
                 for (int i = 0; i < ar_副檔名.Length; ++i) {
                     ar_副檔名[i] = ar_副檔名[i].Trim(); //其實，副檔名可以前綴空白字元 ' '，這裡卻移除了空白字元的前綴
-                    if (IsInvalidFilenameExtension(ar_副檔名[i])) {
-                        s_invalidFilenameExtensionsInformation.AppendLine($"第 {i + 1} 行：「{ar_副檔名[i]}」");
-                    } else if (s_invalidFilenameExtensionsInformation.Length == 0) {
+                    if (IsInvalidFilenameEx(ar_副檔名[i])) {
+                        s_invalidFilenameExInfo.AppendLine($"第 {i + 1} 行：「{ar_副檔名[i]}」");
+                    } else if (s_invalidFilenameExInfo.Length == 0) {
                         // 確定沒有含有無效的副檔名，下段陳述式才有執行意義
                         ar_副檔名[i] = ar_副檔名[i].ToLower();
                         if (ar_副檔名[i][0] != '.')
@@ -94,8 +94,9 @@ namespace WPF_關聯附檔名 {
                 // 就算發生，則一定是包含無效的副檔名，結果便是關聯失敗
             }
             // 無效副檔名的資訊，其字串的長度表示了，是否含有無效副檔名
-            if (s_invalidFilenameExtensionsInformation.Length != 0) {
-                MessageBox.Show($"關聯失敗，無效的副檔名：\n{s_invalidFilenameExtensionsInformation.ToString()}", String.Empty, MessageBoxButton.OK, MessageBoxImage.Error);
+            // 一旦含有無效副檔名，其他有效副檔名，似乎也是不可靠
+            if (s_invalidFilenameExInfo.Length != 0) {
+                MessageBox.Show($"關聯失敗，無效的副檔名：\n{s_invalidFilenameExInfo.ToString()}", String.Empty, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -122,8 +123,8 @@ namespace WPF_關聯附檔名 {
 
                 // 登錄哪一些副檔名預設使用 TiefSee 開啟
                 foreach (var item in ar_副檔名) {
-                    using (var reg_filenameExtension = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{item}")) {
-                        reg_filenameExtension.SetValue(String.Empty, s_appName, RegistryValueKind.String);
+                    using (var reg_filenameEx = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{item}")) {
+                        reg_filenameEx.SetValue(String.Empty, s_appName, RegistryValueKind.String);
                     }
                 }
 
@@ -164,8 +165,8 @@ namespace WPF_關聯附檔名 {
                     reg_appSupportedTypes.SetValue($"{item}", String.Empty, RegistryValueKind.String);
 
                 foreach (var item in ar_副檔名) {
-                    using (var reg_filenameExtension = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{item}")) {
-                        reg_filenameExtension.SetValue(String.Empty, s_appName, RegistryValueKind.String);
+                    using (var reg_filenameEx = Registry.CurrentUser.CreateSubKey($@"Software\Classes\{item}")) {
+                        reg_filenameEx.SetValue(String.Empty, s_appName, RegistryValueKind.String);
                     }
                 }
 
@@ -195,7 +196,7 @@ namespace WPF_關聯附檔名 {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click_DisassociateFilenameExtansion(object sender, RoutedEventArgs e) {
+        private void Button_Click_DisassociateFilenameEx(object sender, RoutedEventArgs e) {
 
             try {
 
@@ -226,20 +227,20 @@ namespace WPF_關聯附檔名 {
         /// <summary>
         /// 檢查副檔名是否無效（副檔名的內容可以含有前綴 '.'，也可以不含有，無視大小寫）
         /// </summary>
-        /// <param name="s_filenameExtendsion"></param>
+        /// <param name="s_filenameEx"></param>
         /// <returns>「無效」則傳回 ture</returns>
-        private static bool IsInvalidFilenameExtension(string s_filenameExtendsion) {
+        private static bool IsInvalidFilenameEx(string s_filenameEx) {
 
             // Windows 下檔名的無效字元: '\0', '\u0001'... '\u001f', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '"', '*', '/', ':', '<', '>', '?', '\\', '|'
             var ar_invalidFileNameChars = Path.GetInvalidFileNameChars();
 
             // 不允許檔案類型的副檔名，包含空的副檔名
-            Regex pattern_invalidFilenameExtension = new Regex(@"\A\.?(|exe|bat)\z", RegexOptions.IgnoreCase);
+            Regex pattern_invalidFilenameEx = new Regex(@"\A\.?(|exe|bat)\z", RegexOptions.IgnoreCase);
             
-            return s_filenameExtendsion == null
-                || s_filenameExtendsion.LastIndexOf('.') > 0 //若含有 '.'，則僅限前綴
-                || s_filenameExtendsion.IndexOfAny(ar_invalidFileNameChars) > -1
-                || pattern_invalidFilenameExtension.IsMatch(s_filenameExtendsion);
+            return s_filenameEx == null
+                || s_filenameEx.LastIndexOf('.') > 0 //若含有 '.'，則僅限前綴
+                || s_filenameEx.IndexOfAny(ar_invalidFileNameChars) > -1
+                || pattern_invalidFilenameEx.IsMatch(s_filenameEx);
 
         }
     }

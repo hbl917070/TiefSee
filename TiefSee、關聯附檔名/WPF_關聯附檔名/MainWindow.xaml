@@ -40,7 +40,7 @@
                         Content="套用關聯"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Click="Button_Click_AssociateFilenameExtension"
+                        Click="Button_Click_AssociateFilenameEx"
                         FontSize="18"
                         Padding="5"
                         Margin="0,5,0,0" />
@@ -68,7 +68,7 @@
                         Content="解除關聯"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
-                        Click="Button_Click_DisassociateFilenameExtansion"
+                        Click="Button_Click_DisassociateFilenameEx"
                         FontSize="18"
                         Padding="5"
                         Margin="0,5,0,0" />
