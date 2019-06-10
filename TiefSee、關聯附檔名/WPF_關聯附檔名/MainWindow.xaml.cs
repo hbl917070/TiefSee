@@ -32,9 +32,11 @@ namespace WPF_關聯附檔名 {
             InitializeComponent();
 
             try {
-                
                 s_appPath = System.AppDomain.CurrentDomain.BaseDirectory;
                 s_appPath = Regex.Replace(s_appPath, @"([^\\]+\\+){2}\z", $"{s_appName}.exe"); //最後兩層資料夾的路徑名稱，以此置換
+#if DEBUG
+                s_appPath = $@"D:\Program Files\TiefSee\{s_appName}.exe";
+#endif
                 if (File.Exists(s_appPath) == false)
                     MessageBox.Show($"找不到 {s_appName} 的路徑：\n({s_appPath})。", String.Empty, MessageBoxButton.OK, MessageBoxImage.Error);
 

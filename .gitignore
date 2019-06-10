@@ -359,3 +359,6 @@ MigrationBackup/
 !Newtonsoft.Json.dll
 !WpfAnimatedGif.dll
 !LiaoWenHong.pfx
+
+# 再忽視
+/TiefSee、關聯附檔名/bin/
