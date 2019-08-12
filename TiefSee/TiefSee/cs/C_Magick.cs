@@ -34,7 +34,7 @@ namespace TiefSee.cs {
         /// <returns></returns>
         public MagickImage getImg(String inputPath, String type) {
 
-
+            MagickImage mmm = null;
 
             if (M.c_影像.func_判斷_RAW(type)) {
 
@@ -53,27 +53,20 @@ namespace TiefSee.cs {
                         st.CopyTo(memoryStream);
                         memoryStream.Position = 0;
 
-                        MagickImage mmm = null;
-
                         if (type == "X3F") {
                             mmm = new MagickImage(new System.Drawing.Bitmap(memoryStream));
-
                         } else {
                             mmm = new MagickImage((memoryStream));
                         }
 
-
-
-
-                        return mmm;
                     }
                 } catch (Exception e) {
 
-                    System.Console.WriteLine("MagickImage錯誤" + e.ToString());
+                    Log.print("MagickImage錯誤" + e.ToString());
                 }
 
 
-            }
+            } else
 
 
 
@@ -82,7 +75,7 @@ namespace TiefSee.cs {
 
                 //raw。必須從stream讀取圖片，不然會有BUG
                 using (FileStream logFileStream = new FileStream(inputPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)) {
-                    return new MagickImage(logFileStream);
+                    mmm = new MagickImage(logFileStream);
                 }
 
             } else if (type == "PDF" || type == "SVG" || type == "AI" || type == "WMF" || type == "EMF") {
@@ -90,14 +83,33 @@ namespace TiefSee.cs {
                 //設定輸出的解析度，用於向量圖片(svg、ai、pdf
                 MagickReadSettings settings = new MagickReadSettings();
                 settings.Density = new Density(300, 300);
-                return new MagickImage(inputPath, settings);
+                mmm = new MagickImage(inputPath, settings);
 
             } else {
 
                 //一般       
-                return new MagickImage(inputPath);
+                mmm = new MagickImage(inputPath);
 
             }
+
+
+            //矯正顏色
+            // Adding the second profile will transform the colorspace from CMYK to RGB
+            if (mmm.GetColorProfile() != null) {
+                if (mmm.GetColorProfile().Model != null) {
+                    mmm.AddProfile(ColorProfile.SRGB);
+                } else {
+
+                }
+            } else {
+
+                mmm.AddProfile(ColorProfile.SRGB);
+            }
+
+
+
+
+            return mmm;
         }
 
 

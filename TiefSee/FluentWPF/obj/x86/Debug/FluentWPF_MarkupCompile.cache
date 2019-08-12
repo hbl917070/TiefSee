@@ -1,10 +1,10 @@
 ﻿FluentWPF
-2.7.4.2
+3.0.2.0
 
 library
 C#
 .cs
-C:\Users\WEN\Desktop\wpf_core_t\TiefSee\FluentWPF\obj\x86\Debug\
+D:\GitHub\TiefSee\TiefSee\FluentWPF\obj\x86\Debug\
 FluentWPF
 none
 false
@@ -12,9 +12,9 @@ DEBUG;TRACE
 
 21251479883
 
-62132006442
+7-748108149
 15-1207502999
 Styles\Button.xaml;Styles\Controls.xaml;
 
-False
+True
 

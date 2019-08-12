@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TiefSee.W"
              mc:Ignorable="d"
              Background="#00000000"
-             ToolTipService.InitialShowDelay="1500">
+             ToolTipService.InitialShowDelay="1000">
 
 
     <Button x:Name="but"

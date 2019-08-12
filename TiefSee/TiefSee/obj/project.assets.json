@@ -20,7 +20,7 @@
           "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
         }
       },
-      "FluentWPF/3.0.1": {
+      "FluentWPF/3.0.2": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
@@ -34,7 +34,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.2/win7-x86": {
+    ".NETFramework,Version=v4.6.2/win7-x64": {
       "JetBrains.Annotations/2018.3.0": {
         "type": "package",
         "compile": {
@@ -53,7 +53,7 @@
           "lib/net45/Microsoft.Xaml.Behaviors.dll": {}
         }
       },
-      "FluentWPF/3.0.1": {
+      "FluentWPF/3.0.2": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
@@ -103,7 +103,7 @@
         "microsoft.xaml.behaviors.wpf.nuspec"
       ]
     },
-    "FluentWPF/3.0.1": {
+    "FluentWPF/3.0.2": {
       "type": "project",
       "path": "../FluentWPF/FluentWPF.csproj",
       "msbuildProject": "../FluentWPF/FluentWPF.csproj"
@@ -111,7 +111,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.2": [
-      "FluentWPF >= 3.0.1",
+      "FluentWPF >= 3.0.2",
       "JetBrains.Annotations >= 2018.*",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.*"
     ]
@@ -121,7 +121,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "3.0.1",
+    "version": "3.0.2",
     "restore": {
       "projectUniqueName": "D:\\GitHub\\TiefSee\\TiefSee\\TiefSee\\TiefSee.csproj",
       "projectName": "TiefSee",
@@ -181,7 +181,7 @@
       }
     },
     "runtimes": {
-      "win7-x86": {
+      "win7-x64": {
         "#import": []
       }
     }

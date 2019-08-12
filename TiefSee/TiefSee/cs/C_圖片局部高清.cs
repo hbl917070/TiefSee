@@ -36,13 +36,14 @@ namespace TiefSee {
 
             DateTime time_避免捲動中算圖 = DateTime.Now;//
 
-           
+
 
             //-------------
 
             new Thread(() => {
 
                 while (bool_程式運行中) {
+         
 
                     //-------------
 
@@ -56,6 +57,11 @@ namespace TiefSee {
                     if (bool_啟動局部高清 == false) {
                         s_path = "";
                         continue;
+                    }
+
+                    //避免同一張圖片重新載入後，就失去局部高清的功能
+                    if (image_局部高清 == null) {
+                        s_path = "";
                     }
 
                     //在程式預設開啟的資料夾不啟用
@@ -144,8 +150,6 @@ namespace TiefSee {
 
                         } catch {
 
-                       
-
                             s_path = "";
                             bool_重新繪製 = false;
                             return;
@@ -171,11 +175,43 @@ namespace TiefSee {
                             if (File.Exists(ar_path[int_目前圖片位置])) {
 
                                 if (image_局部高清 == null) {
-                             
-                               
-                                    var im5 = new ImageMagick.MagickImage((ar_path[int_目前圖片位置]));
+
+
+
+
+                                    //MagickReadSettings mrs = new MagickReadSettings();
+                                    //mrs.ColorSpace = ColorSpace.scRGB;
+
+
+                                    MagickImage im5 = null;
                                     //
-                                    
+                                    try {
+                                        im5 = new MagickImage(ar_path[int_目前圖片位置]);
+
+                                    } catch (ImageMagick.MagickCorruptImageErrorException) {//某些BMP圖片會讀取失敗，所以先轉換成一般的 Bitmap
+
+                                        im5 = new MagickImage(new System.Drawing.Bitmap(ar_path[int_目前圖片位置]));
+                                    }
+
+
+                                    //矯正顏色
+                                    // Adding the second profile will transform the colorspace from CMYK to RGB
+                                    if (im5.GetColorProfile() != null ) {
+                                        if (im5.GetColorProfile().Model != null) {
+                                            //Log.print("***" + im5.GetColorProfile().Model + "***");
+                                            im5.AddProfile(ColorProfile.SRGB);
+                                        } else {
+                                           // Log.print("無 GetColorProfile().Model");
+                                        }
+                                    } else {
+                                        //Log.print("無2 GetColorProfile()");
+                                        im5.AddProfile(ColorProfile.SRGB);
+                                    }
+
+                                    //Log.print(im5.ColorSpace + "  " + im5.ColorType);
+
+
+
                                     //如果讀取完圖片後，使用者已經切換到其他圖片，就不要寫入到「image_局部高清」，直接解析新圖片
                                     if (int_目前圖片位置 < 0 || int_目前圖片位置 >= ar_path.Count || s_path != ar_path[int_目前圖片位置]) {
                                         image_局部高清 = null;
@@ -211,9 +247,9 @@ namespace TiefSee {
                                 s_path = "";
                                 continue;
                             }
-                        } catch {
+                        } catch (Exception e) {
                             s_path = "";
-                            System.Console.WriteLine("*******局部高清 失敗");
+                            Log.print("*******局部高清 失敗 " + e);
                             continue;
                         }
 
@@ -362,15 +398,13 @@ namespace TiefSee {
                         mg.Height = (int)(ii.Height * d_縮放倍率);
                         mg.Width = (int)(ii.Width * d_縮放倍率);
 
-                        DateTime time_start = DateTime.Now;//計時開始 取得目前時間
+                  
 
-                       
                         if (int_高品質成像模式 == 1 || int_高品質成像模式 == 4) {
                             ii.Resize(mg);//縮放圖片-快
                             if (d_縮放倍率 < 1) {
                                 ii.UnsharpMask(0.8, 0.8);//銳化-快速          
                             }
-                            //System.Console.WriteLine($"111111111");
                         }
 
                         if (int_高品質成像模式 == 2) {
@@ -379,22 +413,18 @@ namespace TiefSee {
                                 ii.RemoveWriteMask();//沒有獨立顯卡的電腦，必須用這個語法來延遲，避免圖片顯示不出來
                                 ii.UnsharpMask(0.8, 0.8);//銳化-快速 
                             }
-                            //System.Console.WriteLine($"2222222");
                         }
 
-                        if (int_高品質成像模式 == 3|| int_高品質成像模式 == 3) {
+                        if (int_高品質成像模式 == 3 || int_高品質成像模式 == 3) {
                             ii.Scale(mg);//縮放圖片-慢
                             if (d_縮放倍率 < 1) {
                                 ii.Sharpen();//銳化-慢
                             }
-                            //System.Console.WriteLine($"3333333");
                         }
 
-                        
-                        DateTime time_end = DateTime.Now;//計時結束 取得目前時間            
-                        string result2 = ((TimeSpan)(time_end - time_start)).TotalMilliseconds.ToString();//後面的時間減前面的時間後 轉型成TimeSpan即可印出時間差
-                        System.Console.WriteLine("+++++++++++++++++++++++++++++++++++" + result2 + " 毫秒");
-                        
+
+                      
+
 
                         //ii.Sample(ii.Width,ii.Height);//品質差，速度極快
                         //ii.Extent(mg);//意義不明
@@ -448,7 +478,7 @@ namespace TiefSee {
 
                         C_adapter.fun_UI執行緒(() => {
 
-                            MessageBox.Show("局部高清 錯誤 \n" + e.ToString());
+                            //MessageBox.Show("局部高清 錯誤 \n" + e.ToString());
 
                         });
 

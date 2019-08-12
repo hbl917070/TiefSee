@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../Sortable.min.js"></script>
+	
+</head>
+
+<body>
+
+    <style>
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            font-size: 16px;
+            font-family: "微軟正黑體", "Microsoft JhengHei", "黑體-繁", "蘋果儷中黑", sans-serif;
+            color: #FFF;
+        }
+
+        #content {
+            height: 100%;
+            width: 100%;
+            display: table;
+        }
+
+        #d_L {
+            background-color: rgb(37, 37, 38);
+            /* display: inline-block;
+            *display: inline;
+            *zoom: 1; */
+
+            height: 100%;
+            display: table-cell;
+            width: 1px;
+            white-space: nowrap;
+        }
+
+        #d_R {
+            background-color: rgb(30, 30, 30);
+            padding: 10px;
+            display: table-cell;
+
+        }
+
+        #tabs_01 {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .d_L_item {
+            padding: 10px;
+        }
+
+        .d_L_item:hover {
+            background-color: rgb(42, 45, 46)
+        }
+
+        .tabs_tit {
+            font-size: 20px;
+            /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
+        }
+
+        .tabs_con {
+            margin-bottom: 40px;
+            /* border-left: 5px solid rgba(255, 255, 255, 0.2); */
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+        }
+
+
+
+
+
+
+
+
+        /*switch 按鈕*/
+        .dom_switch {
+            height: 30px;
+            width: 50px;
+            background-color: rgb(0, 122, 204);
+            border-radius: 40px;
+            border: 2px solid rgb(0, 122, 204);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .dom_switch:hover {
+            /*游標*/
+            cursor: pointer;
+        }
+
+        .dom_switch::before {
+            border-radius: 40px;
+            height: 24px;
+            width: 24px;
+            background-color: rgb(255, 255, 255);
+            content: "";
+            display: block;
+            position: absolute;
+            left: 24px;
+            top: 3px;
+            transition: all 0.2s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .dom_switch[type="off"] {
+            background-color: rgb(190, 190, 190);
+            border-radius: 40px;
+            border: 2px solid rgb(116, 116, 116);
+        }
+
+        .dom_switch[type="off"]::before {
+            left: 3px;
+        }
+
+        .tool_item_box {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+
+        #tool_item_hide,
+        #tool_item_show {
+
+
+            border: 1px solid rgba(255, 255, 255, 0.36);
+            /* height:100%; */
+            min-height: 150px;
+            /* margin-left: 10px; */
+            box-sizing: border-box;
+            margin: 10px;
+            text-align: left;
+        }
+
+        .item {
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 5px;
+            padding: 5px;
+            cursor: move;
+        }
+    </style>
+
+    <script>
+
+        $(function () {
+
+            document.getElementById("ch_all").addEventListener("click", function () {
+                if (this.getAttribute("type") == "off") {
+                    this.setAttribute("type", "on");
+                } else {
+                    this.setAttribute("type", "off");
+                }
+            });
+        })
+
+
+
+    </script>
+
+    <div id="content">
+
+        <div id="d_L">
+            <div class="d_L_item">視窗主題</div>
+            <div class="d_L_item">視窗配置</div>
+            <div class="d_L_item">設為預設程式</div>
+            <div class="d_L_item">快速啟動</div>
+            <div class="d_L_item">其他</div>
+            <div class="d_L_item">關於</div>
+        </div>
+
+
+
+        <div id="d_R">
+
+
+
+            <div id="tabs_01">
+
+                <div class="tabs_tit">AERO 毛玻璃界面</div>
+                <div class="tabs_con">
+                    win7 或 win10 才有作用。此設定需重新啟動程式才會生效<br>
+                    <div id="ch_all" class="dom_switch" type="on"></div>
+                </div>
+
+
+                <div class="tabs_tit">視窗顏色</div>
+                <div class="tabs_con">
+                    <table>
+                        <tr>
+                            <td>標題列顏色</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>視窗顏色</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>外框顏色</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                    <br>
+                    套用預設顏色
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <div id="tabs_01">
+                <div class="tabs_tit">工具列顯示的按鈕</div>
+                <div class="tabs_con">
+
+                    <div style="overflow: hidden;">
+
+                        <table width="100%" style="text-align: center;">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+                        <div class="tool_item_box">
+                            顯示
+                            <div id="tool_item_show">
+                                <div class="item">111</div>
+                                <div class="item">22</div>
+                                <div class="item">333</div>
+                                <div class="item">444</div>
+                            </div>
+                        </div>
+                        <div class="tool_item_box">
+                            隱藏
+                            <div id="tool_item_hide">
+                                <div class="item">111</div>
+                                <div class="item">22</div>
+                                <div class="item">333</div>
+                                <div class="item">444</div>
+                            </div>
+                        </div>
+
+
+
+                        <div style="width:0%; float:left;height:1px;"></div>
+
+
+                    </div>
+
+
+
+                    <script>
+                        var example1 = document.getElementById("tool_item_show");
+                        new Sortable(example1, {
+                            animation: 150,
+                            group: 'tool_item',
+                            ghostClass: 'blue-background-class'
+                        });
+                        var example2 = document.getElementById("tool_item_hide");
+                        new Sortable(example2, {
+                            animation: 150,
+                            group: 'tool_item',
+                            ghostClass: 'blue-background-class'
+                        });
+                    </script>
+
+                </div>
+
+                <div class="tabs_tit">大型上下一張按鈕</div>
+                <div class="tabs_con">
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div id="tabs_01">
+                <div class="tabs_tit">設為預設開啟圖片的程式</div>
+                <div class="tabs_con">
+
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="div_nub">
+                                    1
+                                </div>
+                            </td>
+                            <td>
+                                把 Tiefsee 關聯到特定的檔案類型，讓 Tiefsee 變成預設開啟圖片的程式
+                                <br>
+                                <button>設定圖片關聯</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="div_nub">
+                                    2
+                                </div>
+                            </td>
+                            <td>
+                                （win10 才需要進行第二步）
+                                <br>
+                                開啟 Windows系統設定，將「相片檢視器」設定為 Tiefsee
+                                <br>
+                                <button>開啟 Windows設定</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+
+
+            <div id="tabs_01">
+                <div class="tabs_tit">快速啟動</div>
+                <div class="tabs_con">
+                    讓程式常駐在背景，能夠提升開啟圖片的速度。
+                    <br>
+                    如需要關閉程式，在工作列右下角找到 Tiefsee 圖示，滑鼠右鍵點擊「結束快速啟動」
+                </div>
+
+                <div class="tabs_tit">開機自動啟動</div>
+                <div class="tabs_con">
+                    電腦開機後，讓 Tiefsee 常駐在背景時，快速預覽
+                    <br>
+                    <br>
+
+                    開啟 Windows 的「啟動資料夾」<br>
+                    <button>開啟資料夾</button>
+                </div>
+
+                <div class="tabs_tit">快速預覽圖片</div>
+                <div class="tabs_con">
+                    當 Tiefsee 常駐在背景時，快速預覽 桌面、資料夾、資源回收桶 裡面的圖片
+                    <br>
+                    長按「鍵盤空白鍵」時啟用
+                    <br>
+                    長按「滑鼠滾輪」時啟用
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <div id="tabs_01">
+                <div class="tabs_tit">滑鼠滾輪</div>
+                <div class="tabs_con">
+                    設定滑鼠回應的操作
+                </div>
+
+                <div class="tabs_tit">GIF渲染模式</div>
+                <div class="tabs_con">
+                    GDI：開啟GIF圖片速度快，但程式的背景無法透明化
+                    DirectX：開啟GIF依然能維持透明的程式視窗，但開啟GIF圖片的速度較慢，也更耗費記憶體
+
+                </div>
+
+                <div class="tabs_tit">高品質成像-硬體加速</div>
+                <div class="tabs_con">
+                    如果圖片出現破圖或無法顯示的情況，請改用「模式2」
+                    如果程式會閃退，請使用「模式3」
+                    如果連「模式3」也會閃退，那就使用「模式4」
+                    模式1：GUP運算，速度最快
+                    模式2：GPU運算，速度此塊
+                    模式3：CPU運算，速度普通
+                    模式4：完全關閉硬體加速
+                </div>
+
+                <div class="tabs_tit">清理大量瀏覽模式的 cookies</div>
+                <div class="tabs_con">
+                    如果「大量瀏覽模式」有無法讀取圖片的想象，可以嘗試清除cookies
+                    <button>清除</button>
+                </div>
+
+                <div class="tabs_tit">就改進階設定</div>
+                <div class="tabs_con">
+
+                </div>
+            </div>
+
+
+            <div id="tabs_01">
+                <div class="tabs_tit"></div>
+                <div class="tabs_con">
+
+
+
+                    <table>
+                        <tr>
+                            <td>程式版本</td>
+                            <td>3.0.1
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>作者</td>
+                            <td>LIAO, WEN-HONG</td>
+                        </tr>
+                        <tr>
+                            <td>巴哈姆特</td>
+                            <td>hbl917070（深海異音）</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>hbl917070@gmail.com</td>
+                        </tr>
+                    </table>
+
+                    討論區
+
+
+                    官方網站
+                    作者巴哈
+                    下載Pixiv動圖教學
+
+                    <button></button>
+                    <button>開啟 </button>
+                    <button></button>
+                    <button></button>
+                    <button></button>
+                </div>
+
+
+
+
+            </div>
+
+
+            <!-- <div id="tabs_01">
+                <div class="tabs_tit"></div>
+                <div class="tabs_con">
+
+                </div>
+
+                <div class="tabs_tit"></div>
+                <div class="tabs_con">
+
+                </div>
+
+
+            </div> -->
+
+
+
+
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

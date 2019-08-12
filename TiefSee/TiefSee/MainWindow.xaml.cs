@@ -36,7 +36,7 @@ namespace TiefSee {
     /// </summary>
     public partial class MainWindow : Window {
 
-        public String s_程式版本 = "3.0.1";
+        public String s_程式版本 = "3.0.2";
 
         bool bool_直接開啟大量瀏覽模式 = false;
         public int int_高品質成像模式 = 1;
@@ -233,7 +233,7 @@ namespace TiefSee {
                 tim.Start();
 
                 this.Closing += (sender, e) => {
-                    System.Console.WriteLine("關閉「快速啟動」");
+                    Log.print("關閉「快速啟動」");
                     //GlobalHook.HookManager.KeyUp -= HookManager_KeyUp;
                     //GlobalHook.HookManager.KeyDown -= HookManager_KeyDown;
                     tim.Stop();
@@ -782,6 +782,8 @@ namespace TiefSee {
         /// </summary>
         public void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
 
+
+
             if (w_設定 != null) {
                 w_設定.Close();
             }
@@ -789,21 +791,31 @@ namespace TiefSee {
             if (c_排序 != null)
                 c_排序.func_儲存與優化排序();
 
-            //如果沒有啟用「快速啟動」，就刪除捷徑
-            if (_bool_快速啟動 == false) {
-                W_設定.func_新增或刪除開機自動啟動捷徑(false);
-            }
+
+
 
             int_視窗執行數量 -= 1;
             bool_程式運行中 = false;
 
-            if (c_set != null) {
-                c_set.fun_儲存setting();
-                c_set.fun_儲存_position(false);
+
+            if (bool_空白鍵預覽的視窗 == false) {//如果是快速預覽的視窗，就不儲存設定值
+
+                //如果沒有啟用「快速啟動」，就刪除捷徑
+                if (_bool_快速啟動 == false) {
+                    W_設定.func_新增或刪除開機自動啟動捷徑(false);
+                }
+
+                if (c_set != null) {
+                    c_set.fun_儲存setting();
+                    c_set.fun_儲存_position(false);
+                }
             }
 
             if (c_localhost != null)
                 c_localhost.fun_end();
+
+
+
 
             // 1 表示只剩下快速啟動，所以清理記憶體
             //if (int_視窗執行數量 == 1) {
@@ -1140,7 +1152,38 @@ namespace TiefSee {
                 func_開啟下一資料夾(1);
                 e.Handled = true;
 
+            } else if (k == Key.PageUp || k2 == Key.PageUp) {
+
+                func_開啟下一資料夾(0);
+                e.Handled = true;
+
+            } else if (k == Key.PageDown || k2 == Key.PageDown) {
+
+                func_開啟下一資料夾(1);
+                e.Handled = true;
+
+            } else if (k == Key.Home || k2 == Key.Home) {
+
+                func_第一張圖片();
+                e.Handled = true;
+
+            } else if (k == Key.End || k2 == Key.End) {
+
+                func_最後一張圖片();
+                e.Handled = true;
+
+            } else if (k == Key.NumPad0 || k2 == Key.NumPad0 || k == Key.D0 || k2 == Key.D0) {
+
+                func_檢視原始大小();
+                e.Handled = true;
+
+            } else if (k == Key.Tab || k2 == Key.Tab) {
+
+                func_顯示或隱藏exif視窗("auto");
+                e.Handled = true;
+
             }
+
 
         }
 
@@ -1215,7 +1258,25 @@ namespace TiefSee {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public void func_第一張圖片() {
+            if (ar_path.Count == 0)
+                return;
+            int_目前圖片位置 = 0;
+            fun_顯示圖片(ar_path[int_目前圖片位置]);
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public void func_最後一張圖片() {
+            if (ar_path.Count == 0)
+                return;
+            int_目前圖片位置 = ar_path.Count - 1;
+            fun_顯示圖片(ar_path[int_目前圖片位置]);
+        }
 
         /// <summary>
         /// 
@@ -1223,7 +1284,6 @@ namespace TiefSee {
         public void fun_上一張() {
             if (ar_path.Count == 0)
                 return;
-            //s_局部高清_處理方式 = DateTime.Now.AddSeconds(-99);
             int_目前圖片位置--;
             if (int_目前圖片位置 < 0) {
                 int_目前圖片位置 = ar_path.Count - 1;
@@ -1238,7 +1298,6 @@ namespace TiefSee {
         public void fun_下一張() {
             if (ar_path.Count == 0)
                 return;
-            //s_局部高清_處理方式 = DateTime.Now.AddSeconds(-99);
             int_目前圖片位置++;
             if (int_目前圖片位置 > ar_path.Count - 1) {
                 int_目前圖片位置 = 0;
@@ -1299,21 +1358,15 @@ namespace TiefSee {
         /// </summary>
         public void fun_圖片全滿(bool bool_初始載入 = false) {
 
-
             if (w_web != null && s_img_type_顯示類型 == "WEB") {
-
-
 
                 if (bool_初始載入 == true && b2.ActualWidth > int_img_w && b2.ActualHeight > int_img_h) {
 
-                    //System.Console.WriteLine(b2.ActualWidth + "  " + int_img_w);
                     img_web.Document.InvokeScript("fun_檢視原始大小");
-
 
                 } else {
                     img_web.Document.InvokeScript("fun_100scale", new Object[] { });
                 }
-
 
                 return;
             }
@@ -1325,7 +1378,7 @@ namespace TiefSee {
 
 
 
-            double thisWidth = b2.ActualWidth;
+            double thisWidth = b2.ActualWidth;// 圖片最大縮放上限
 
 
             if (stackPanel_exif_box.Visibility == Visibility.Visible) {
@@ -1924,7 +1977,11 @@ namespace TiefSee {
 
                  */
                 if (e.Data.GetDataPresent(DataFormats.FileDrop)) {
-                    fun_開啟拖曳檔案的視窗();
+
+                    //如果滑鼠滾輪是處於按著的狀態，就不啟用
+                    if (System.Windows.Forms.Control.MouseButtons != System.Windows.Forms.MouseButtons.Middle) {
+                        fun_開啟拖曳檔案的視窗();
+                    }
                 } else {
                     e.Effects = DragDropEffects.None;
                 }

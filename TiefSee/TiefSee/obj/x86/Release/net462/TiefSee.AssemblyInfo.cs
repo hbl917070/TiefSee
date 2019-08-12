@@ -14,11 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2015 - 2019 LAIO, WEN-HONG")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("hbl917070(深海異音)")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("3.0.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("3.0.1.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("3.0.2.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("3.0.2.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("TiefSee")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TiefSee")]
-[assembly: System.Reflection.AssemblyVersionAttribute("3.0.1.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("3.0.2.0")]
 
 // 由 MSBuild WriteCodeFragment 類別產生。
 

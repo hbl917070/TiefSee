@@ -79,7 +79,7 @@ namespace TiefSee.W {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.1.0;component/w/u_menu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.2.0;component/w/u_menu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\W\U_menu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

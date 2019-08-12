@@ -136,7 +136,7 @@ namespace TiefSee.W {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.0.0;component/w/u_%e5%a4%a7%e9%87%8f%e7%80%8f%e8%a6%bd%e6%a8%a1%e5%" +
+            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.2.0;component/w/u_%e5%a4%a7%e9%87%8f%e7%80%8f%e8%a6%bd%e6%a8%a1%e5%" +
                     "bc%8f.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\W\U_大量瀏覽模式.xaml"

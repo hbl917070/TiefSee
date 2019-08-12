@@ -194,7 +194,7 @@
         <Style TargetType="TextBlock"
                x:Key="t_sub">
             <Setter Property="FontSize"
-                    Value="17"></Setter>
+                    Value="16"></Setter>
             <Setter Property="Foreground"
                     Value="White"></Setter>
             <Setter Property="TextWrapping"

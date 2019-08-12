@@ -62,7 +62,6 @@ D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_menu_item.g.cs
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_menu_main.g.cs
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_switch.g.cs
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_大量瀏覽模式.g.cs
-D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\W_message_delete.g.cs
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\W_拖曳開啟.g.cs
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\W_設定.g.cs
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\App.g.cs
@@ -78,7 +77,6 @@ D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_menu_item.baml
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_menu_main.baml
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_switch.baml
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\U_大量瀏覽模式.baml
-D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\W_message_delete.baml
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\W_拖曳開啟.baml
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\W\W_設定.baml
 D:\GitHub\TiefSee\TiefSee\TiefSee\obj\x86\Release\net462\TiefSee.g.resources

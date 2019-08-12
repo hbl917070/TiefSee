@@ -15,13 +15,13 @@
         <Company>hbl917070(深海異音)</Company>
         <Copyright />
         <ApplicationIcon>imgs\5.ico</ApplicationIcon>
-        <AssemblyVersion>3.0.0.0</AssemblyVersion>
+        <AssemblyVersion>3.0.2.0</AssemblyVersion>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <Description>hbl917070(深海異音)</Description>
         <SignAssembly>false</SignAssembly>
         <StartupObject>TiefSee.App</StartupObject>
-        <Version>3.0.0.1</Version>
-        <FileVersion>3.0.0.0</FileVersion>
+        <Version>3.0.2.0</Version>
+        <FileVersion>3.0.2.0</FileVersion>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
       <OutputPath />
@@ -67,7 +67,7 @@
         <HintPath>C:\Users\WEN\Desktop\wpf、windowchrome\wpf、windowchrome\bin\Debug\JetBrains.Annotations.dll</HintPath>
       </Reference>
       <Reference Include="Magick.NET-Q8-AnyCPU">
-        <HintPath>..\bin\Debug\TiefSee\net462\Magick.NET-Q8-AnyCPU.dll</HintPath>
+        <HintPath>C:\Users\WEN\Desktop\Magick.NET-Q8-AnyCPU.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.VisualBasic" />
       <Reference Include="Newtonsoft.Json">

@@ -54,7 +54,7 @@ namespace TiefSee.W {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.1.0;component/w/w_%e6%8b%96%e6%9b%b3%e9%96%8b%e5%95%9f.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.2.0;component/w/w_%e6%8b%96%e6%9b%b3%e9%96%8b%e5%95%9f.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\W\W_拖曳開啟.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

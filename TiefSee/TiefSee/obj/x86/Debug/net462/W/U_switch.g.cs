@@ -78,7 +78,7 @@ namespace TiefSee.W {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.0.0;component/w/u_switch.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TiefSee;V3.0.2.0;component/w/u_switch.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\W\U_switch.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

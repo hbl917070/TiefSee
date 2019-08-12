@@ -730,45 +730,7 @@
                                            BorderBrush="{DynamicResource sol_白}" />
 
                                 </Button>
-                                <!--<Button x:Name="but_exif2"
-                                    Style="{DynamicResource but_鎖}"
-                                    Width="35"
-                                    Height="35"
-                                    Margin="0"
-                                    ToolTip="檢視『EXIF資訊』"
-                                    DockPanel.Dock="Right"
-                                    Background="#00000000">
-                                <Viewbox HorizontalAlignment="Center"
-                                         VerticalAlignment="Center"
-                                         Height="26"
-                                         Width="26"
-                                         Margin="1,5,0,0">
-                                    <Canvas Width="48.041"
-                                            Height="49.2598">
-                                        <Path Width="5.33334"
-                                              Height="18.8893"
-                                              Canvas.Left="21.3535"
-                                              Canvas.Top="13.6816"
-                                              Stretch="Fill"
-                                              Fill="#FFFFFFFF"
-                                              Data="F1 M 24.0202,32.571C 22.5475,32.571 21.3535,31.377 21.3535,29.9043L 21.3535,16.3483C 21.3535,14.8756 22.5475,13.6816 24.0202,13.6816C 25.4929,13.6816 26.6869,14.8756 26.6869,16.3483L 26.6869,29.9043C 26.6869,31.377 25.4929,32.571 24.0202,32.571 Z " />
-                                        <Path Width="5.33334"
-                                              Height="5.33337"
-                                              Canvas.Left="21.3535"
-                                              Canvas.Top="6.57054"
-                                              Stretch="Fill"
-                                              Fill="#FFFFFFFF"
-                                              Data="F1 M 26.6869,9.2372C 26.6869,10.7099 25.493,11.9039 24.0202,11.9039C 22.5474,11.9039 21.3535,10.7099 21.3535,9.2372C 21.3535,7.76444 22.5474,6.57054 24.0202,6.57054C 25.493,6.57054 26.6869,7.76444 26.6869,9.2372 Z " />
-                                        <Path Width="48.041"
-                                              Height="49.2598"
-                                              Canvas.Left="0"
-                                              Canvas.Top="0"
-                                              Stretch="Fill"
-                                              Fill="#FFFFFFFF"
-                                              Data="F1 M 48.041,49.2598L 36.4994,39.0931L 10.5781,39.0931C 4.74545,39.0931 0,34.3483 0,28.515L 0,10.5782C 0,4.74545 4.74545,0 10.5781,0L 37.4629,0C 43.2962,0 48.041,4.74545 48.041,10.5782L 48.041,49.2598 Z M 10.5781,4C 6.95117,4 4,6.95118 4,10.5782L 4,28.515C 4,32.1426 6.95117,35.0931 10.5781,35.0931L 38.0098,35.0931L 44.041,40.4056L 44.041,10.5782C 44.041,6.95118 41.0905,4 37.4629,4L 10.5781,4 Z " />
-                                    </Canvas>
-                                </Viewbox>
-                            </Button>-->
+                           
                             </StackPanel>
                         </ScrollViewer>
                     </Border>
@@ -1026,7 +988,7 @@
                                  IsReadOnly="True"
                                  Width="270"
                                  BorderThickness="0"
-                                 FontSize="14"
+                                 FontSize="16"
                                  Margin="0,5,0,0" />
                         <Border Margin="0,10"
                                 Background="{DynamicResource sol_淺藍40}"
@@ -1273,7 +1235,7 @@
                              IsReadOnly="True"
                              Width="270"
                              BorderThickness="0"
-                             FontSize="14"
+                             FontSize="16"
                              Margin="0,5,0,0" />
                     <Border Margin="0,10,0,2"
                             Background="{DynamicResource sol_淺藍40}"
@@ -1332,12 +1294,12 @@
                                    Foreground="{DynamicResource sol_白}"
                                    Height="25"
                                    Width="25"
-                                   Margin="12,0,0,0" />
+                                   Margin="13,0,9,0" />
                             <Label Content="於瀏覽器開啟"
                                    Foreground="{DynamicResource sol_白}"
                                    VerticalAlignment="Center"
-                                   Padding="5,0"
-                                   FontSize="17" />
+                                   Padding="0,0,5,0"
+                                   FontSize="16" />
 
                         </StackPanel>
 
@@ -1357,12 +1319,12 @@
                                    Foreground="{DynamicResource sol_白}"
                                    Height="25"
                                    Width="25"
-                                   Margin="12,-5,0,0" />
+                                   Margin="13,-5,9,0" />
                             <Label Content="開啟資料夾"
                                    Foreground="{DynamicResource sol_白}"
                                    VerticalAlignment="Center"
-                                   Padding="5,0"
-                                   FontSize="17" />
+                                   Padding="0,0,5,0"
+                                   FontSize="16" />
 
                         </StackPanel>
 
@@ -1382,12 +1344,12 @@
                                    Foreground="{DynamicResource sol_白}"
                                    Height="25"
                                    Width="25"
-                                   Margin="12,0,0,0" />
+                                   Margin="13,0,9,0" />
                             <Label Content="全螢幕"
                                    Foreground="{DynamicResource sol_白}"
                                    VerticalAlignment="Center"
-                                   Padding="5,0"
-                                   FontSize="17" />
+                                   Padding="0,0,5,0"
+                                   FontSize="16" />
 
                         </StackPanel>
 
@@ -1407,12 +1369,12 @@
                                    Foreground="{DynamicResource sol_白}"
                                    Height="25"
                                    Width="25"
-                                   Margin="12,-2,0,0" />
+                                   Margin="13,-2,9,0" />
                             <Label Content="顯示或隱藏工具列"
                                    Foreground="{DynamicResource sol_白}"
                                    VerticalAlignment="Center"
-                                   Padding="5,0"
-                                   FontSize="17" />
+                                   Padding="0,0,5,0"
+                                   FontSize="16" />
 
                         </StackPanel>
 
@@ -1432,12 +1394,12 @@
                                    Foreground="{DynamicResource sol_白}"
                                    Height="25"
                                    Width="25"
-                                   Margin="12,0,0,0" />
+                                   Margin="13,0,9,0" />
                             <Label Content="設定"
                                    Foreground="{DynamicResource sol_白}"
                                    VerticalAlignment="Center"
-                                   Padding="5,0"
-                                   FontSize="17" />
+                                   Padding="0,0,5,0"
+                                   FontSize="16" />
 
                         </StackPanel>
 
@@ -1457,12 +1419,12 @@
                                    Foreground="{DynamicResource sol_白}"
                                    Height="25"
                                    Width="25"
-                                   Margin="12,0,0,0" />
+                                   Margin="13,0,9,0" />
                             <Label Content="結束大量瀏覽模式"
                                    Foreground="{DynamicResource sol_白}"
                                    VerticalAlignment="Center"
-                                   Padding="5,0"
-                                   FontSize="17" />
+                                   Padding="0,0,5,0"
+                                   FontSize="16" />
 
                         </StackPanel>
 
@@ -1477,7 +1439,6 @@
             <StackPanel Orientation="Vertical"
                         x:Name="popup_選單_右鍵_容器"
                         fw:PointerTracker.Enabled="True"
-                        
                         Background="#00000000">
                 <Grid>
 
@@ -1499,8 +1460,7 @@
                             Background="#CC000000" />
 
                     <StackPanel Margin="15"
-                                Panel.ZIndex="5"
-                             >
+                                Panel.ZIndex="5">
                         <UniformGrid Columns="5"
                                      Height="39"
                                      Margin="0">

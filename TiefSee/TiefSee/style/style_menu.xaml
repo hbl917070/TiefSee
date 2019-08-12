@@ -61,7 +61,7 @@
     <!--內部項目-->
     <Style TargetType="MenuItem">
         <Setter Property="FontSize"
-                Value="18"></Setter>
+                Value="16"></Setter>
         <Setter Property="Foreground"
                 Value="#ffffff"></Setter>
         <Setter Property="Height"

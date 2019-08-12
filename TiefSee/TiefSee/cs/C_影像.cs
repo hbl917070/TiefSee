@@ -393,7 +393,8 @@ namespace TiefSee {
         /// <returns></returns>
         private BitmapSource func_mi_回傳前壓縮圖片(ImageMagick.MagickImage im) {
 
-            if (im.Width > 2500 || im.Height > 2500) {//縮小圖片後在載入
+            //2500 
+            if (im.Width > M.b2.ActualWidth || im.Height > M.b2.ActualHeight) {//縮小圖片後在載入
                 using (ImageMagick.IMagickImage ii = im.Clone()) {
 
                     //計算縮放比例
@@ -454,17 +455,16 @@ namespace TiefSee {
 
                 if (M.image_局部高清 != null) {
                     M.image_局部高清.Dispose();
-
-
                 }
                 M.image_局部高清 = null;
                 M.image_局部高清 = im;
-                System.Console.WriteLine("特殊格式  局部高清 " + M.image_局部高清.Width);
-
+          
 
                 img_width = im.Width;
                 img_height = im.Height;
                 //M.fun_設定顯示圖片size(im.Width, im.Height); //設定UI界面顯示的寬高
+
+              
                 return func_mi_回傳前壓縮圖片(im);
             }
 
@@ -505,6 +505,8 @@ namespace TiefSee {
                     img_height = bd.Frames[0].PixelHeight;
                     //M.fun_設定顯示圖片size(bd.Frames[0].PixelWidth, bd.Frames[0].PixelHeight); //設定UI界面顯示的寬高
 
+
+                  
                     return bd.Frames[0];
                 }
 

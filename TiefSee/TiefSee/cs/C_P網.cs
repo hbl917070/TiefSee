@@ -148,11 +148,11 @@ namespace TiefSee.cs {
                     } catch { }
                 });
 
-                if (int_de < 16) {
-                    int_de = 16;
+                if (int_de < 10) {//最低切換延遲
+                    int_de = 10;
                 }
-                if (int_de > 1000) {
-                    int_de = 1000;
+                if (int_de > 5000) {//最高切換延遲
+                    int_de = 5000;
                 }
 
                 return int_de;

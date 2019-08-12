@@ -9,7 +9,7 @@
 
         <!--提示文字的延遲-->
         <Setter Property="ToolTipService.InitialShowDelay"
-                Value="1500" />
+                Value="1000" />
         
         <Setter Property="Focusable"
                 Value="False" />

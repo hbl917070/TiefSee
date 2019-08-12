@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -54,7 +55,7 @@ namespace TiefSee.cs {
 
 
 
-            Console.WriteLine("Starting server...");
+            Log.print("Starting server...");
             _httpListener.Prefixes.Add("http://localhost:" + port + "/"); // add prefix "http://localhost:5000/"
 
 
@@ -62,7 +63,7 @@ namespace TiefSee.cs {
             try {
 
                 _httpListener.Start(); // start server (Run application as Administrator!)
-                Console.WriteLine("Server started.   " + port);
+                Log.print("Server started.   " + port);
                 Thread _responseThread = new Thread(ResponseThread);
                 _responseThread.Start(); // start the response thread
 
@@ -109,11 +110,6 @@ namespace TiefSee.cs {
                 String img_path = "";
 
 
-
-                //System.Console.WriteLine("///////  " + Uri.UnescapeDataString(request.RawUrl));
-
-                Console.WriteLine(path);
-
                 var ac_回傳錯誤 = new Action(() => {
 
                     if (M == null) {
@@ -136,6 +132,8 @@ namespace TiefSee.cs {
 
                         } else {//找不到檔案
 
+
+
                             //回傳錯誤圖片            
                             using (FileStream fs = new FileStream(M.fun_執行檔路徑() + "/data/imgs/error.png", FileMode.Open, FileAccess.Read)) {
                                 _responseArray = new byte[fs.Length];
@@ -146,6 +144,8 @@ namespace TiefSee.cs {
                         }
 
                     } catch {
+
+
 
                         //回傳錯誤圖片               
                         using (FileStream fs = new FileStream(M.fun_執行檔路徑() + "/data/imgs/error.png", FileMode.Open, FileAccess.Read)) {
@@ -224,13 +224,14 @@ namespace TiefSee.cs {
                             context.Response.Headers.Add(header);
 
                             //回傳檔案
-                            using (FileStream fs = new FileStream(img_path, FileMode.Open, FileAccess.Read)) {
+                            /*using (FileStream fs = new FileStream(img_path, FileMode.Open, FileAccess.Read)) {
                                 _responseArray = new byte[fs.Length];
                                 fs.Read(_responseArray, 0, _responseArray.Length);
                                 fs.Close();
-                            }
+                            }*/
 
-
+                            String svg = func_get_svg(img_path);
+                            _responseArray = Encoding.UTF8.GetBytes(svg);
 
                         } else
                             if (s_附檔名 == "JPG" || s_附檔名 == "JPEG" || s_附檔名 == "PNG" || s_附檔名 == "GIF" || s_附檔名 == "BMP") {//一般圖片(jpg、png、gif)
@@ -355,7 +356,13 @@ namespace TiefSee.cs {
                     } else if (path.IndexOf("/img_path/") > -1) {//大量瀏覽模式-直接在程式內部開啟圖片
 
                         path = path.Substring("/img_path/".Length);
+
+                        if (path.IndexOf("*") > 5) {//無視「*」後面的文字
+                            path = path.Substring(0, path.IndexOf("*"));
+                        }
+
                         img_path = Uri.UnescapeDataString(path);
+
 
                         if (img_path.IndexOf(":") < 0)
                             img_path = "\\\\" + img_path;//避免某些不是從硬碟取得圖片的特殊路徑，例如：『\\vmware-host\Shared Folders\D\圖片』
@@ -530,6 +537,112 @@ namespace TiefSee.cs {
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public String func_get_svg(String path) {
+
+
+            Func<String, int> func_取得_int = (String s24) => {
+                int i023 = 0;
+                s24 = s24.Trim().ToUpper();
+                s24 = s24.Replace("C", "").Replace("M", "").Replace("P", "")
+                        .Replace("X", "").Replace("I", "").Replace("N", "")
+                        .Replace("E", "").Replace("P", "").Replace("T", "")
+                        .Replace("V", "").Replace("W", "").Replace("H", "")
+                        .Replace("A", "").Replace("%", "");
+
+                i023 = (int)float.Parse(s24);
+
+                return i023;
+            };
+
+
+
+            int int_svg_w = 50;
+            int int_svg_h = 50;
+
+            String svg = "";
+            using (StreamReader sr = new StreamReader(path, Encoding.UTF8)) {
+
+                svg = sr.ReadToEnd();
+            }
+
+
+
+            bool bool_wh = true;
+            bool bool_viewbox = true;
+
+            //<svg width="1500" height="727"
+            try {
+
+                string pattern = "<svg.*>";
+                String s01 = Regex.Matches(svg, pattern, RegexOptions.IgnoreCase)[0].Value;
+
+                if (s01.Length > 10) {
+                    //取得width
+                    pattern = "width[ ]*=[ ]*([\"][^a-z]*[\"]|['][^a-z]*['])";
+                    s01 = Regex.Matches(svg, pattern, RegexOptions.IgnoreCase)[0].Value;
+                    s01 = s01.Substring(s01.IndexOf('=') + 1);
+                    s01 = s01.Replace("\"", "").Replace("'", "");
+                    int_svg_w = func_取得_int(s01);
+
+                    //取得height
+                    pattern = "height[ ]*=[ ]*([\"][^a-z]*[\"]|['][^a-z]*['])";
+                    s01 = Regex.Matches(svg, pattern, RegexOptions.IgnoreCase)[0].Value;
+                    s01 = s01.Substring(s01.IndexOf('=') + 1);
+                    s01 = s01.Replace("\"", "").Replace("'", "");
+                    int_svg_h = func_取得_int(s01);
+                }
+            } catch {
+
+                bool_wh = false;
+
+            }
+
+            //<svg viewBox="0 0 50 50"
+            try {
+                string pattern = "viewbox[ ]*=[ ]*([\"][^a-z]*[\"]|['][^a-z]*['])";
+                String s01 = Regex.Matches(svg, pattern, RegexOptions.IgnoreCase)[0].Value;
+
+                s01 = s01.Substring(s01.IndexOf('=') + 1);
+                s01 = s01.Replace("\"", "").Replace("'", "");
+                s01 = s01.Trim();
+                if (s01.Contains(",")) {
+                    s01 = s01.Replace(" ", "");
+                } else {
+                    s01 = s01.Replace("  ", " ").Replace("  ", " ").Replace("  ", " ").Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
+                    s01 = s01.Replace(" ", ",");
+                }
+
+                String[] s02 = s01.Split(',');
+                int_svg_w = func_取得_int(s02[2]);
+                int_svg_h = func_取得_int(s02[3]);
+
+
+
+            } catch {
+                bool_viewbox = false;
+            }
+
+
+
+
+            if (bool_wh == true && bool_viewbox == false) {
+
+                int svg_i = svg.IndexOf("<svg", StringComparison.CurrentCultureIgnoreCase);
+                String svg1 = svg.Substring(0, svg_i);
+                String svg2 = svg.Substring(svg_i + 4);
+                svg = svg1 + $"<svg viewBox=\"0 0 {int_svg_w} {int_svg_h}\" " + svg2;
+
+            }
+
+
+            return svg;
+
+        }
 
 
 

@@ -21,8 +21,7 @@ namespace TiefSee {
         /// <param name="e"></param>
         public void Application_Startup(object sender, StartupEventArgs e) {
 
-
-
+         
 
             main_s = new string[] { };
            

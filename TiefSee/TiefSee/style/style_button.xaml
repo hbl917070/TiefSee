@@ -10,7 +10,7 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource sol_白}" />
         <Setter Property="FontSize"
-                Value="18" />
+                Value="16" />
         <Setter Property="Focusable"
                 Value="False" />
 
@@ -140,7 +140,7 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource sol_白}" />
         <Setter Property="FontSize"
-                Value="18" />
+                Value="16" />
         <Setter Property="Focusable"
                 Value="False" />
 
@@ -268,7 +268,7 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource sol_白}" />
         <Setter Property="FontSize"
-                Value="18" />
+                Value="16" />
         <Setter Property="Focusable"
                 Value="False" />
 
@@ -398,7 +398,7 @@
         <Setter Property="Foreground"
                 Value="{DynamicResource sol_白}" />
         <Setter Property="FontSize"
-                Value="18" />
+                Value="16" />
         <Setter Property="Focusable"
                 Value="False" />
 

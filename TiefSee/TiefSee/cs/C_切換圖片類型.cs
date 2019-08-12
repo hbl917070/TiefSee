@@ -269,11 +269,13 @@ namespace TiefSee {
 
             if (s_img_type_附檔名 == "GIF") {
 
-                if (path.Substring(path.Length - 3).ToUpper().Equals("GIF") == false) {
+                /*if (path.Substring(path.Length - 3).ToUpper().Equals("GIF") == false) {
 
                     //因為IE無法解析附檔名不是GIF的GIF，所以如果附檔名不是GIF，就不要用IE
 
-                } else if (e_GIF_Type == E_GIF_type.WPF && c_影像.fun_判斷檔案大小_MB(path) < 50) {
+                } else */
+                
+                if (e_GIF_Type == E_GIF_type.WPF && c_影像.fun_判斷檔案大小_MB(path) < 50) {
 
                     //用WPF渲染，且檔案小於50M
 
@@ -530,17 +532,11 @@ namespace TiefSee {
 
                     bitimg = c_影像.func_get_BitmapImage_更新界面(path, ref img_width, ref img_height);
 
-
-
-
-
                     //顯示寬高
                     //img_width = (int)bitimg.PixelWidth;
                     //img_height = (int)bitimg.PixelHeight;
                     fun_設定顯示圖片size(img_width, img_height); //顯示寬高
                 }
-
-
 
 
                 //如果圖片太大，就改用web瀏覽
@@ -556,8 +552,6 @@ namespace TiefSee {
                         s_img_type = "MOVIE";
                     }
                 }*/
-
-
 
 
 
@@ -595,10 +589,11 @@ namespace TiefSee {
                             }
 
                             fun_主視窗取得焦點();
-                            img_web.Document.InvokeScript("fun_open_imgbox", new Object[] { path, "" + int_svg_w, "" + int_svg_h });
+                            String s_url_path = "http://localhost:" + c_localhost.port + "/img_path/" + Uri.EscapeDataString(path) + "*" + DateTime.Now.ToString("yyyyMMddHHmmssffff") ;
+                            img_web.Document.InvokeScript("fun_open_imgbox", new Object[] { s_url_path, int_svg_w.ToString(), int_svg_h.ToString() });
                             //img_web.Document.Focus();
 
-
+                            Log.print(s_url_path);
                         });
                     }).Start();
 
@@ -663,16 +658,22 @@ namespace TiefSee {
 
                     //如果圖片太大，就把圖片縮小到視窗範圍的size
                     if (s_img_type_附檔名 == "PNG" || s_img_type_附檔名 == "JPG" || s_img_type_附檔名 == "TIF" || s_img_type_附檔名 == "BMP") {
-                        if (img_width > 2500 || img_height > 2500) {//縮小圖片後在載入
-
+                        if (img_width > scrollviewer_1.ViewportWidth || img_height > scrollviewer_1.ViewportHeight) {//縮小圖片後在載入
+                            //2500 
                             var w03 = scrollviewer_1.ViewportWidth;
                             var h03 = scrollviewer_1.ViewportHeight;
 
-                            if (img_width / w03 > img_height / h03) {
-                                img.Source = c_影像.fun_get_BitmapImage_max(path, "w", (int)w03);
-                            } else {
-                                img.Source = c_影像.fun_get_BitmapImage_max(path, "h", (int)h03);
+                            try {
+                                if (img_width / w03 > img_height / h03) {
+                                    img.Source = c_影像.fun_get_BitmapImage_max(path, "w", (int)w03);
+                                } else {
+                                    img.Source = c_影像.fun_get_BitmapImage_max(path, "h", (int)h03);
+                                }
+                            } catch {
+
+                                img.Source = bitimg;//直接顯示
                             }
+
 
                         } else {
                             img.Source = bitimg;//直接顯示
@@ -734,7 +735,6 @@ namespace TiefSee {
             img_voide.Source = new Uri(s_url_path);
             System.Console.WriteLine("\n\n\n"+s_url_path +"\n\n\n");*/
 
-            DateTime time_start = DateTime.Now;//計時開始 取得目前時間
 
             //
             //
@@ -752,10 +752,7 @@ namespace TiefSee {
                 File.Copy(path, s_path_webm);
             }
 
-            System.Console.WriteLine("\n\n\n\n" + s_path_webm + "");
-            DateTime time_end = DateTime.Now;//計時結束 取得目前時間            
-            string result2 = ((TimeSpan)(time_end - time_start)).TotalMilliseconds.ToString();//後面的時間減前面的時間後 轉型成TimeSpan即可印出時間差
-            System.Console.WriteLine("+++++++++++++++++++++++++++++++++++" + result2 + " 毫秒");
+
 
             return s_path_webm;
         }
@@ -813,8 +810,8 @@ namespace TiefSee {
 
                     return new int[] { int_svg_w, int_svg_h };
 
-                } catch (Exception eee) {
-                    //System.Console.WriteLine(eee.ToString());
+                } catch {
+
                 }
 
 

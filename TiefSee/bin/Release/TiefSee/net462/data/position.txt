@@ -1,5 +1,5 @@
-﻿width: 692
-height: 586
-left: 213
-top: 188
+﻿width: 1152
+height: 648
+left: 112
+top: 286
 max: False

@@ -4,11 +4,11 @@ fun_input();
 function fun_input() {
 
 
-	var qbui = document.getElementById('qbui');
+	var qbui = document.getElementById('qbui');//填入網址的文字框
 
 	if (qbui == undefined) {//如果物件不存在，就100毫秒後重新執行
 		
-		var qbi = document.getElementById('qbi');
+		var qbi = document.getElementsByClassName("FiqGxd")[0];//點擊按鈕後，才會出現輸入網址的區域
 		
 		if(qbi == undefined){
 			
