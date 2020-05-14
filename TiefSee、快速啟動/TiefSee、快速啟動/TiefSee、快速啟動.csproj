@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props" Condition="Exists('..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props')" />
+  <Import Project="..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props" Condition="Exists('..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,6 +48,28 @@
   <PropertyGroup>
     <ManifestCertificateThumbprint>0E2A064E8ED14A5FFCD3FB3758CF0AB06C4D6E2D</ManifestCertificateThumbprint>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,9 +86,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="5.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props'))" />
+    <Error Condition="!Exists('..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets" Condition="Exists('..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets')" />
 </Project>

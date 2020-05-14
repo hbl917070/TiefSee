@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace TiefSee.cs {
 
-    class C_window_AERO {
+   public class C_window_AERO {
 
 
 
@@ -103,17 +105,21 @@ namespace TiefSee.cs {
             ACCENT_ENABLE_GRADIENT = 1,
             ACCENT_ENABLE_TRANSPARENTGRADIENT = 2,
             ACCENT_ENABLE_BLURBEHIND = 3,
-            ACCENT_INVALID_STATE = 4,
+            ACCENT_ENABLE_ACRYLICBLURBEHIND = 4,
+            ACCENT_INVALID_STATE = 5
 
         }
 
         [StructLayout(LayoutKind.Sequential)]
+
         internal struct AccentPolicy {
             public AccentState AccentState;
             public int AccentFlags;
-            public int GradientColor;
+            public uint GradientColor;
             public int AnimationId;
         }
+
+ 
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct WindowCompositionAttributeData {
@@ -141,9 +147,16 @@ namespace TiefSee.cs {
             var windowHelper = new WindowInteropHelper(w);
 
             var accent = new AccentPolicy();
-            accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;
+            accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;//win7 aero
+            //accent.AccentState = AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND;//win10 aero
+
 
             var accentStructSize = Marshal.SizeOf(accent);
+
+
+            accent.AccentFlags = 2;
+            //accent.GradientColor = ColorToUInt(Color.FromArgb(1, 0, 0, 0)); //ResourceHelper.GetResource<uint>(nameof(BlurGradientValue));
+
 
             var accentPtr = Marshal.AllocHGlobal(accentStructSize);
             Marshal.StructureToPtr(accent, accentPtr, false);
@@ -157,6 +170,39 @@ namespace TiefSee.cs {
 
             Marshal.FreeHGlobal(accentPtr);
         }
+
+
+        /// <summary>
+        /// 設定aero
+        /// </summary>
+        /// <param name="w"></param>
+        /*public void func_win10_aero(Window w ,Color col) {
+            var windowHelper = new WindowInteropHelper(w);
+
+            var accent = new AccentPolicy();
+            accent.AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND;//win7 aero
+            //accent.AccentState = AccentState.ACCENT_ENABLE_ACRYLICBLURBEHIND;//win10 aero
+
+
+            var accentStructSize = Marshal.SizeOf(accent);
+
+
+            accent.AccentFlags = 2;
+            accent.GradientColor = ColorToUInt(col); //ResourceHelper.GetResource<uint>(nameof(BlurGradientValue));
+
+
+            var accentPtr = Marshal.AllocHGlobal(accentStructSize);
+            Marshal.StructureToPtr(accent, accentPtr, false);
+
+            var data = new WindowCompositionAttributeData();
+            data.Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY;
+            data.SizeOfData = accentStructSize;
+           data.Data = accentPtr;
+
+            SetWindowCompositionAttribute(windowHelper.Handle, ref data);
+
+            Marshal.FreeHGlobal(accentPtr);
+        }*/
 
         #endregion
 
@@ -236,6 +282,12 @@ namespace TiefSee.cs {
 
         #endregion
 
+
+
+        private  uint ColorToUInt(Color color) {
+            return (uint)((color.A << 24) | (color.R << 16) |
+                          (color.G << 8) | (color.B << 0));
+        }
 
 
     }

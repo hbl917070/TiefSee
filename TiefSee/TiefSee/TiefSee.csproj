@@ -1,96 +1,347 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-    <!-- Project properties -->
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props" Condition="Exists('..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props')" />
+  <Import Project="..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props" Condition="Exists('..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9683A4A-3C11-4C4C-B98D-12CA3D94987F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TiefSee</RootNamespace>
+    <AssemblyName>TiefSee</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Tiefsee\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Tiefsee\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>imgs\5.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Tiefsee\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\Tiefsee\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Tiefsee\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Tiefsee\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TiefSee.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="APNGLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\project\C#\apng\APNGManagement-master\APNGLib\bin\Release\APNGLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\TiefSee - 複製\TiefSee\TiefSee\bin\Tiefsee\ColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="IconExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\TiefSee - 複製\TiefSee\TiefSee\bin\Tiefsee\IconExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Tiefsee\Interop.SHDocVw.dll</HintPath>
+    </Reference>
+    <Reference Include="Magick.NET-Q8-AnyCPU, Version=7.15.1.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\hbl91\Desktop\Magick.NET-Q8-AnyCPU.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.14.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\hbl91\Desktop\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="W\F_web.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="W\F_web.designer.cs">
+      <DependentUpon>F_web.cs</DependentUpon>
+    </Compile>
+    <Compile Include="W\U_exif_item.xaml.cs">
+      <DependentUpon>U_exif_item.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W\U_menu.xaml.cs">
+      <DependentUpon>U_menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W\U_menu_item.xaml.cs">
+      <DependentUpon>U_menu_item.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W\U_menu_main.xaml.cs">
+      <DependentUpon>U_menu_main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W\U_switch.xaml.cs">
+      <DependentUpon>U_switch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W\U_大量瀏覽模式.xaml.cs">
+      <DependentUpon>U_大量瀏覽模式.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W\W_拖曳開啟.xaml.cs">
+      <DependentUpon>W_拖曳開啟.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="W\W_設定.xaml.cs">
+      <DependentUpon>W_設定.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cs\C_adapter.cs" />
+    <Compile Include="cs\C_apng.cs" />
+    <Compile Include="cs\C_exe_img.cs" />
+    <Compile Include="cs\C_Exif.cs" />
+    <Compile Include="cs\C_localhost_server.cs" />
+    <Compile Include="cs\C_Magick.cs" />
+    <Compile Include="cs\C_P網.cs" />
+    <Compile Include="cs\C_setting.cs" />
+    <Compile Include="cs\C_web.cs" />
+    <Compile Include="cs\C_window_AERO.cs" />
+    <Compile Include="cs\C_切換圖片類型.cs" />
+    <Compile Include="cs\C_右下角圖示.cs" />
+    <Compile Include="cs\C_圖片局部高清.cs" />
+    <Compile Include="cs\C_影像.cs" />
+    <Compile Include="cs\C_拖曳.cs" />
+    <Compile Include="cs\C_按鈕事件.cs" />
+    <Compile Include="cs\C_按鈕選單_其他程式開啟.cs" />
+    <Compile Include="cs\C_按鈕選單_搜圖.cs" />
+    <Compile Include="cs\C_按鈕選單_複製.cs" />
+    <Compile Include="cs\C_排序.cs" />
+    <Compile Include="cs\C_旋轉.cs" />
+    <Compile Include="cs\C_書籤.cs" />
+    <Compile Include="cs\C_滑鼠偵測.cs" />
+    <Compile Include="cs\C_滑鼠偵測_滾動.cs" />
+    <Compile Include="cs\C_縮放.cs" />
+    <Compile Include="cs\C_視窗.cs" />
+    <Compile Include="cs\Exiflib\ExifReader.cs" />
+    <Compile Include="cs\Exiflib\ExifTags.cs" />
+    <Compile Include="cs\IconHandler.cs" />
+    <Compile Include="cs\Log.cs" />
+    <Compile Include="cs\M2.cs" />
+    <Compile Include="cs\ShellContextMenu.cs" />
+    <Compile Include="cs\ShellLink.cs" />
+    <Compile Include="cs\WindowsThumbnailProvider.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="style\style_button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="style\style_icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="style\style_menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="style\style_property.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="style\style_scrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="style\style_window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\U_exif_item.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\U_menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\U_menu_item.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\U_menu_main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\U_switch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\U_大量瀏覽模式.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\W_拖曳開啟.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="W\W_設定.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="W\F_web.en-GB.resx">
+      <DependentUpon>F_web.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="W\F_web.resx">
+      <DependentUpon>F_web.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="FluentWPF\FluentWPF.csproj">
+      <Project>{0eee6319-cbf7-4678-8beb-4bfa4d49fcc2}</Project>
+      <Name>FluentWPF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\5.ico" />
+    <Resource Include="imgs\left_80.png" />
+    <Resource Include="imgs\map.png" />
+    <Resource Include="imgs\right_80.png" />
+    <Resource Include="imgs\yes.png" />
+    <Resource Include="imgs\gs_ascii2d.bmp" />
+    <Resource Include="imgs\gs_google.png" />
+    <Resource Include="imgs\gs_IQDB.png" />
+    <Resource Include="imgs\gs_sauceNAO.bmp" />
+    <Resource Include="imgs\清除.png" />
+    <Resource Include="imgs\設定.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imgs\gs_bing.png" />
+    <Resource Include="imgs\gs_yandex.png" />
+  </ItemGroup>
+  <Import Project="GlobalHook\GlobalHookDemo.projitems" Label="Shared" />
+  <Import Project="WinExplorerHelper\WinExplorerHelper.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-        <TargetFrameworks>net462</TargetFrameworks>
-        <AssemblyName>TiefSee</AssemblyName>
-        <RootNamespace>TiefSee</RootNamespace>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <Platforms>AnyCPU;x64;x86</Platforms>
+      <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
     </PropertyGroup>
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <NoWarn>SA1652</NoWarn>
-        <Authors />
-        <Company>hbl917070(深海異音)</Company>
-        <Copyright />
-        <ApplicationIcon>imgs\5.ico</ApplicationIcon>
-        <AssemblyVersion>3.0.2.0</AssemblyVersion>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <Description>hbl917070(深海異音)</Description>
-        <SignAssembly>false</SignAssembly>
-        <StartupObject>TiefSee.App</StartupObject>
-        <Version>3.0.2.0</Version>
-        <FileVersion>3.0.2.0</FileVersion>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
-      <OutputPath />
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|x86'">
-      <OutputPath />
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|x64'">
-      <OutputPath />
-    </PropertyGroup>
-    <ItemGroup>
-      <None Remove="imgs\5.ico" />
-      <None Remove="imgs\left_80.png" />
-      <None Remove="imgs\map.png" />
-      <None Remove="imgs\right_80.png" />
-      <None Remove="imgs\yes.png" />
-      <None Remove="imgs\搜圖_ascii2d.bmp" />
-      <None Remove="imgs\搜圖_google.png" />
-      <None Remove="imgs\搜圖_IQDB.png" />
-      <None Remove="imgs\搜圖_sauceNAO.bmp" />
-      <None Remove="imgs\清除.png" />
-      <None Remove="imgs\設定.png" />
-      <None Remove="style\style_window.xaml" />
-    </ItemGroup>
-    <!-- Items include -->
-    <ItemGroup>
-      <ProjectReference Include="..\FluentWPF\FluentWPF.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-      <Reference Include="APNGLib">
-        <HintPath>..\bin\Debug\TiefSee\net462\APNGLib.dll</HintPath>
-      </Reference>
-      <Reference Include="ColorPicker">
-        <HintPath>..\bin\Debug\TiefSee\net462\ColorPicker.dll</HintPath>
-      </Reference>
-      <Reference Include="IconExtractor">
-        <HintPath>..\bin\Debug\TiefSee\net462\IconExtractor.dll</HintPath>
-      </Reference>
-      <Reference Include="Interop.SHDocVw">
-        <HintPath>..\bin\Debug\TiefSee\net462\Interop.SHDocVw.dll</HintPath>
-      </Reference>
-      <Reference Include="JetBrains.Annotations">
-        <HintPath>C:\Users\WEN\Desktop\wpf、windowchrome\wpf、windowchrome\bin\Debug\JetBrains.Annotations.dll</HintPath>
-      </Reference>
-      <Reference Include="Magick.NET-Q8-AnyCPU">
-        <HintPath>C:\Users\WEN\Desktop\Magick.NET-Q8-AnyCPU.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.VisualBasic" />
-      <Reference Include="Newtonsoft.Json">
-        <HintPath>..\bin\Debug\TiefSee\net462\Newtonsoft.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="System.IO.Compression" />
-      <Reference Include="System.Windows.Forms" />
-      <Reference Include="WindowsFormsIntegration" />
-      <Reference Include="WpfAnimatedGif">
-        <HintPath>..\bin\Debug\TiefSee\net462\WpfAnimatedGif.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile DependentUpon="%(Filename)" SubType="Code" Update="**\obj\**\*.g$(DefaultLanguageSourceExtension)" />
-        <Compile DependentUpon="%(Filename)" SubType="Designer" Update="**\*.xaml$(DefaultLanguageSourceExtension)" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="W\" />
-    </ItemGroup>
-    <ItemGroup>
-      <Resource Include="imgs\搜圖_ascii2d.bmp" />
-      <Resource Include="imgs\搜圖_sauceNAO.bmp" />
-    </ItemGroup>
-    <Import Project="..\WinExplorerHelper\WinExplorerHelper.projitems" Label="Shared" />
-    <Import Project="..\GlobalHook\GlobalHookDemo.projitems" Label="Shared" />
+    <Error Condition="!Exists('..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\runtime.win10-x64.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x64.microsoft.dotnet.framework.nativeimagecompiler.props'))" />
+    <Error Condition="!Exists('..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\runtime.win10-x86.Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\runtime.win10-x86.microsoft.dotnet.framework.nativeimagecompiler.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets" Condition="Exists('..\packages\Microsoft.DotNet.Framework.NativeImageCompiler.1.0.0\build\net462\Microsoft.DotNet.Framework.NativeImageCompiler.targets')" />
 </Project>

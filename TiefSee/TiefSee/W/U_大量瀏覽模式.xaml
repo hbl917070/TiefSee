@@ -184,7 +184,8 @@
                    VerticalAlignment="Center"
                    FontSize="30"
                    Background="{x:Null}"
-                   Foreground="{DynamicResource sol_白}" />
+                   Foreground="{DynamicResource sol_白}"
+                   Visibility="Hidden" />
         </Grid>
     </DockPanel>
 </UserControl>

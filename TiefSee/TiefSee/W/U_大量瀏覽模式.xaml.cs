@@ -60,6 +60,8 @@ namespace TiefSee.W {
 
             this.M = m;
          
+          
+
             //啟動時判斷是否隱藏工具列
             this.Loaded += (serder, e) => {
                 M.func_顯示或隱藏工具列("no");
@@ -68,6 +70,9 @@ namespace TiefSee.W {
 
             //---------------------------------------
 
+
+          
+            //---------------------------------------
 
             //初始化時判斷是否需要 webbrowser 最大化
             if (M.WindowState == WindowState.Maximized) {
@@ -78,6 +83,7 @@ namespace TiefSee.W {
             //初始網頁
             web01.Navigated += (sender, e) => {
 
+               
                 web01.Document.Focus();
 
                 //讓web也能拖曳視窗
@@ -127,6 +133,7 @@ namespace TiefSee.W {
             tim.Tick += (sender, e) => {
 
                 if (bool_已經載入 == false) {
+                 
                     s_url = M.fun_執行檔路徑() + "/data/img_view/imgs.html";
                     web01.Navigate(s_url);
                 }
@@ -183,6 +190,7 @@ namespace TiefSee.W {
                 fun_取得圖片名單();
                 web01.Document.InvokeScript("eval", new Object[] { s_js_array });
                 web01.Document.InvokeScript("fun_產生圖片");
+                M.bool_web_背景刷新 = true;
             } catch { }
         }
 

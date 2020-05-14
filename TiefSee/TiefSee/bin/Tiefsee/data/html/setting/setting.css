@@ -1,0 +1,324 @@
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    font-size: 16px;
+    font-family: "微軟正黑體", "Microsoft JhengHei", "黑體-繁", "蘋果儷中黑", sans-serif;
+    color: #fff;
+    background-color: rgb(30, 30, 30);
+
+    /*捲軸顏色*/
+    scrollbar-track-color: #1e1e1e;
+    scrollbar-arrow-color: #fff;
+    scrollbar-face-color: #777;
+    scrollbar-shadow-color: #1e1e1e;
+}
+
+button,
+input {
+    font-family: "微軟正黑體", "Microsoft JhengHei", "黑體-繁", "蘋果儷中黑", sans-serif;
+    font-size: 16px;
+}
+
+#content {
+    height: 100%;
+    width: 100%;
+    /* display: table; */
+}
+
+div[tabs_but_on="on"] {
+    display: block;
+    color: rgb(95, 191, 255);
+
+    background-color: rgba(255, 255, 255, 0.05);
+}
+div[tabs_but_on="on"]::after {
+    display: block;
+    content: "";
+    background-color: rgb(95, 191, 255);
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+div[tabs_tab_on="on"] {
+    /* display: block; */
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+div[tabs_tab_on="off"] {
+    max-height: 100%;
+    overflow: hidden;
+}
+#d_L {
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    height: 100%;
+    float: left;
+
+    white-space: nowrap;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); */
+    border-right: solid 1px rgba(255, 255, 255, 0.05);
+    /* border-right: solid 1px rgba(255, 255, 255, 0.3); */
+}
+
+#d_L_c {
+}
+
+#d_R {
+    height: 100%;
+    /* display: table-cell; */
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#d_R2 {
+    position: relative;
+    margin: auto;
+
+    max-width: 900px;
+}
+
+.tabs_page {
+    /* display: none; */
+    transition: all 0.2s;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+
+    transform: translateY(15px);
+}
+
+.d_L_item {
+    padding: 10px 25px;
+    position: relative;
+}
+
+.d_L_item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: pointer; /*游標*/
+}
+
+.tabs_card {
+    margin-top: 25px;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    /* border: solid 1px rgba(255, 255, 255, 0.05); */
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+}
+
+/*標題*/
+.tabs_tit {
+    font-size: 24px;
+    /* color: rgb(103, 207, 255); */
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+
+    /* margin-top: -48px;
+margin-left: -10px; */
+    padding-bottom: 10px;
+
+    /* text-shadow: 0px 0px 6px #000cb8; */
+    font-weight: 300;
+    color: #c5eeff;
+}
+
+/*內容*/
+.tabs_con {
+    /* margin-bottom: 40px; */
+    color: rgb(150, 150, 150);
+    /* border-left: 5px solid rgba(255, 255, 255, 0.2); */
+    /* background-color: rgba(255, 255, 255, 0.03); */
+    padding: 0px;
+}
+
+/*水平線*/
+.tabs_hr {
+    /* height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 30px auto;
+    max-width: 900px;  */
+}
+
+/***************************************************/
+
+/*switch 按鈕*/
+.switch {
+    margin: 5px 0px;
+    height: 35px;
+    width: 55px;
+    position: relative;
+    display: block;
+}
+
+.switch::after {
+    margin: 5px 0px;
+    height: 20px;
+    width: 50px;
+    background-color: rgb(0, 122, 204);
+    border-radius: 30px;
+    border: 2px solid rgb(0, 122, 204);
+
+    transition: all 0.3s;
+    display: block;
+    position: absolute;
+    content: "";
+    z-index: -5;
+}
+
+.switch:hover {
+    cursor: pointer; /*游標*/
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.switch::before {
+    border-radius: 30px;
+    height: 14px;
+    width: 14px;
+    background-color: rgb(255, 255, 255);
+    content: "";
+    display: block;
+    position: absolute;
+    left: 35px;
+    top: 10px;
+    transition: all 0.2s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.switch[type="off"]::after {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 40px;
+    border: 2px solid rgb(116, 116, 116);
+}
+
+.switch[type="off"]::before {
+    left: 6px;
+    
+}
+
+/***************************************************/
+
+.but_1 {
+    margin: 10px 0px;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: block;
+    border: 1px solid rgb(95, 191, 255);
+    color: rgb(95, 191, 255);
+    /* line-height: 30px; */
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+}
+
+.but_1:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+/***************************************************/
+
+/* 關閉input右邊的 X */
+input[type="text"]::-ms-clear {
+    display: none;
+}
+
+.txt {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0px 5px;
+    height: 30px;
+    width: 220px;
+    box-sizing: border-box;
+}
+
+/***************************************************/
+
+.tool_item_box {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+#tool_item_hide,
+#tool_item_show {
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    /* height:100%; */
+    min-height: 150px;
+    /* margin-left: 10px; */
+    box-sizing: border-box;
+    margin: 10px;
+    text-align: left;
+}
+
+.item {
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 5px;
+    padding: 5px;
+    cursor: move;
+}
+
+/***************************************************/
+
+.rad_box_v,
+.rad_box_h {
+    height: 34px;
+    line-height: 34px;
+    display: block;
+    cursor: pointer;
+}
+.rad_box_v:hover,
+.rad_box_h:hover{
+background-color: rgba(255,255,255,0.05);
+}
+.rad_box_v span,
+.rad_box_h span {
+    float: left;
+    margin-left: 30px;
+}
+
+.rad {
+    /* opacity: 0; */
+
+    display: none;
+}
+
+.rad + span::before {
+
+    margin-left: -25px;
+    margin-top:7px ;
+
+    width: 20px;
+    height: 20px;
+    
+    background-color: rgba(0, 0, 0, 0);
+    content: "";
+    display: block;
+    float: left;
+    border: 2px solid rgb(180, 180, 180);
+    box-sizing: border-box;
+    border-radius:50%;
+}
+
+
+.rad:checked + span::after {
+
+    margin-left: -19px;
+    margin-top:13px ;
+    width: 8px;
+    height: 8px;
+
+    content: "";
+    display: block;
+    float: left;
+    background-color: rgb(180, 180, 180);
+    border-radius:50%;
+}

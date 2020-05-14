@@ -540,6 +540,8 @@ namespace TiefSee {
         /// </summary>
         public BitmapSource func_get_BitmapImage_JPG(String path) {
 
+            //System.Console.WriteLine(path);
+
             using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))) {
                 FileInfo fi = new FileInfo(path);
                 byte[] bytes = reader.ReadBytes((int)fi.Length);

@@ -81,7 +81,7 @@ namespace TiefSee {
 
 
             bool bool_移動中 = false;
-
+            bool bool_刷新背景 = true;
 
             //改變視窗size時隱藏web，避免拖曳速度很慢
             M.SizeChanged += (sender, e) => {
@@ -101,14 +101,15 @@ namespace TiefSee {
             new Thread(() => {
 
 
-                int nn = 0;
-
+                int n_修改視窗size = 0;
+            
 
 
 
                 while (M.bool_程式運行中) {
 
-                    nn++;
+                    n_修改視窗size += 1;
+                    
                     Thread.Sleep(30);
 
                     if (M.s_img_type_顯示類型 == "WEB") {
@@ -118,17 +119,23 @@ namespace TiefSee {
                         C_adapter.fun_UI執行緒(() => {
                             if (M.bool_程式運行中) {
 
-                                M.w_web.Left = (int)((M.b.PointToScreen(new Point(0, 0)).X + 5));
-                                M.w_web.Top = (int)(M.b.PointToScreen(new Point(0, 0)).Y);
+
+                                if (M.w_web.Left != (int)((M.b.PointToScreen(new Point(0, 0)).X + 5))) {
+
+                                    M.w_web.Left = (int)((M.b.PointToScreen(new Point(0, 0)).X + 5));
+                                    M.w_web.Top = (int)(M.b.PointToScreen(new Point(0, 0)).Y);                   
+
+                                }
+
 
                             }
                         });
 
 
                         //每90毫秒修改一次視窗size
-                        if (nn >= 3) {
+                        if (n_修改視窗size >= 3 ) {
+                            n_修改視窗size = 0;
 
-                            nn = 0;
 
                             //避免快速瀏覽的視窗已經隱藏了，但是web視窗還沒隱藏
                             if (M.Visibility != Visibility.Visible) {
@@ -164,6 +171,10 @@ namespace TiefSee {
 
                         }
 
+                      
+
+
+                     
 
                     }
 

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Settings available for the user:
+       NgenR2R = ''      ==> NgenR2R for default configuration (release builds on supported platforms)
+       NgenR2R = 'true'  ==> NgenR2R for all configurations
+       NgenR2R = 'false' ==> Never NgenR2R
+
+       NgenR2RExclude    ==> By default, native code is generated for all MSIL files in 
+                             IntermediateAssembly and ReferenceCopyLocalPaths lists.
+                             Any files in this list are excluded from native code generation.
+
+       NgenR2RPlatformAssembliesPaths ==> Additional directories to pass NgenR2R.exe /platform_assemblies_paths
+  -->
+
+  <PropertyGroup>
+    <_R2RToolDir Condition =" '$(PlatformTarget)' == 'X64'">$(R2Rx64RuntimePkgDir)</_R2RToolDir>
+    <_R2RToolDir Condition =" '$(PlatformTarget)' == 'X86'">$(R2Rx86RuntimePkgDir)</_R2RToolDir>
+    <_NgenR2RExe>$(_R2RToolDir)\NgenR2R.exe</_NgenR2RExe>
+    <_R2RRefDir>$(_R2RToolDir)\ref</_R2RRefDir>
+    <_R2RFacadeDir>$(_R2RToolDir)\facade</_R2RFacadeDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_SupportedR2RPlatform Condition="'$(PlatformTarget)' == 'X64' Or '$(PlatformTarget)' == 'X86'">true</_SupportedR2RPlatform>
+    <_DefaultR2RConfiguration Condition="'$(_SupportedR2RPlatform)' == 'true' And '$(Configuration)' == 'Release'">true</_DefaultR2RConfiguration>
+    <_doNgenR2R Condition="'$(NgenR2R)' == 'true' Or ('$(NgenR2R)' == '' And '$(_DefaultR2RConfiguration)' == 'true')">true</_doNgenR2R>
+    <!-- If NgenR2R = true on an unsupported platform, _doNgenR2R is set to true, so that _EnsureSupportedPlatform runs and gives an error -->
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_R2RIntermediateOutputPath>$(IntermediateOutputPath)\R2R</_R2RIntermediateOutputPath>
+    <_R2RIntermediateAppConfig>$(_R2RIntermediateOutputPath)\$(TargetFileName).config</_R2RIntermediateAppConfig>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetsTriggeredByCompilation>
+      $(TargetsTriggeredByCompilation);
+      RunNgenR2R
+    </TargetsTriggeredByCompilation>
+  </PropertyGroup>
+  <UsingTask TaskName="AddR2RConfigTask" AssemblyFile = "NgenR2RTools.dll"/>
+  <UsingTask TaskName="FilterAssemblies" AssemblyFile = "NgenR2RTools.dll"/>
+
+  <Target Name="_EnsureSupportedPlatform"
+          BeforeTargets = "RunNgenR2R"
+          Condition="'$(_doNgenR2R)' == 'true'">
+    <!-- Check that the user doesn't explicitly enable NgenR2R on an unsupported platform -->
+    <Error Text="NgenR2R not supported on $(PlatformTarget) platform"
+           Condition="'$(_SupportedR2RPlatform)' != 'true'"/>
+  </Target>
+
+  <Target Name="_ComputeR2RInputs"
+          BeforeTargets = "RunNgenR2R"
+          DependsOnTargets="_ComputeR2RDefaultInputs"
+          Condition="'$(_doNgenR2R)' == 'true'">
+    <!-- Copy the managed assemblies in the set ({_R2rInput} - {ExcludeList}) to R2RInput -->
+    <FilterAssemblies Assemblies="@(_R2RInput)" ExcludeList="@(NgenR2RExclude)">
+      <Output TaskParameter="ManagedAssemblies" ItemName="R2RInput" />
+    </FilterAssemblies>
+  </Target>
+
+  <Target Name="_ComputeR2RDefaultInputs">
+    <ItemGroup>
+      <_R2RInput Include="@(IntermediateAssembly)">
+        <Origin>IntermediateAssembly</Origin>
+      </_R2RInput>
+      <_R2RInput Include="@(ReferenceCopyLocalPaths)">
+        <Origin>ReferenceCopyLocalPaths</Origin>
+      </_R2RInput>
+      <_R2RInput>
+        <R2RPath>$(_R2RIntermediateOutputPath)\%(Filename)%(Extension)</R2RPath>
+        <RspPath>$(_R2RIntermediateOutputPath)\%(Filename).rsp</RspPath>
+      </_R2RInput>
+
+      <!-- Compute the dependency directories to be passed as platform_assemblies_paths 
+           The ordering of the directories to be passed is important. In general, 
+           reference-assemblies cannot be used by NgenR2R. $(_R2RRefDir) contains specialized 
+           Reference-assemblies NgenR2R can use, and they should precede %(ReferencePath) -->
+      <_R2RDependencyDirs Include="%(_R2RInput.RootDir)%(_R2RInput.Directory)" />
+      <_R2RDependencyDirs Include="$(_R2RRefDir)" />
+      <_R2RDependencyDirs Include="$(_R2RFacadeDir)" />
+      <_R2RDependencyDirs Include="$(NgenR2RPlatformAssembliesPaths)" />
+      <_R2RDependencyDirs Include="%(ReferencePath.RootDir)%(ReferencePath.Directory)" />
+    </ItemGroup>
+    <PropertyGroup>
+      <_PlatformAssembliesPaths>@(_R2RDependencyDirs->'%(Identity)', '%3b')</_PlatformAssembliesPaths>
+    </PropertyGroup>
+  </Target>
+
+  <!-- Runs crossgen on all generated assemblies -->
+  <!-- NgenR2R processes one binary at a time, therefore we are batching at the target level -->
+  <Target Name="RunNgenR2R"
+          AfterTargets="NgenR2RTargets"
+          Condition="'$(_doNgenR2R)' == 'true'"
+          Inputs="@(R2RInput)"
+          Outputs="%(R2RInput.R2RPath)">
+
+    <MakeDir Directories="$(_R2RIntermediateOutputPath)"/>
+
+    <!-- Use a response file, since the Exec command may run out of character limit -->
+    <WriteLinesToFile
+           File="%(R2RInput.RspPath)"
+           Lines="/out &quot;%(R2RInput.R2RPath)&quot;; 
+                 /platform_assemblies_paths &quot;$(_PlatformAssembliesPaths.TrimEnd('\'))&quot;;
+                 /MissingDependenciesOK; 
+                 &quot;%(R2RInput.Identity)&quot;"
+           Overwrite="true"
+           Encoding="Unicode"/>
+
+    <Exec Command='$(_NgenR2rExE) "@%(R2RInput.RspPath)"'/>
+
+    <ItemGroup>
+      <FileWrites Include="%(R2RInput.RspPath)" />
+      <FileWrites Include="%(R2RInput.R2RPath)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- Update FileWrites, Rewrite IntermediateAssembly and Reference CopyLocalPaths -->
+  <Target Name="_PostR2RUpdate"
+          AfterTargets="RunNgenR2R" >
+    <ItemGroup>
+      <IntermediateAssembly Remove="@(R2RInput)" Condition="'%(R2RInput.Origin)' == 'IntermediateAssembly'" />
+      <IntermediateAssembly Include="@(R2RInput->'%(R2RPath)')" Condition="'%(R2RInput.Origin)' == 'IntermediateAssembly'"  />
+      <!-- Add the original assembly to FileWrites, because this target runs before 
+           _CheckForCompileOutputs which is responsible for adding IntermediateAssembly to FileWrites. -->
+      <FileWrites Include="@(R2RInput)" Condition="'%(R2RInput.Origin)' == 'IntermediateAssembly'" />
+    </ItemGroup>
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Remove="@(R2RInput)" Condition="'%(R2RInput.Origin)' == 'ReferenceCopyLocalPaths'" />
+      <ReferenceCopyLocalPaths Include="@(R2RInput->'%(R2RPath)')" Condition="'%(R2RInput.Origin)' == 'ReferenceCopyLocalPaths'"  />
+    </ItemGroup>
+  </Target>
+
+  <!-- Update App.config file to include COMPlus_ReadyToRun=1 setting -->
+  <Target Name="AddR2RConfig"
+    Inputs="$(MSBuildAllProjects);@(AppConfigFile)"
+    Outputs="$(_R2RIntermediateAppConfig)"
+    AfterTargets="RunNgenR2R"
+    Condition="'$(_doNgenR2R)' == 'true'">
+
+    <MakeDir Directories="$(_R2RIntermediateOutputPath)"/>
+
+    <AddR2RConfigTask
+      AppConfigFile="@(AppConfigWithTargetPath)"
+      OutputAppConfigFile="$(_R2RIntermediateAppConfig)" >
+      <Output TaskParameter="OutputAppConfigFile" ItemName="FileWrites" />
+    </AddR2RConfigTask>
+  </Target>
+
+  <!-- Update AppConfigWithTargetPath -->
+  <Target Name="_R2RConfigUpdate"
+    AfterTargets="AddR2RConfig"
+    Condition="'$(_doNgenR2R)' == 'true' and Exists('$(_R2RIntermediateAppConfig)')">
+    <PropertyGroup>
+      <AppConfig>$(_R2RIntermediateAppConfig)</AppConfig>
+    </PropertyGroup>
+    <ItemGroup>
+      <AppConfigWithTargetPath Remove="@(AppConfigWithTargetPath)" />
+      <AppConfigWithTargetPath Include="$(AppConfig)">
+        <TargetPath>$(TargetFileName).config</TargetPath>
+      </AppConfigWithTargetPath>
+    </ItemGroup>
+  </Target>
+</Project>

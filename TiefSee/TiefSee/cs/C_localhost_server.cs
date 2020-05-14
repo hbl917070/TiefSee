@@ -87,14 +87,37 @@ namespace TiefSee.cs {
 
                 try {
                     context = _httpListener.GetContext(); // get a context
+
                 } catch (System.Net.HttpListenerException) {
                     //程式結束後立即停止伺服器
                     return;
                 }
 
-
+                context.Response.AddHeader("access-control-allow-methods", "GET, OPTIONS");
+                context.Response.AddHeader("accept-ranges", "bytes");
+                context.Response.AddHeader("access-control-allow-origin", "*");
+                 context.Response.AddHeader("X-Firefox-Spdy", "h2");
+               
                 HttpListenerRequest request = context.Request; //取得輸入的網址
 
+
+                foreach (String item in request.Headers.Keys) {
+                  //  Log.print("request.UrlReferrer:  " + item + "  " + request.Headers.Get(item));
+                }
+                if (request.UrlReferrer != null) {
+                    var values = request.UrlReferrer.AbsolutePath.ToString();
+                    Log.print("request.UrlReferrer:  " + values);
+                }
+                Log.print("Origin:  " + request.Headers.Get("Origin"));
+
+
+               
+
+
+                // Do stuff with the values... probably .FirstOrDefault()
+
+
+                //Log.print("request.UrlReferrer:  " + request.Headers);
 
                 // Now, you'll find the request URL in context.Request.Url
                 //byte[] _responseArray = Encoding.UTF8.GetBytes("<html><head><title>Localhost server -- port 5000</title></head>" + 
@@ -332,7 +355,13 @@ namespace TiefSee.cs {
 
 
                 try {
+               
 
+                    if (path.IndexOf("/tt.js") > -1) {
+
+                        _responseArray = System.Text.Encoding.ASCII.GetBytes("123456");
+
+                    } else
 
                     if (path.IndexOf("/new_window/") > -1) {//快速啟動 - 
 

@@ -1,21 +1,21 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window x:Class="TiefSee.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TiefSee"
-        xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
-        xmlns:U="clr-namespace:TiefSee.W"
-        x:Class="TiefSee.MainWindow"
         mc:Ignorable="d"
-        Height="400"
-        Width="980"
+        Title="MainWindow" Height="450" Width="800"
         Style="{DynamicResource MyWindowStyle}"
         xmlns:fw="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:U="clr-namespace:TiefSee.W"
         ResizeMode="CanResize"
         MinHeight="100"
         MinWidth="100"
         BorderThickness="1"
         Icon="imgs/5.ico">
+
+
     <Window.Resources>
 
 
@@ -41,14 +41,15 @@
 
     <Grid x:Name="grid_all">
 
-        <Rectangle x:Name="bac"
-                   Margin="0,68,0,0"
-                   Fill="#CC494949"
-                   StrokeThickness="0" />
         <Rectangle Fill="#FF005292"
                    x:Name="bac_標題列"
                    VerticalAlignment="Top"
                    Height="68"
+                   StrokeThickness="0" />
+
+        <Rectangle x:Name="bac"
+                   Margin="0,68,0,0"
+                   Fill="#CC494949"
                    StrokeThickness="0" />
         <Rectangle x:Name="re_下拉選單的背景"
                    HorizontalAlignment="Left"
@@ -730,7 +731,7 @@
                                            BorderBrush="{DynamicResource sol_白}" />
 
                                 </Button>
-                           
+
                             </StackPanel>
                         </ScrollViewer>
                     </Border>
@@ -972,7 +973,7 @@
                         CornerRadius="0"
                         BorderThickness="1"
                         BorderBrush="{DynamicResource sol_淺藍40}"
-                        Background="#CC000000" />
+                        Background="{DynamicResource sol_menu_bac}" />
                 <ScrollViewer Margin="15,10"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Panel.ZIndex="5"
@@ -1146,7 +1147,7 @@
 
                         <Border CornerRadius="0"
                                 BorderThickness="1"
-                                Background="#CC000000"
+                                Background="{DynamicResource sol_menu_bac}"
                                 BorderBrush="{DynamicResource sol_淺藍40}"
                                 Margin="6" />
                         <StackPanel Panel.ZIndex="5"
@@ -1177,7 +1178,7 @@
 
                         <Border CornerRadius="0"
                                 BorderThickness="1"
-                                Background="#CC000000"
+                                Background="{DynamicResource sol_menu_bac}"
                                 BorderBrush="{DynamicResource sol_淺藍40}"
                                 Margin="6" />
                         <StackPanel Panel.ZIndex="5"
@@ -1220,7 +1221,7 @@
                         CornerRadius="0"
                         BorderThickness="1"
                         BorderBrush="{DynamicResource sol_淺藍40}"
-                        Background="#CC000000" />
+                        Background="{DynamicResource sol_menu_bac}" />
                 <StackPanel Margin="15,10"
                             Panel.ZIndex="5"
                             fw:PointerTracker.Enabled="True"
@@ -1457,7 +1458,7 @@
                             CornerRadius="0"
                             BorderThickness="1"
                             BorderBrush="{DynamicResource sol_淺藍40}"
-                            Background="#CC000000" />
+                            Background="{DynamicResource sol_menu_bac}" />
 
                     <StackPanel Margin="15"
                                 Panel.ZIndex="5">
@@ -1598,7 +1599,7 @@
 
                     <Border CornerRadius="0"
                             BorderThickness="1"
-                            Background="#CC000000"
+                            Background="{DynamicResource sol_menu_bac}"
                             BorderBrush="{DynamicResource sol_淺藍40}"
                             Margin="6" />
                     <StackPanel Panel.ZIndex="5"

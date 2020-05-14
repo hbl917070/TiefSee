@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace TiefSee {
@@ -21,18 +26,18 @@ namespace TiefSee {
         /// <param name="e"></param>
         public void Application_Startup(object sender, StartupEventArgs e) {
 
-         
+            
 
             main_s = new string[] { };
-           
+
             if (e.Args.Length > 0) {
 
 
                 main_s = e.Args;
-          
+
             }
 
-        
+
             //--------------------
 
 
@@ -110,7 +115,7 @@ namespace TiefSee {
         private bool func_全部關閉(StartupEventArgs e) {
 
             if (e.Args.Count() >= 1) {
-              
+
                 if (e.Args[0] == "**close_all") {
 
 

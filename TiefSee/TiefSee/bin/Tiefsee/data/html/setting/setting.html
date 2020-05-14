@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../Sortable.min.js"></script>
+    <script src="../jquery.minicolors.js"></script>
+    <link rel="stylesheet" href="../jquery.minicolors.css">
+
+    <link rel="stylesheet" href="setting.css">
+
+    <script src="setting.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+    <div id="content">
+
+        <div id="d_L">
+            <div id="d_L_c">
+                <div class="d_L_item" id="d_L_item_1">視窗主題</div>
+                <div class="d_L_item" id="d_L_item_2">視窗配置</div>
+                <div class="d_L_item" id="d_L_item_3">設為預設程式</div>
+                <div class="d_L_item" id="d_L_item_4">快速啟動</div>
+                <div class="d_L_item" id="d_L_item_5">其他</div>
+                <div class="d_L_item" id="d_L_item_6">關於</div>
+            </div>
+
+
+        </div>
+
+
+
+        <div id="d_R">
+
+            <div id="d_R2">
+
+                <div id="tabs_1" class="tabs_page">
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">AERO 毛玻璃界面</div>
+                        <div class="tabs_con">
+                            win7 或 win10 才有作用。此設定需重新啟動程式才會生效<br>
+                            <switch class="switch" type="on"></switch>
+                        </div>
+                    </div>
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">視窗顏色</div>
+                        <div class="tabs_con">
+                            <table>
+                                <tr>
+                                    <td>標題列顏色</td>
+                                    <td>
+                                        <input type="text" class="txt colorbox" data-format="rgb" data-opacity="0.50"
+                                            value="rgba(40,40,40,0.8)">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>視窗顏色</td>
+                                    <td>
+                                        <input type="text" class="txt colorbox" data-format="rgb" data-opacity="0.50"
+                                            value="rgba(40,40,40,0.8)">
+
+                                    </td>
+                                    <td>
+                                        <button class="but_1">同標題列</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>外框顏色</td>
+                                    <td>
+                                        <input type="text" class="txt colorbox" data-format="rgb" data-opacity="0.50"
+                                            value="rgba(40,40,40,0.8)">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+
+                            <br>
+                            套用預設顏色
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+                <div id="tabs_2" class="tabs_page">
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">工具列顯示的按鈕</div>
+                        <div class="tabs_con">
+
+                            <div style="overflow: hidden;">
+
+                                <table width="100%" style="text-align: center;">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+
+                                <div class="tool_item_box">
+                                    顯示
+                                    <div id="tool_item_show">
+                                        <div class="item">111</div>
+                                        <div class="item">22</div>
+                                        <div class="item">333</div>
+                                        <div class="item">444</div>
+                                    </div>
+                                </div>
+                                <div class="tool_item_box">
+                                    隱藏
+                                    <div id="tool_item_hide">
+                                        <div class="item">111</div>
+                                        <div class="item">22</div>
+                                        <div class="item">333</div>
+                                        <div class="item">444</div>
+                                    </div>
+                                </div>
+
+
+
+                                <div style="width:0%; float:left;height:1px;"></div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <script>
+                        var example1 = document.getElementById("tool_item_show");
+                        new Sortable(example1, {
+                            animation: 150,
+                            group: 'tool_item',
+                            ghostClass: 'blue-background-class'
+                        });
+                        var example2 = document.getElementById("tool_item_hide");
+                        new Sortable(example2, {
+                            animation: 150,
+                            group: 'tool_item',
+                            ghostClass: 'blue-background-class'
+                        });
+                    </script>
+
+
+                    <div class="tabs_card">
+
+                        <div class="tabs_tit">大型上下一張按鈕</div>
+                        <div class="tabs_con">
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div id="tabs_3" class="tabs_page">
+
+
+                    <div class="tabs_card">
+
+
+                        <div class="tabs_tit">設為預設開啟圖片的程式</div>
+                        <div class="tabs_con">
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="div_nub">
+                                            1
+                                        </div>
+                                    </td>
+                                    <td>
+                                        把 Tiefsee 關聯到特定的檔案類型，讓 Tiefsee 變成預設開啟圖片的程式
+                                        <br>
+                                        <button class="but_1">設定圖片關聯</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="div_nub">
+                                            2
+                                        </div>
+                                    </td>
+                                    <td>
+                                        （win10 才需要進行第二步）
+                                        <br>
+                                        開啟 Windows系統設定，將「相片檢視器」設定為 Tiefsee
+                                        <br>
+                                        <button  class="but_1">開啟 Windows設定</button>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div id="tabs_4" class="tabs_page">
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">快速啟動</div>
+                        <div class="tabs_con">
+
+
+                            讓程式常駐在背景，能夠提升開啟圖片的速度。
+
+
+                            <br>
+                            如需要關閉程式，在工作列右下角找到 Tiefsee 圖示，滑鼠右鍵點擊「結束快速啟動」
+                            <switch class="switch" type="on"></switch>
+
+                        </div>
+                    </div>
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">開機自動啟動</div>
+                        <div class="tabs_con">
+                            電腦開機後，讓 Tiefsee 常駐在背景時，快速預覽
+                            <switch class="switch" type="on"></switch>
+                            <br>
+
+
+                            開啟 Windows 的「啟動資料夾」<br>
+                            <button class="but_1">開啟資料夾</button>
+                        </div>
+                    </div>
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">快速預覽圖片</div>
+                        <div class="tabs_con">
+                            當 Tiefsee 常駐在背景時，快速預覽 桌面、資料夾、資源回收桶 裡面的圖片
+                            <br> <br>
+                            長按「鍵盤空白鍵」時啟用
+                            <switch class="switch" type="on"></switch>
+                            <br>
+                            長按「滑鼠滾輪」時啟用
+                            <switch class="switch" type="on"></switch>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+                <div id="tabs_5" class="tabs_page">
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">滑鼠滾輪</div>
+                        <div class="tabs_con">
+                            設定滑鼠回應的操作
+                        </div>
+                    </div>
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">GIF渲染模式</div>
+                        <div class="tabs_con">
+
+                            <label class="rad_box_v">
+                                <input type="radio" class="rad" name="rad_gif_mode">
+                                <span>
+                                    GDI：開啟GIF圖片速度快，但程式的背景無法透明化
+                                </span>
+                            </label>
+
+                            <label class="rad_box_v">
+                                <input type="radio" class="rad" name="rad_gif_mode">
+                                <span>
+                                    DirectX：開啟GIF依然能維持透明的程式視窗，但開啟GIF圖片的速度較慢，也更耗費記憶體
+                                </span>
+                            </label>
+
+
+                        </div>
+                    </div>
+
+                    <!-- <div class="tabs_card">
+                        <div class="tabs_tit">高品質成像-硬體加速</div>
+                        <div class="tabs_con">
+                            如果圖片出現破圖或無法顯示的情況，請改用「模式2」
+                            如果程式會閃退，請使用「模式3」
+                            如果連「模式3」也會閃退，那就使用「模式4」
+                            模式1：GUP運算，速度最快
+                            模式2：GPU運算，速度此塊
+                            模式3：CPU運算，速度普通
+                            模式4：完全關閉硬體加速
+                        </div>
+                    </div> -->
+
+                    <div class="tabs_card">
+                        <div class="tabs_tit">清理大量瀏覽模式的 cookies</div>
+                        <div class="tabs_con">
+                            如果「大量瀏覽模式」有無法讀取圖片的想象，可以嘗試清除cookies
+                            <button class="but_1">清除</button>
+                        </div>
+                    </div>
+
+
+                  
+                </div>
+
+                <div class="tabs_hr"></div>
+
+
+                <div id="tabs_6" class="tabs_page">
+
+                    <div class="tabs_card">
+
+
+                        <div class="tabs_tit"></div>
+                        <div class="tabs_con">
+
+                            <table>
+                                <tr>
+                                    <td>程式版本</td>
+                                    <td>3.0.1
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>作者</td>
+                                    <td>LIAO, WEN-HONG</td>
+                                </tr>
+                                <tr>
+                                    <td>巴哈姆特</td>
+                                    <td>hbl917070（深海異音）</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>hbl917070@gmail.com</td>
+                                </tr>
+                            </table>
+
+
+
+
+                            <button class="but_1">官方網站</button>
+                            <button class="but_1">討論區</button>
+                            <button class="but_1">作者巴哈</button>
+                            <button class="but_1">下載Pixiv動圖教學</button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- <div id="tabs_01">
+                <div class="tabs_tit"></div>
+                <div class="tabs_con">
+
+                </div>
+
+                <div class="tabs_tit"></div>
+                <div class="tabs_con">
+
+                </div>
+
+
+            </div> -->
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

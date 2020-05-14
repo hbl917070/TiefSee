@@ -558,15 +558,20 @@ namespace TiefSee.cs {
             //func_顯示或隱藏垂直線();
 
 
-            //var cc = fun_getColor(s_color_背景顏色);
-            //M.bac.Fill = new SolidColorBrush(cc);//背景顏色
+            var cc = fun_getColor(s_color_背景顏色);
+            M.bac.Fill = new SolidColorBrush(cc);//背景顏色
             M.fun_顯示背景顏色();
 
             var cc2 = fun_getColor(s_color_標題列顏色);
-            M.bac_標題列.Fill = new SolidColorBrush(cc2);//背景顏色
+
+           
+                M.bac_標題列.Fill = new SolidColorBrush(cc2);
+            
+
+     
 
             var cc3 = fun_getColor(s_color_外框顏色);
-            M.border_視窗外框.BorderBrush = new SolidColorBrush(cc3);//背景顏色
+            M.border_視窗外框.BorderBrush = new SolidColorBrush(cc3);
 
 
         }

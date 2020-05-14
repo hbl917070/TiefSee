@@ -38,7 +38,8 @@ namespace TiefSee {
         private void Scrollviewer_1_PreviewMouseWheel(object sender, MouseWheelEventArgs e) {
 
 
-            if (fun_取得滑鼠().X > b.PointToScreen(new Point(0, 0)).X + b.ActualWidth) {
+            //避免開啟exif視窗後，滑鼠在exif視窗上也對圖片進行縮放
+            if (fun_取得滑鼠().X > (b.PointToScreen(new Point(0, 0)).X) + b.ActualWidth * d_解析度比例_x) {
                 return;
             }
 

@@ -196,19 +196,34 @@ namespace TiefSee {
 
                                     //矯正顏色
                                     // Adding the second profile will transform the colorspace from CMYK to RGB
-                                    if (im5.GetColorProfile() != null ) {
-                                        if (im5.GetColorProfile().Model != null) {
-                                            //Log.print("***" + im5.GetColorProfile().Model + "***");
-                                            im5.AddProfile(ColorProfile.SRGB);
-                                        } else {
-                                           // Log.print("無 GetColorProfile().Model");
-                                        }
+                                    ColorProfile cp = ColorProfile.SRGB;
+                                    Log.print(im5.ColorSpace + "  " + im5.ColorType);
+                                    if (im5.ColorSpace == ColorSpace.YCbCr) {
+                                        Log.print("停止使用SRGB");
                                     } else {
-                                        //Log.print("無2 GetColorProfile()");
-                                        im5.AddProfile(ColorProfile.SRGB);
+                                        //im5.AddProfile(cp);
+                                        im5.SetProfile(cp);
                                     }
 
-                                    //Log.print(im5.ColorSpace + "  " + im5.ColorType);
+                                    /*if (im5.GetColorProfile() != null ) {
+                                        if (im5.GetColorProfile().Model != null) {
+                                            Log.print("***" + im5.GetColorProfile().Model + "***");
+                                            im5.AddProfile(cp);
+                                        } else if (im5.ColorSpace == ColorSpace.CMYK) {
+                                            Log.print("類型：CMYK");
+
+                                            im5.AddProfile(cp);
+                                        } else {
+                                            Log.print("無 GetColorProfile().Model");
+                                        }
+                                    } else {
+                                        Log.print("無2 GetColorProfile()");
+                                        im5.AddProfile(cp);
+                                    }*/
+
+
+
+
 
 
 

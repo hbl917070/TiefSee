@@ -41,7 +41,7 @@
                     BorderThickness="1"
                     BorderBrush="{DynamicResource sol_淺藍40}"
                     CornerRadius="0"
-                    Background="#CC000000" />
+                    Background="{DynamicResource sol_menu_bac}" />
             <ScrollViewer Margin="5,15"
                           VerticalScrollBarVisibility="Auto">
                 <StackPanel x:Name="st_容器"

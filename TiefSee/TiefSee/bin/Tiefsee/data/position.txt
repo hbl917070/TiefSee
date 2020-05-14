@@ -1,0 +1,5 @@
+﻿width: 1936
+height: 1056
+left: 57
+top: 306
+max: True

@@ -405,7 +405,20 @@ namespace TiefSee {
 
 
                 //顯示寬高
-                String s_連續圖的第一張 = new DirectoryInfo(path).GetFiles()[0].FullName;
+                String s_連續圖的第一張 = "";
+                var arp = new DirectoryInfo(path).GetFiles();
+                foreach (var item in arp) {
+                    String ne= Path.GetExtension(item.FullName).ToLower();
+                    if (ne == ".jpg" || ne == ".png" || ne == ".gif" || ne == ".jpeg" || ne == ".jfif" || ne == ".bpm") {
+                        s_連續圖的第一張 = item.FullName;
+                        break;
+                    }
+                }
+                if (s_連續圖的第一張 == "") {
+                    fun_顯示錯誤圖片(arp[0].FullName);
+                   return;
+                } 
+
                 var bitimg2 = c_影像.func_get_BitmapImage_JPG(s_連續圖的第一張);
                 var img_width2 = (int)bitimg2.PixelWidth;
                 var img_height2 = (int)bitimg2.PixelHeight;

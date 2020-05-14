@@ -1,12 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Xml;
@@ -207,7 +209,7 @@ namespace TiefSee.cs {
 
 
 
-           
+
 
             //List<d_zip_item> ar_zip_item = UnZip(path, s_暫存路徑, null);
 
@@ -255,8 +257,8 @@ namespace TiefSee.cs {
 
             }
             fun_播放(s_暫存路徑);
-          
-            
+
+
 
 
 
@@ -441,7 +443,7 @@ namespace TiefSee.cs {
 
             ar_path = new List<string>();
 
-            int L = Files.ToString().Length;
+            //int L = Files.ToString().Length;
             for (int i = 0; i < Files.Length; i++) {
                 String path_img = Files[i].FullName;
                 if (path_img.Substring(path_img.Length - 4).ToUpper() == ".JPG") {
@@ -455,7 +457,9 @@ namespace TiefSee.cs {
 
             ar_img = new BitmapFrame[ar2.Length];
             for (int i = 0; i < ar2.Length; i++) {
-                ar_img[i] = M.c_影像.func_get_BitmapImage_JPG(ar2[i]);
+                try {
+                    ar_img[i] = M.c_影像.func_get_BitmapImage_JPG(ar2[i]);
+                } catch { }
             }
 
             //立刻播放第一張圖片
@@ -565,6 +569,32 @@ namespace TiefSee.cs {
         }
 
 
+        #region json格式
+
+        public class animation_json_A {
+            public ugokuIllustFullscreenData ugokuIllustFullscreenData { get; set; }
+        }
+        public class ugokuIllustFullscreenData {
+            public frames[] frames { get; set; }
+        }
+
+        public class animation_json_B {
+            public ugokuIllustData ugokuIllustData { get; set; }
+            public ugokuIllustFullscreenData ugokuIllustFullscreenData { get; set; }
+        }
+        public class ugokuIllustData {
+            public frames[] frames { get; set; }
+            //public String mime_type { get; set; }
+            //public String src { get; set; }
+        }
+
+        public class frames {
+            public int delay { get; set; }
+            //public String file { get; set; }
+        }
+
+        #endregion
+
 
         /// <summary>
         /// 
@@ -582,22 +612,44 @@ namespace TiefSee.cs {
                     s = sr.ReadToEnd();
                 }
 
+
+                animation_json_B json = new animation_json_B();
+                frames[] frs = null;
+                String sum = "";
+                DataContractJsonSerializer dcjs = new DataContractJsonSerializer(json.GetType());
+                MemoryStream ms2 = new MemoryStream(Encoding.UTF8.GetBytes(s));
+
+                try {
+                    json = ((animation_json_B)dcjs.ReadObject(ms2));
+                } catch { }
+                if (json.ugokuIllustData != null && json.ugokuIllustData.frames != null) {
+                    frs = json.ugokuIllustData.frames;
+                } else if (json.ugokuIllustFullscreenData != null && json.ugokuIllustFullscreenData.frames != null) {
+                    frs = json.ugokuIllustFullscreenData.frames;
+                }
+
+
+
+                if (frs != null) {
+                    foreach (var item in frs) {
+                        ar_img_delay.Add(item.delay);
+                    }
+                }
+
+
+                /*
                 var json = JObject.Parse(s);
                 JToken frames = null;
 
                 try {
                     frames = json["ugokuIllustFullscreenData"]["frames"];
                 } catch (Exception) {
-
                     frames = json["ugokuIllustData"]["frames"];
                 }
 
-
-
-
                 foreach (JToken item in frames) {
                     ar_img_delay.Add(Int32.Parse(item["delay"] + ""));
-                }
+                }*/
 
             } catch (Exception) {
 

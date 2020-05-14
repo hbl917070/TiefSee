@@ -8,7 +8,6 @@ using System.IO.Compression;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,16 +17,12 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-
-using System.Xml;
+using System.Windows.Shapes;
 using TiefSee.cs;
 using TiefSee.W;
-using System.Windows.Media.Animation;
-
-using System.Windows.Shell;
-using System.Windows.Controls.Primitives;
 using 取得檔案總管選取的檔案;
 
 namespace TiefSee {
@@ -77,7 +72,7 @@ namespace TiefSee {
         public C_影像 c_影像;
         public C_排序 c_排序;
         private C_右下角圖示 c_右下角圖示;
-
+        public C_window_AERO c_毛玻璃_win10;
 
         public System.Windows.Forms.WebBrowser img_web;
         public U_menu_item propertyMenu_輸出GIF;
@@ -108,8 +103,8 @@ namespace TiefSee {
 
 
 
-
-
+        public bool bool_web_背景刷新 = true;
+        public int n_刷新背景 = 0;
 
 
 
@@ -117,6 +112,108 @@ namespace TiefSee {
         /// 
         /// </summary>
         public MainWindow() {
+
+
+
+
+            /*SizeChanged += (sender, e) => {
+                bool_web_背景刷新 = true;
+                n_刷新背景 = 0;
+            };
+            LocationChanged += (sender, e) => {
+                bool_web_背景刷新 = true;
+                n_刷新背景 = 0;
+            };
+            StateChanged += (sender, e) => {
+                bool_web_背景刷新 = true;
+                n_刷新背景 = 0;
+            };
+
+            //改變視窗size時，不要立即變動web size
+            new Thread(() => {
+
+                while (bool_程式運行中) {
+
+                    Thread.Sleep(50);
+                    n_刷新背景 += 1;
+
+                    if (n_刷新背景 >= 6) {
+                        n_刷新背景 = 0;
+
+                        if (bool_web_背景刷新) {
+                            if (System.Windows.Forms.Control.MouseButtons != System.Windows.Forms.MouseButtons.Left) {
+
+                                //if (w_web != null) { 
+                                //    C_adapter.fun_UI執行緒(() => {
+                                //        int x2 = w_web.Left;
+                                //        int y2 = w_web.Top;
+                                //        w_web.Opacity = 0;
+                                //        var img_cs = captureScreen(x2, y2, w_web.Width, w_web.Height);
+                                //        w_web.Opacity = 1;
+                                //        using (System.IO.MemoryStream ms = new System.IO.MemoryStream()) {
+                                //            img_cs.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                                //            byte[] temp = ms.ToArray();
+                                //            String base64String = "url(data:image/jpeg;base64," + Convert.ToBase64String(temp) + ")";
+                                //            w_web.webBrowser1.Document.InvokeScript("set_bac_img", new object[] { base64String });
+                                //        }
+                                //        //img_cs.Save("123.png", System.Drawing.Imaging.ImageFormat.Png);
+                                //    });
+                                //}
+
+
+
+                                if (u_大量瀏覽模式 != null) {
+
+                                    bool_web_背景刷新 = false;
+
+                                    System.Drawing.Bitmap img_cs = null;
+                                    int x2 = 0;
+                                    int y2 = 0;
+                                    int w2 = 0;
+                                    int h2 = 0;
+                                    bool bTopmost = false;
+
+                                    C_adapter.fun_UI執行緒(() => {
+                                         bTopmost = this.Topmost;
+                                        x2 = (int)((u_大量瀏覽模式.web01.PointToScreen(new System.Drawing.Point(0, 0)).X) / d_解析度比例_x);
+                                        y2 = (int)((u_大量瀏覽模式.web01.PointToScreen(new System.Drawing.Point(0, 0)).Y) / d_解析度比例_y);
+                                        w2 = (int)u_大量瀏覽模式.web01.Width;
+                                        h2 = (int)u_大量瀏覽模式.web01.Height;
+                                        u_大量瀏覽模式.WindowsFormsHost_01.Visibility = Visibility.Collapsed;
+                                        if (bTopmost == false) {
+                                            this.Topmost = true;
+                                        }
+                                    });
+
+                                    Thread.Sleep(10);
+
+                                    C_adapter.fun_UI執行緒(() => {
+
+                                        img_cs = captureScreen(x2, y2, w2, h2);
+                                        u_大量瀏覽模式.WindowsFormsHost_01.Visibility = Visibility.Visible;
+                                        this.Topmost = bTopmost;
+
+                                        using (System.IO.MemoryStream ms = new System.IO.MemoryStream()) {
+                                            img_cs.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                                            byte[] temp = ms.ToArray();
+                                            String base64String = "url(data:image/jpeg;base64," + Convert.ToBase64String(temp) + ")";
+                                            u_大量瀏覽模式.web01.Document.InvokeScript("set_bac_img", new object[] { base64String });
+                                        }
+                                        //img_cs.Save("123.png", System.Drawing.Imaging.ImageFormat.Jpeg);
+                                    });
+                                }
+
+
+                            }
+                        }
+                    }
+
+
+
+
+                }//while
+            }).Start();*/
+
 
 
 
@@ -133,7 +230,7 @@ namespace TiefSee {
 
 
             if (_bool_快速啟動) {
-                String s023 = Path.Combine(System.Windows.Forms.Application.StartupPath, "data", "port");
+                String s023 = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "data", "port");
                 if (Directory.Exists(s023)) {
                     if (Directory.GetFiles(s023, "*").Length == 1) {
                         c_右下角圖示 = new C_右下角圖示();
@@ -550,15 +647,20 @@ namespace TiefSee {
 
 
             if (c_set.bool_aero) {
-                var c_毛玻璃_win10 = new C_window_AERO();
+                c_毛玻璃_win10 = new C_window_AERO();
                 c_毛玻璃_win10.func_啟用毛玻璃(this);
+                //c_毛玻璃_win10.func_win10_aero(this,c_set.fun_getColor(c_set.s_color_標題列顏色));
+                c_set.fun_套用setting設定();
+            } else {
+                //沒有啟動aero的話，最大化會出現透明邊框，必須給程式設定實體的背景顏色才能解決
+                this.grid_all.Background = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             }
 
 
             // 延遲250毫秒後才載入圖片，避免造成啟動是看起來lag
             new Thread(() => {
 
-                Thread.Sleep(250);
+                Thread.Sleep(251);
 
                 C_adapter.fun_UI執行緒(() => {
 
@@ -1003,6 +1105,11 @@ namespace TiefSee {
         /// 
         /// </summary>
         private void MainWindow_KeyUp(object sender, KeyEventArgs e) {
+
+
+            if (text_延遲.IsFocused) {
+                return;
+            }
 
             var k = e.Key;
             var k2 = e.ImeProcessedKey;//中文輸入法的情況下，必須用這個來取得。用於英文按鍵
@@ -1532,7 +1639,7 @@ namespace TiefSee {
 
                 if (bool_有效資料夾) {
                     int_目前圖片位置 = 0;
-                    fun_載入圖片或資料夾(ar[xx]);
+                    fun_載入圖片或資料夾(ar[xx], true);
                     return;
                 }
 
@@ -1903,13 +2010,13 @@ namespace TiefSee {
         /// <summary>
         /// 
         /// </summary>
-        public void fun_載入圖片或資料夾(String path) {
+        public void fun_載入圖片或資料夾(String path, bool bool_一律為資料夾 = false) {
 
-            if (System.IO.Directory.Exists(path)) {//資料夾
+            if (System.IO.Directory.Exists(path) ) {//資料夾
 
                 //讀取 P網 動圖 資料夾                    
                 //if (new DirectoryInfo(path).GetFiles("animation.json").Length > 0) {
-                if (File.Exists(path + "\\animation.json")) {//有【animation.json】才視為P網動圖
+                if (bool_一律為資料夾 == false &&File.Exists(path + "\\animation.json")) {//有【animation.json】才視為P網動圖
 
                     fun_初始載入圖片(path);
                     return;
@@ -2365,6 +2472,30 @@ namespace TiefSee {
             }
             return s;
         }
+
+
+
+        #region 抓取螢幕  
+        /// <summary>  
+        /// 抓取螢幕(層疊的視窗)  
+        /// </summary>  
+        /// <param name="x">左上角的橫座標</param>  
+        /// <param name="y">左上角的縱座標</param>  
+        /// <param name="width">抓取寬度</param>  
+        /// <param name="height">抓取高度</param>  
+        /// <returns></returns>  
+        public System.Drawing.Bitmap captureScreen(int x, int y, int width, int height) {
+            var bmp = new System.Drawing.Bitmap(width, height);
+            using (System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(bmp)) {
+                g.CopyFromScreen(new System.Drawing.Point(x, y), new System.Drawing.Point(0, 0), bmp.Size);
+                g.Dispose();
+            }
+            //bit.Save(@"capture2.png");  
+            return bmp;
+        }
+
+
+        #endregion
 
 
         /// <summary>

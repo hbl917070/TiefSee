@@ -1,5 +1,0 @@
-﻿width: 1152
-height: 648
-left: 112
-top: 286
-max: False

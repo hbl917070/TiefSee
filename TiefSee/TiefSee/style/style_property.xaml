@@ -1,6 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
+    
+    
+    <SolidColorBrush  x:Key="sol_menu_bac"
+                      Color="#E5171719"></SolidColorBrush>
+    
     <SolidColorBrush  x:Key="sol_白"
                       Color="White"></SolidColorBrush>
     <SolidColorBrush  x:Key="sol_白40"
