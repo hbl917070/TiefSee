@@ -1,3 +1,11 @@
+> **Warning**  
+> 此為 TiefSee 3 的專案，不再進行更新與維護
+> <br><br>
+> 新版的 Tiefsee4 移至<br>
+> https://github.com/hbl917070/Tiefsee4
+
+---
+
 ## 簡介
 
 - 開源綠色免安裝，真正專注於看圖的軟體
